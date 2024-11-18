@@ -58,27 +58,38 @@ public class CommunityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             return new OtherUserViewHolder(view);
         }
     }
-
-    @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        CommunityPost post = postList.get(position);
-
-        if (holder instanceof CurrentUserViewHolder) {
-            ((CurrentUserViewHolder) holder).bind(post, previousAuthorId);
-        } else if (holder instanceof OtherUserViewHolder) {
-            ((OtherUserViewHolder) holder).bind(post, previousAuthorId);
-        }
-
-        // Update previousAuthorId for the next post
-        previousAuthorId = post.getAuthorId();
-    }
-
     @Override
     public int getItemCount() {
         return postList.size();
     }
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        CommunityPost post = postList.get(position);
 
-    // ViewHolder for the current user's posts
+        // Determine if this post is the first message from the author
+        boolean isFirstMessageFromUser = isFirstMessageFromAuthor(position);
+
+        if (holder instanceof CurrentUserViewHolder) {
+            ((CurrentUserViewHolder) holder).bind(post, isFirstMessageFromUser);
+        } else if (holder instanceof OtherUserViewHolder) {
+            ((OtherUserViewHolder) holder).bind(post, isFirstMessageFromUser);
+        }
+    }
+
+    // Helper method to check if a post is the first message from an author
+    private boolean isFirstMessageFromAuthor(int position) {
+        if (position == 0) {
+            // Always show author name for the first item in the list
+            return true;
+        }
+        CommunityPost currentPost = postList.get(position);
+        CommunityPost previousPost = postList.get(position - 1);
+
+        // Compare the current post's author ID with the previous post's author ID
+        return !currentPost.getAuthorId().equals(previousPost.getAuthorId());
+    }
+
+    // Updated bind method in the ViewHolder classes
     public static class CurrentUserViewHolder extends RecyclerView.ViewHolder {
         TextView textViewAuthor, textViewContent;
 
@@ -88,19 +99,15 @@ public class CommunityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             textViewContent = itemView.findViewById(R.id.textViewContent);
         }
 
-        public void bind(CommunityPost post, String previousAuthorId) {
-            // Check if the current post's author is the same as the previous one
-            if (post.getAuthorId().equals(previousAuthorId)) {
-                textViewAuthor.setVisibility(View.GONE);  // Hide the author name if it's the same as the previous one
-            } else {
-                textViewAuthor.setVisibility(View.VISIBLE);
+        public void bind(CommunityPost post, boolean isFirstMessageFromUser) {
+            textViewAuthor.setVisibility(isFirstMessageFromUser ? View.VISIBLE : View.GONE);
+            if (isFirstMessageFromUser) {
                 textViewAuthor.setText(post.getAuthorName());
             }
             textViewContent.setText(post.getContent());
         }
     }
 
-    // ViewHolder for other users' posts
     public static class OtherUserViewHolder extends RecyclerView.ViewHolder {
         TextView textViewAuthor, textViewContent;
 
@@ -110,12 +117,9 @@ public class CommunityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             textViewContent = itemView.findViewById(R.id.textViewContent);
         }
 
-        public void bind(CommunityPost post, String previousAuthorId) {
-            // Check if the current post's author is the same as the previous one
-            if (post.getAuthorId().equals(previousAuthorId)) {
-                textViewAuthor.setVisibility(View.GONE);  // Hide the author name if it's the same as the previous one
-            } else {
-                textViewAuthor.setVisibility(View.VISIBLE);
+        public void bind(CommunityPost post, boolean isFirstMessageFromUser) {
+            textViewAuthor.setVisibility(isFirstMessageFromUser ? View.VISIBLE : View.GONE);
+            if (isFirstMessageFromUser) {
                 textViewAuthor.setText(post.getAuthorName());
             }
             textViewContent.setText(post.getContent());

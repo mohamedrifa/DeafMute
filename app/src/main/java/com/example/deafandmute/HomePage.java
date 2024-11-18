@@ -28,11 +28,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class HomePage extends AppCompatActivity {
     FirebaseAuth mAuth;DatabaseReference databaseReference;
-
     RelativeLayout HomePage, FavouritePage, GamesPage, CommunityPage, ProfilePage;
     ImageView Icon1, Icon2, Icon3, Icon4, Icon5;
     FrameLayout fragmentContainer;
-    Button logoutbtn;
     TextView username;
     FirebaseUser user;
     @Override
@@ -60,7 +58,6 @@ public class HomePage extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
-        logoutbtn = findViewById(R.id.logout);
         username = findViewById(R.id.user);
         user = mAuth.getCurrentUser();
 
@@ -91,15 +88,6 @@ public class HomePage extends AppCompatActivity {
                 .replace(R.id.fragment_container, new Home())
                 .commit();
 
-        logoutbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(i);
-                finish();
-            }
-        });
 
         HomePage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,4 +163,20 @@ public class HomePage extends AppCompatActivity {
             return insets;
         });
     }
+    @Override
+    public void onBackPressed() {
+        if (!(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof Home)) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new Home())
+                    .commit();
+            Icon1.setVisibility(View.VISIBLE);
+            Icon2.setVisibility(View.GONE);
+            Icon3.setVisibility(View.GONE);
+            Icon4.setVisibility(View.GONE);
+            Icon5.setVisibility(View.GONE);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 }
