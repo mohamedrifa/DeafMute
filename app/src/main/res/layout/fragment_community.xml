@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Community">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:layout_marginBottom="80dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewCommunity"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="vertical"
+            android:layout_gravity="bottom"
+            android:id="@+id/inputLayout"
+            android:gravity="center_horizontal">
+            <LinearLayout
+                android:layout_width="327dp"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/community_text_bar"
+                android:orientation="horizontal">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="261dp"
+                    android:layout_height="match_parent"
+                    android:hint="Type your message"
+                    android:id="@+id/editTextPostContent"
+                    android:background="@color/trans"
+                    android:layout_marginStart="20dp"
+                    android:textColorHint="#72777A"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+                <ImageButton
+                    android:id="@+id/buttonPost"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@color/trans"
+                    android:src="@drawable/send_icon"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/white"
+    tools:context=".SignUp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Join Us Today!"
+            android:fontFamily="@font/poppins"
+            android:textFontWeight="700"
+            android:textSize="30sp"
+            android:textColor="#3A7306"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Your Account"
+            android:fontFamily="@font/poppins"
+            android:textFontWeight="400"
+            android:textColor="#335910"
+            android:textSize="15sp"
+            />
+        <ImageView
+            android:layout_width="374dp"
+            android:layout_height="228dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/signup"
+            />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_background">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/username"
+                android:layout_width="312dp"
+                android:layout_height="51dp"
+                android:layout_marginStart="15dp"
+                android:hint="Enter Your User Name"
+                android:textColorHint="#3B3B3B"
+                android:fontFamily="@font/poppins"
+                android:background="#00FFFFFF"
+                android:textSize="14sp"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="327dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*Required Field"
+                android:textColor="#ff2d00"
+                android:id="@+id/userreq"
+                android:visibility="gone"
+                android:textSize="10sp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_background">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email"
+                android:layout_width="312dp"
+                android:layout_height="51dp"
+                android:layout_marginStart="15dp"
+                android:hint="Enter Your Email ID"
+                android:textColorHint="#3B3B3B"
+                android:fontFamily="@font/poppins"
+                android:background="#00FFFFFF"
+                android:textSize="14sp"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="327dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*Required Field"
+                android:textColor="#ff2d00"
+                android:id="@+id/emailreq"
+                android:visibility="gone"
+                android:textSize="10sp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_background">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Mobile"
+                android:layout_width="312dp"
+                android:layout_height="51dp"
+                android:layout_marginStart="15dp"
+                android:hint="Enter Your Mobile No."
+                android:textColorHint="#3B3B3B"
+                android:inputType="phone"
+                android:fontFamily="@font/poppins"
+                android:background="#00FFFFFF"
+                android:textSize="14sp"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="327dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*Required Field"
+                android:textColor="#ff2d00"
+                android:id="@+id/mobilereq"
+                android:visibility="gone"
+                android:textSize="10sp"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="327dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/edit_text_background">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password"
+                android:layout_width="275dp"
+                android:layout_height="51dp"
+                android:layout_marginStart="15dp"
+                android:hint="Enter Your Password"
+                android:textColorHint="#3B3B3B"
+                android:fontFamily="@font/poppins"
+                android:background="#00FFFFFF"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:inputType="textPassword" />
+            <ImageView
+                android:id="@+id/visibility_toggle1"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="15dp"
+                android:src="@drawable/visibility"
+                android:layout_centerVertical="true"/>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="327dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*Required Field"
+                android:textColor="#ff2d00"
+                android:id="@+id/passwordreq"
+                android:visibility="gone"
+                android:textSize="10sp"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="327dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/edit_text_background">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/conpassword"
+                android:layout_width="275dp"
+                android:layout_height="51dp"
+                android:layout_marginStart="15dp"
+                android:hint="Re-Enter Your Password"
+                android:textColorHint="#3B3B3B"
+                android:fontFamily="@font/poppins"
+                android:background="#00FFFFFF"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:inputType="textPassword" />
+            <ImageView
+                android:id="@+id/visibility_toggle2"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="15dp"
+                android:src="@drawable/visibility"
+                android:layout_centerVertical="true"/>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="327dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*Required Field"
+                android:textColor="#ff2d00"
+                android:id="@+id/conpasswordreq"
+                android:visibility="gone"
+                android:textSize="10sp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="327dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/gradient_color"
+            >
+            <Button
+                android:layout_width="327dp"
+                android:layout_height="50dp"
+                android:id="@+id/btnSignup"
+                android:text="Sign UP"
+                android:textSize="20sp"
+                android:background="#00FFFFFF"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/poppins"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ProgressBar
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/progressBar"
+        android:indeterminateTint="#3A7306"
+        android:visibility="gone"/>
+</RelativeLayout>

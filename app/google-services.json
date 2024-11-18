@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1015536886471",
+    "project_id": "deafmute-6be1a",
+    "storage_bucket": "deafmute-6be1a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015536886471:android:9454c8d968714506a7d4e2",
+        "android_client_info": {
+          "package_name": "com.example.deafandmute"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGPKg-rBZsM5HMTZ7FFpRRsOuWLzPOzcc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
