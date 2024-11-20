@@ -37,20 +37,24 @@
                             <RelativeLayout
                                 android:layout_width="195dp"
                                 android:layout_height="243dp"
+                                android:id="@+id/BasicNeeds"
                                 android:background="@drawable/recomended1"/>
                             <RelativeLayout
                                 android:layout_width="195dp"
                                 android:layout_height="243dp"
+                                android:id="@+id/SignLanguage"
                                 android:layout_marginLeft="18dp"
                                 android:background="@drawable/recomended2"/>
                             <RelativeLayout
                                 android:layout_width="195dp"
                                 android:layout_height="243dp"
+                                android:id="@+id/TextToSpeech"
                                 android:layout_marginLeft="18dp"
                                 android:background="@drawable/recomended3"/>
                             <RelativeLayout
                                 android:layout_width="195dp"
                                 android:layout_height="243dp"
+                                android:id="@+id/SpeechToText"
                                 android:layout_marginLeft="18dp"
                                 android:background="@drawable/recomended4"/>
                         </LinearLayout>

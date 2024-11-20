@@ -143,7 +143,6 @@ public class Community extends Fragment {
             }
         });
     }
-
     private void setupKeyboardVisibilityListener(View rootView, View parentLayout) {
         rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
             Rect r = new Rect();

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SpeechToText">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom"
+        android:layout_marginBottom="80dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/tvResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Speech Result Will Appear Here"
+                android:fontFamily="@font/poppins"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:padding="16dp" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="204dp"
+                    android:layout_height="204dp"
+                    android:visibility="invisible"
+                    android:id="@+id/micworks"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/micon"/>
+                <ImageView
+                    android:layout_width="111dp"
+                    android:layout_height="111dp"
+                    android:id="@+id/mic"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/micoff"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

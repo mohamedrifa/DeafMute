@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +27,8 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class Home extends Fragment {
+
+    private RelativeLayout basicNeeds, signlanguage, textToSpeech, speechtoText;
     private RecyclerView recyclerView;
     private CourseAdapter courseAdapter;
     private List<Course> courseList = new ArrayList<>();
@@ -72,6 +75,44 @@ public class Home extends Fragment {
                 if (getContext() != null) {
                     Toast.makeText(getContext(), "Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        basicNeeds = view.findViewById(R.id.BasicNeeds);
+        signlanguage = view.findViewById(R.id.SignLanguage);
+        textToSpeech = view.findViewById(R.id.TextToSpeech);
+        speechtoText = view.findViewById(R.id.SpeechToText);
+
+        basicNeeds.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new BasicNeeds())
+                        .commit();
+            }
+        });
+        signlanguage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new SignLanguage())
+                        .commit();
+            }
+        });
+        textToSpeech.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new TextToSpeechFragment())
+                        .commit();
+            }
+        });
+        speechtoText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new SpeechToText())
+                        .commit();
             }
         });
         return view;
