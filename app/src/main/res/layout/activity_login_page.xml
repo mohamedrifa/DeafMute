@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome Back!"
+            android:text="@string/welcome_Back"
             android:fontFamily="@font/poppins"
             android:textFontWeight="700"
             android:textSize="30sp"
@@ -28,7 +28,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Log In to Your Account"
+            android:text="@string/log"
             android:fontFamily="@font/poppins"
             android:textFontWeight="400"
             android:textColor="#335910"
@@ -52,7 +52,7 @@
                 android:layout_width="312dp"
                 android:layout_height="51dp"
                 android:layout_marginStart="15dp"
-                android:hint="Enter Your Email Id"
+                android:hint="@string/enter_your_email_id"
                 android:textColorHint="#3B3B3B"
                 android:fontFamily="@font/poppins"
                 android:background="#00FFFFFF"
@@ -65,11 +65,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="*Required Field"
+                android:text="@string/required_field"
                 android:textColor="#ff2d00"
                 android:id="@+id/emailreq"
                 android:visibility="gone"
-                android:textSize="10sp"/>
+                android:textSize="10sp"
+                tools:ignore="SmallSp" />
         </RelativeLayout>
         <LinearLayout
             android:layout_width="327dp"
@@ -82,7 +83,7 @@
                 android:layout_width="275dp"
                 android:layout_height="51dp"
                 android:layout_marginStart="15dp"
-                android:hint="Enter Your Password"
+                android:hint="@string/enter_your_password"
                 android:textColorHint="#3B3B3B"
                 android:fontFamily="@font/poppins"
                 android:background="#00FFFFFF"
@@ -103,7 +104,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="*Required Field"
+                android:text="@string/required_field"
                 android:textColor="#ff2d00"
                 android:id="@+id/passwordreq"
                 android:visibility="gone"
@@ -120,7 +121,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Forgot Password?"
+                android:text="@string/forgot_password"
                 android:fontFamily="@font/poppins"
                 android:textFontWeight="300"
                 android:textAlignment="center"
@@ -139,7 +140,7 @@
                 android:layout_width="327dp"
                 android:layout_height="50dp"
                 android:id="@+id/btnLogin"
-                android:text="Login"
+                android:text="@string/login"
                 android:textSize="20sp"
                 android:background="#00FFFFFF"
                 android:textColor="#FFFFFF"
@@ -162,7 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="or"
+                android:text="@string/or"
                 android:layout_marginEnd="10dp"
                 android:textColor="#335910"
                 android:fontFamily="@font/poppins"
@@ -204,7 +205,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Don’t have an account?"
+                android:text="@string/don_t_have_an_account"
                 android:textColor="#3B3B3B"
                 android:fontFamily="@font/poppins"
                 android:textSize="15sp"
@@ -212,7 +213,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Sign UP"
+                android:text="@string/sign_up"
                 android:textColor="#335910"
                 android:textSize="15sp"
                 android:onClick="signUp"

@@ -42,7 +42,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hello !"
+                    android:text="@string/hello"
                     android:fontFamily="@font/poppins"
                     android:textColor="#FFFFFF"
                     android:textFontWeight="600"
@@ -51,7 +51,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="What you want to learn today?"
+                    android:text="@string/what_you_want_to_learn_today"
                     android:textSize="13dp"
                     android:fontFamily="@font/poppins"
                     android:textFontWeight="400"
@@ -98,7 +98,7 @@
                     android:layout_height="match_parent"
                     android:textSize="13sp"
                     android:textColor="@color/black"
-                    android:hint="Search"
+                    android:hint="@string/search"
                     android:textColorHint="#3A7306"
                     android:backgroundTint="@color/trans"
                     android:layout_marginStart="12dp" />

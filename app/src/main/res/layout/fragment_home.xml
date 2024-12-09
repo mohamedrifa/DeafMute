@@ -38,7 +38,14 @@
                                 android:layout_width="195dp"
                                 android:layout_height="243dp"
                                 android:id="@+id/BasicNeeds"
-                                android:background="@drawable/recomended1"/>
+                                android:background="@drawable/recomended1">
+                                <View
+                                    android:layout_width="100dp"
+                                    android:layout_height="20dp"
+                                    android:background="@color/white"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="20dp"/>
+                            </RelativeLayout>
                             <RelativeLayout
                                 android:layout_width="195dp"
                                 android:layout_height="243dp"
@@ -63,7 +70,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Our Courses"
+                        android:text="@string/our_courses"
                         android:textColor="#335910"
                         android:fontFamily="@font/poppins"
                         android:textSize="13sp"

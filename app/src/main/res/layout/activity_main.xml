@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ready to Learn?"
+        android:text="@string/ready_to_learn"
         android:fontFamily="@font/poppins"
         android:textFontWeight="700"
         android:textSize="35sp"
@@ -22,7 +22,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Breaking language barriers, together."
+        android:text="@string/breaking_language_barriers_together"
         android:fontFamily="@font/poppins"
         android:textFontWeight="400"
         android:textColor="#335910"
@@ -38,7 +38,7 @@
     <TextView
         android:layout_width="312dp"
         android:layout_height="44dp"
-        android:text="Customize your learning experience with videos, games, and more"
+        android:text="@string/customize_your_learning_experience_with_videos_games_and_more"
         android:fontFamily="@font/poppins"
         android:textFontWeight="300"
         android:layout_marginTop="30dp"
@@ -55,7 +55,7 @@
         <Button
             android:layout_width="327dp"
             android:layout_height="50dp"
-            android:text="Get Start"
+            android:text="@string/get_start"
             android:textSize="20sp"
             android:background="#00FFFFFF"
             android:onClick="WelcomePage"

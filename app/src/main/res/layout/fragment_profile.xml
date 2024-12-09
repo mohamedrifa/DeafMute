@@ -11,6 +11,19 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center">
+
+        <Button
+            android:id="@+id/englishButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="English" />
+
+        <Button
+            android:id="@+id/tamilButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="தமிழ்"
+            android:layout_marginTop="16dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -19,7 +32,7 @@
         <Button
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:text="Logout"
+            android:text="@string/logout"
             android:id="@+id/logout"/>
 
     </LinearLayout>

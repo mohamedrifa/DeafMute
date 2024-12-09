@@ -33,7 +33,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="261dp"
                     android:layout_height="match_parent"
-                    android:hint="Type your message"
+                    android:hint="@string/type_your_message"
                     android:id="@+id/editTextPostContent"
                     android:background="@color/trans"
                     android:layout_marginStart="20dp"

@@ -74,7 +74,7 @@ public class HomePage extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     User userData = snapshot.getValue(User.class);
                     if (userData != null) {
-                        username.setText("Hello, "+userData.username+" !");
+                        username.setText(getString(R.string.hello)+", "+userData.username+" !");
                     }
                 }
                 @Override

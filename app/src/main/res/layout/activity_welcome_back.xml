@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome Back!"
+        android:text="@string/welcome_back"
         android:fontFamily="@font/poppins"
         android:textFontWeight="700"
         android:textSize="35sp"
@@ -22,7 +22,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log In to Your Account"
+        android:text="@string/log_in_to_your_account"
         android:fontFamily="@font/poppins"
         android:textFontWeight="400"
         android:textColor="#335910"
@@ -38,7 +38,7 @@
     <TextView
         android:layout_width="312dp"
         android:layout_height="44dp"
-        android:text="Access your personalized learning experience"
+        android:text="@string/access_your"
         android:fontFamily="@font/poppins"
         android:textFontWeight="300"
         android:layout_marginTop="30dp"
@@ -55,7 +55,7 @@
         <Button
             android:layout_width="327dp"
             android:layout_height="50dp"
-            android:text="Login"
+            android:text="@string/login"
             android:textSize="20sp"
             android:onClick="loginPage"
             android:background="#00FFFFFF"
