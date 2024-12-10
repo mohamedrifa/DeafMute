@@ -11,23 +11,23 @@
     <string name="login_failed">"உள்நுழைவு தோல்வியடைந்தது"</string>
     <string name="hello_blank_fragment">வணக்கம் காலியாக உள்ள துண்டு</string>
     <string name="ready_to_learn">கற்க தயாரா?</string>
-    <string name="breaking_language_barriers_together">மொழி தடைகளை உடைத்தல், ஒன்றிணைந்த நிலையில்.</string>
+    <string name="breaking_language_barriers_together">மொழி தடைகளை ஒன்றிணைந்து உடைபோம்.</string>
     <string name="customize_your_learning_experience_with_videos_games_and_more">வீடியோக்கள், விளையாட்டுகள் மற்றும் பலவற்றுடன் உங்கள் கற்றல் அனுபவத்தை தனிப்பயனாக்குங்கள்</string>
     <string name="get_start">தொடங்குங்கள்</string>
-    <string name="welcome_back">மீண்டும் வரவேற்கிறோம்!</string>
+    <string name="welcome_back">வரவேற்கிறோம்!</string>
     <string name="log_in_to_your_account">உங்கள் கணக்கில் உள்நுழையுங்கள்</string>
     <string name="access_your">உங்கள் தனிப்பயன் கற்றல் அனுபவத்தை அணுகுங்கள்</string>
     <string name="login">உள்நுழைவு</string>
-    <string name="welcome_Back">மீண்டும் வரவேற்கிறோம்!</string>
+    <string name="welcome_Back">வரவேற்கிறோம்!</string>
     <string name="log">உங்கள் கணக்கில் உள்நுழையுங்கள்</string>
-    <string name="enter_your_email_id">உங்கள் மின்னஞ்சல் ஐடியை உள்ளிடுங்கள்</string>
+    <string name="enter_your_email_id">உங்கள் மின்னஞ்சலை உள்ளிடுங்கள்</string>
     <string name="required_field">*தேவையான புலம்</string>
     <string name="enter_your_password">உங்கள் கடவுச்சொல்லை உள்ளிடுங்கள்</string>
     <string name="forgot_password">கடவுச்சொல்லை மறந்துவிட்டீர்களா?</string>
     <string name="or">அல்லது</string>
     <string name="don_t_have_an_account">கணக்கு இல்லையா?</string>
     <string name="sign_up">பதிவு செய்க</string>
-    <string name="join_us_today">இன்று எங்களுடன் சேருங்கள்!</string>
+    <string name="join_us_today">எங்களுடன் சேருங்கள்!</string>
     <string name="create_your_account">உங்கள் கணக்கை உருவாக்குங்கள்</string>
     <string name="enter_your_user_name">உங்கள் பயனர் பெயரை உள்ளிடுங்கள்</string>
     <string name="enter_your_mobile_no">உங்கள் மொபைல் எண் உள்ளிடுங்கள்</string>
@@ -36,10 +36,41 @@
     <string name="what_you_want_to_learn_today">இன்று என்ன கற்க விரும்புகிறீர்கள்?</string>
     <string name="search">தேடல்</string>
     <string name="author_name">ஆசிரியர் பெயர்</string>
-    <string name="type_your_message">உங்கள் செய்தியை தட்டச்சு செய்யவும்</string>
+    <string name="type_your_message">செய்தியை பதிவு செய்யவும்</string>
     <string name="no_favorites_yet">இதுவரை பிடித்தவை எதுவும் இல்லை...</string>
     <string name="our_courses">எங்கள் பாடங்கள்</string>
     <string name="logout">வெளியேறு</string>
     <string name="speech_result_will_appear_here">பேச்சு முடிவு இங்கு தோன்றும்</string>
     <string name="course_name">பாடத்தின் பெயர்</string>
+    <string name="valid_email_id">*சரியான மின்னஞ்சல் முகவரியை உள்ளிடவும்.</string>
+    <string name="valid_mobile_no">*சரியான மொபைல் எண்ணை உள்ளிடவும்.</string>
+    <string name="password_must_have_at_least_8_characters">*கடவுச்சொல் குறைந்தது 8 எழுத்துகள் இருக்க வேண்டும்.</string>
+    <string name="password_must_contain_an_uppercase_letter">*கடவுச்சொல்லில் ஒரு பெரிய எழுத்து இருக்க வேண்டும்.</string>
+    <string name="password_must_contain_a_lowercase_letter">*கடவுச்சொல்லில் ஒரு சிறிய எழுத்து இருக்க வேண்டும்.</string>
+    <string name="password_must_contain_a_number">*கடவுச்சொல்லில் ஒரு எண் இருக்க வேண்டும்.</string>
+    <string name="password_must_contain_a_special_character">*கடவுச்சொல்லில் ஒரு சிறப்பு எழுத்து இருக்க வேண்டும்.</string>
+    <string name="passwords_didn_t_match">*கடவுச்சொற்கள் பொருந்தவில்லை.</string>
+    <string name="invalid_email_or_password">தவறான மின்னஞ்சல் அல்லது கடவுச்சொல்.</string>
+    <string name="logged_in">உள்நுழைந்தீர்கள்</string>
+    <string name="account_created">கணக்கு உருவாக்கப்பட்டது</string>
+    <string name="authentication_failed">அங்கீகாரம் தோல்வியுற்றது.</string>
+
+    <string name="post_created">பதிவு உருவாக்கப்பட்டது</string>
+    <string name="failed_to_create_post">பதிவை உருவாக்க முடியவில்லை</string>
+    <string name="failed_to_fetch_user_data">பயனர் தரவை பெற முடியவில்லை</string>
+    <string name="post_content_cannot_be_empty">பதிவு உள்ளடக்கம் காலியாக இருக்க முடியாது</string>
+    <string name="failed_to_load_posts">பதிவுகளை ஏற்ற முடியவில்லை</string>
+
+    <string name="listening">கேட்கப்படுகிறது...</string>
+    <string name="processing">செயலாக்கப்படுகிறது...</string>
+    <string name="error_occurred">"தோல்வி ஏற்பட்டது: "</string>
+    <string name="no_speech_detected">குரல் கண்டறியப்படவில்லை.</string>
+
+    <string name="failed">தோல்வி...</string>
+    <string name="please_enter_text_to_speak">பேச உரையை உள்ளிடவும்</string>
+    <string name="language_not_supported_or_missing_data">மொழி ஆதரிக்கப்படவில்லை அல்லது தரவு காணவில்லை</string>
+    <string name="initialization_failed">ஆரம்பகட்ட தோல்வி</string>
+
+
+
 </resources>

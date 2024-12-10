@@ -82,13 +82,13 @@ public class LoginPage extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progress.setVisibility(View.GONE);
                                 if (task.isSuccessful()){
-                                    Toast.makeText(LoginPage.this, "Logged In",
+                                    Toast.makeText(LoginPage.this, R.string.logged_in,
                                             Toast.LENGTH_SHORT).show();
                                     Intent i = new Intent(getApplicationContext(), HomePage.class);
                                     startActivity(i);
                                     finish();
                                 } else {
-                                    Toast.makeText(LoginPage.this, "Invalid Email or Password.",
+                                    Toast.makeText(LoginPage.this, R.string.invalid_email_or_password,
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }

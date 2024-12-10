@@ -99,23 +99,23 @@ public class Community extends Fragment {
                                         db.child("Community").push().setValue(newPost)
                                                 .addOnSuccessListener(aVoid -> {
                                                     editTextPostContent.setText(""); // Clear input field
-                                                    Toast.makeText(getContext(), "Post Created", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(getContext(), R.string.post_created, Toast.LENGTH_SHORT).show();
                                                     recyclerView.scrollToPosition(adapter.getItemCount() - 1);
                                                 })
                                                 .addOnFailureListener(e -> {
-                                                    Toast.makeText(getContext(), "Failed to create post", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(getContext(), R.string.failed_to_create_post, Toast.LENGTH_SHORT).show();
                                                 });
                                     }
                                 }
 
                                 @Override
                                 public void onCancelled(DatabaseError databaseError) {
-                                    Toast.makeText(getContext(), "Failed to fetch user data", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), R.string.failed_to_fetch_user_data, Toast.LENGTH_SHORT).show();
                                 }
                             });
                 }
             } else {
-                Toast.makeText(getContext(), "Post content cannot be empty", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.post_content_cannot_be_empty, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -139,7 +139,7 @@ public class Community extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Failed to load posts", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.failed_to_load_posts, Toast.LENGTH_SHORT).show();
             }
         });
     }

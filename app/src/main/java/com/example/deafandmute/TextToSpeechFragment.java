@@ -73,13 +73,13 @@ public class TextToSpeechFragment extends Fragment {
                 database.child("users").child(userId).child("savedTexts").push().setValue(text)
                         .addOnCompleteListener(task -> {
                             if (!task.isSuccessful()) {
-                                Toast.makeText(getContext(), "Failed...", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), R.string.failed, Toast.LENGTH_SHORT).show();
                             }
                         });
                 speakOut(text);
                 inputText.setText("");
             } else {
-                Toast.makeText(getContext(), "Please enter text to speak", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.please_enter_text_to_speak, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -88,10 +88,10 @@ public class TextToSpeechFragment extends Fragment {
             if (status == TextToSpeech.SUCCESS) {
                 int langResult = textToSpeech.setLanguage(Locale.US);
                 if (langResult == TextToSpeech.LANG_MISSING_DATA | langResult == TextToSpeech.LANG_NOT_SUPPORTED) {
-                    Toast.makeText(getContext(), "Language not supported or missing data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.language_not_supported_or_missing_data, Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(getContext(), "Initialization failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.initialization_failed, Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -93,66 +93,66 @@ public class SignUp extends AppCompatActivity {
                 if(TextUtils.isEmpty(username)){
                     requser.setVisibility(View.VISIBLE);progress.setVisibility(View.GONE);flag=0;
                 } else{
-                    requser.setVisibility(View.GONE);
+                    requser.setVisibility(View.INVISIBLE);
                 }
                 if(!email.contains("@gmail.com")) {
                     if(TextUtils.isEmpty(email))
-                        reqemail.setText("*Required Field");
+                        reqemail.setText(R.string.required_field);
                     else
-                        reqemail.setText("*Enter a Valid Email Id.");
+                        reqemail.setText(R.string.valid_email_id);
                     reqemail.setVisibility(View.VISIBLE);
                     progress.setVisibility(View.GONE);
                     flag=0;
                 } else{
-                    reqemail.setVisibility(View.GONE);
+                    reqemail.setVisibility(View.INVISIBLE);
                 }
                 if(mobile.length() != 10) {
                     if(TextUtils.isEmpty(mobile))
-                        reqmobile.setText("*Required Field");
+                        reqmobile.setText(R.string.required_field);
                     else
-                        reqmobile.setText("*Enter a valid Mobile No.");
+                        reqmobile.setText(R.string.valid_mobile_no);
                     reqmobile.setVisibility(View.VISIBLE);
                     progress.setVisibility(View.GONE);flag=0;
                 } else{
-                    reqmobile.setVisibility(View.GONE);
+                    reqmobile.setVisibility(View.INVISIBLE);
                 }
                 if (TextUtils.isEmpty(password)) {
-                    reqpassword.setText("*Required Field");
+                    reqpassword.setText(R.string.required_field);
                     reqpassword.setVisibility(View.VISIBLE);
                     progress.setVisibility(View.GONE);flag=0;
                 } else if (password.length() < 8) {
-                    reqpassword.setText("*Password Must Have At Least 8 Characters.");
+                    reqpassword.setText(R.string.password_must_have_at_least_8_characters);
                     reqpassword.setVisibility(View.VISIBLE);
                     progress.setVisibility(View.GONE);flag=0;
                 } else if (!password.matches(".*[A-Z].*")) {
-                    reqpassword.setText("*Password Must Contain an Uppercase Letter.");
+                    reqpassword.setText(R.string.password_must_contain_an_uppercase_letter);
                     reqpassword.setVisibility(View.VISIBLE);
                     progress.setVisibility(View.GONE);flag=0;
                 } else if (!password.matches(".*[a-z].*")) {
-                    reqpassword.setText("*Password Must Contain a Lowercase Letter.");
+                    reqpassword.setText(R.string.password_must_contain_a_lowercase_letter);
                     reqpassword.setVisibility(View.VISIBLE);flag=0;
                     progress.setVisibility(View.GONE);
                 } else if (!password.matches(".*[0-9].*")) {
-                    reqpassword.setText("*Password Must Contain a Number.");
+                    reqpassword.setText(R.string.password_must_contain_a_number);
                     reqpassword.setVisibility(View.VISIBLE);flag=0;
                     progress.setVisibility(View.GONE);
                 } else if (!password.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
-                    reqpassword.setText("*Password Must Contain a Special Character.");
+                    reqpassword.setText(R.string.password_must_contain_a_special_character);
                     reqpassword.setVisibility(View.VISIBLE);
                     progress.setVisibility(View.GONE);flag=0;
                 } else {
-                    reqpassword.setVisibility(View.GONE);
+                    reqpassword.setVisibility(View.INVISIBLE);
                     progress.setVisibility(View.VISIBLE);
                 }
                 if(!password.equals(confirmPassword)){
                     if(TextUtils.isEmpty(confirmPassword))
-                        reqconpassword.setText("*Required Field");
+                        reqconpassword.setText(R.string.required_field);
                     else
-                        reqconpassword.setText("*Passwords didn't Match.");
+                        reqconpassword.setText(R.string.passwords_didn_t_match);
                     reqconpassword.setVisibility(View.VISIBLE);
                     progress.setVisibility(View.GONE);flag=0;
                 } else{
-                    reqconpassword.setVisibility(View.GONE);
+                    reqconpassword.setVisibility(View.INVISIBLE);
                 }
 
                 if(flag==0)
@@ -171,12 +171,12 @@ public class SignUp extends AppCompatActivity {
                                 }
                                 if (task.isSuccessful()) {
                                     progress.setVisibility(View.GONE);
-                                    Toast.makeText(SignUp.this, "Account Created",
+                                    Toast.makeText(SignUp.this, R.string.account_created,
                                             Toast.LENGTH_SHORT).show();
                                     finish();
                                 } else {
                                     progress.setVisibility(View.GONE);
-                                    Toast.makeText(SignUp.this, "Authentication failed.",
+                                    Toast.makeText(SignUp.this, R.string.authentication_failed,
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }

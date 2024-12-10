@@ -68,14 +68,14 @@
                 android:text="@string/required_field"
                 android:textColor="#ff2d00"
                 android:id="@+id/emailreq"
-                android:visibility="gone"
+                android:visibility="invisible"
                 android:textSize="10sp"
                 tools:ignore="SmallSp" />
         </RelativeLayout>
         <LinearLayout
             android:layout_width="327dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:gravity="center_vertical"
             android:background="@drawable/edit_text_background">
             <com.google.android.material.textfield.TextInputEditText
@@ -107,7 +107,7 @@
                 android:text="@string/required_field"
                 android:textColor="#ff2d00"
                 android:id="@+id/passwordreq"
-                android:visibility="gone"
+                android:visibility="invisible"
                 android:textSize="10sp"/>
         </RelativeLayout>
 
@@ -115,9 +115,7 @@
         <LinearLayout
             android:layout_width="327dp"
             android:layout_height="wrap_content"
-            android:layoutDirection="rtl"
-            android:layout_marginTop="10dp"
-            >
+            android:layoutDirection="rtl">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

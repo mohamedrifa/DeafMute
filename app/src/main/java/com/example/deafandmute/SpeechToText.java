@@ -65,11 +65,11 @@ public class SpeechToText extends Fragment {
         speechRecognizer.setRecognitionListener(new RecognitionListener() {
             @Override
             public void onReadyForSpeech(Bundle params) {
-                tvResult.setText("Listening...");
+                tvResult.setText(R.string.listening);
             }
             @Override
             public void onBeginningOfSpeech() {
-                tvResult.setText("Listening...");
+                tvResult.setText(R.string.listening);
             }
             @Override
             public void onRmsChanged(float rmsdB) {
@@ -80,12 +80,12 @@ public class SpeechToText extends Fragment {
             }
             @Override
             public void onEndOfSpeech() {
-                tvResult.setText("Processing...");
+                tvResult.setText(R.string.processing);
             }
             @Override
             public void onError(int error) {
-                Toast.makeText(getContext(), "Error occurred: " + error, Toast.LENGTH_SHORT).show();
-                tvResult.setText("Speech Result Will Appear Here");
+                Toast.makeText(getContext(), getString(R.string.error_occurred) + error, Toast.LENGTH_SHORT).show();
+                tvResult.setText(R.string.speech_result_will_appear_here);
             }
             @Override
             public void onResults(Bundle results) {
@@ -93,7 +93,7 @@ public class SpeechToText extends Fragment {
                 if (matches != null && !matches.isEmpty()) {
                     tvResult.setText(matches.get(0));
                 } else {
-                    tvResult.setText("No speech detected.");
+                    tvResult.setText(R.string.no_speech_detected);
                 }
             }
             @Override
@@ -112,14 +112,14 @@ public class SpeechToText extends Fragment {
                         // User started pressing the button
                         MicWorks.setVisibility(View.VISIBLE);
                         startListening();
-                        tvResult.setText("Listening...");
+                        tvResult.setText(R.string.listening);
                         return true;
 
                     case MotionEvent.ACTION_UP:
                         // User released the button
                         MicWorks.setVisibility(View.INVISIBLE);
                         stopListening();
-                        tvResult.setText("Processing...");
+                        tvResult.setText(R.string.processing);
                         return true;
                 }
                 return false;

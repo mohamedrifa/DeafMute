@@ -89,9 +89,8 @@ public class Profile extends Fragment {
         DisplayMetrics displayMetrics = resources.getDisplayMetrics();
         config.setLocale(locale); // Use setLocale for modern API levels
         resources.updateConfiguration(config, displayMetrics);
-
         // Restart the activity hosting the fragment to apply changes
-        Intent intent = new Intent(requireContext(), MainActivity.class);
+        Intent intent = new Intent(requireContext(), LanguageSelection.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         requireActivity().finish(); // Properly finish the hosting activity

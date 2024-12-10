@@ -42,4 +42,32 @@
     <string name="logout">Logout</string>
     <string name="speech_result_will_appear_here">Speech Result Will Appear Here</string>
     <string name="course_name">Course Name</string>
+    <string name="valid_email_id">*Enter a Valid Email Id.</string>
+    <string name="valid_mobile_no">*Enter a valid Mobile No.</string>
+    <string name="password_must_have_at_least_8_characters">*Password Must Have At Least 8 Characters.</string>
+    <string name="password_must_contain_an_uppercase_letter">*Password Must Contain an Uppercase Letter.</string>
+    <string name="password_must_contain_a_lowercase_letter">*Password Must Contain a Lowercase Letter.</string>
+    <string name="password_must_contain_a_number">*Password Must Contain a Number.</string>
+    <string name="password_must_contain_a_special_character">*Password Must Contain a Special Character.</string>
+    <string name="passwords_didn_t_match">*Passwords didn\'t Match.</string>
+    <string name="invalid_email_or_password">Invalid Email or Password.</string>
+    <string name="logged_in">Logged In</string>
+    <string name="account_created">Account Created</string>
+    <string name="authentication_failed">Authentication failed.</string>
+
+    <string name="post_created">Post Created</string>
+    <string name="failed_to_create_post">Failed to create post</string>
+    <string name="failed_to_fetch_user_data">Failed to fetch user data</string>
+    <string name="post_content_cannot_be_empty">Post content cannot be empty</string>
+    <string name="failed_to_load_posts">Failed to load posts</string>
+
+    <string name="listening">Listening...</string>
+    <string name="processing">Processing...</string>
+    <string name="error_occurred">"Error occurred: "</string>
+    <string name="no_speech_detected">No speech detected.</string>
+
+    <string name="failed">Failed...</string>
+    <string name="please_enter_text_to_speak">Please enter text to speak</string>
+    <string name="language_not_supported_or_missing_data">Language not supported or missing data</string>
+    <string name="initialization_failed">Initialization failed</string>
 </resources>
