@@ -71,6 +71,10 @@
     <string name="language_not_supported_or_missing_data">மொழி ஆதரிக்கப்படவில்லை அல்லது தரவு காணவில்லை</string>
     <string name="initialization_failed">ஆரம்பகட்ட தோல்வி</string>
 
-
+    <string name="recommended">பரிந்துரையானது</string>
+    <string name="basic_needs">அடிப்படை தேவைகள்</string>
+    <string name="sign_language">கை உரை மொழி</string>
+    <string name="text_to_speech">உரை குரல் மாற்றம்</string>
+    <string name="speech_to_text">குரல் உரை மாற்றம்</string>
 
 </resources>

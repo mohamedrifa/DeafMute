@@ -39,31 +39,156 @@
                                 android:layout_height="243dp"
                                 android:id="@+id/BasicNeeds"
                                 android:background="@drawable/recomended1">
-                                <View
-                                    android:layout_width="100dp"
-                                    android:layout_height="20dp"
-                                    android:background="@color/white"
+                                <LinearLayout
+                                    android:layout_width="93dp"
+                                    android:layout_height="13dp"
+                                    android:background="#D17D19"
+                                    android:layout_marginTop="18dp"
+                                    android:gravity="center_horizontal"
+                                    android:layout_marginStart="20dp">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:text="@string/recommended"
+                                        android:textSize="9sp"
+                                        android:textColor="@color/white"
+                                        android:fontFamily="@font/poppins"
+                                        android:textFontWeight="500"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="180dp"
+                                    android:layout_height="22dp"
                                     android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="20dp"/>
+                                    android:background="@color/white"
+                                    android:gravity="center_horizontal"
+                                    android:layout_marginTop="192dp">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/basic_needs"
+                                        android:textColor="#D17D19"
+                                        android:fontFamily="@font/poppins"
+                                        android:textSize="15sp"
+                                        android:textFontWeight="600"/>
+                                </LinearLayout>
                             </RelativeLayout>
                             <RelativeLayout
                                 android:layout_width="195dp"
                                 android:layout_height="243dp"
                                 android:id="@+id/SignLanguage"
                                 android:layout_marginLeft="18dp"
-                                android:background="@drawable/recomended2"/>
+                                android:background="@drawable/recomended2">
+                                <LinearLayout
+                                    android:layout_width="93dp"
+                                    android:layout_height="13dp"
+                                    android:background="#C33CE0"
+                                    android:layout_marginTop="18dp"
+                                    android:gravity="center_horizontal"
+                                    android:layout_marginStart="20dp">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:text="@string/recommended"
+                                        android:textSize="9sp"
+                                        android:textColor="@color/white"
+                                        android:fontFamily="@font/poppins"
+                                        android:textFontWeight="500"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="180dp"
+                                    android:layout_height="22dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@color/white"
+                                    android:gravity="center_horizontal"
+                                    android:layout_marginTop="192dp">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/sign_language"
+                                        android:textColor="#C33CE0"
+                                        android:fontFamily="@font/poppins"
+                                        android:textSize="15sp"
+                                        android:textFontWeight="600"/>
+                                </LinearLayout>
+                            </RelativeLayout>
                             <RelativeLayout
                                 android:layout_width="195dp"
                                 android:layout_height="243dp"
                                 android:id="@+id/TextToSpeech"
                                 android:layout_marginLeft="18dp"
-                                android:background="@drawable/recomended3"/>
+                                android:background="@drawable/recomended3">
+                                <LinearLayout
+                                    android:layout_width="93dp"
+                                    android:layout_height="13dp"
+                                    android:background="#D54F32"
+                                    android:layout_marginTop="18dp"
+                                    android:gravity="center_horizontal"
+                                    android:layout_marginStart="20dp">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:text="@string/recommended"
+                                        android:textSize="9sp"
+                                        android:textColor="@color/white"
+                                        android:fontFamily="@font/poppins"
+                                        android:textFontWeight="500"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="180dp"
+                                    android:layout_height="22dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@color/white"
+                                    android:gravity="center_horizontal"
+                                    android:layout_marginTop="192dp">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/text_to_speech"
+                                        android:textColor="#D54F32"
+                                        android:fontFamily="@font/poppins"
+                                        android:textSize="15sp"
+                                        android:textFontWeight="600"/>
+                                </LinearLayout>
+                            </RelativeLayout>
                             <RelativeLayout
                                 android:layout_width="195dp"
                                 android:layout_height="243dp"
                                 android:id="@+id/SpeechToText"
                                 android:layout_marginLeft="18dp"
-                                android:background="@drawable/recomended4"/>
+                                android:background="@drawable/recomended4">
+                                <LinearLayout
+                                    android:layout_width="93dp"
+                                    android:layout_height="13dp"
+                                    android:background="#924460"
+                                    android:layout_marginTop="18dp"
+                                    android:gravity="center_horizontal"
+                                    android:layout_marginStart="20dp">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:text="@string/recommended"
+                                        android:textSize="9sp"
+                                        android:textColor="@color/white"
+                                        android:fontFamily="@font/poppins"
+                                        android:textFontWeight="500"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="180dp"
+                                    android:layout_height="22dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@color/white"
+                                    android:gravity="center_horizontal"
+                                    android:layout_marginTop="192dp">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/speech_to_text"
+                                        android:textColor="#924460"
+                                        android:fontFamily="@font/poppins"
+                                        android:textSize="15sp"
+                                        android:textFontWeight="600"/>
+                                </LinearLayout>
+                            </RelativeLayout>
                         </LinearLayout>
                     </HorizontalScrollView>
 

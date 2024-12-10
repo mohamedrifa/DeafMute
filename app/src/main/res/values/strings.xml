@@ -70,4 +70,10 @@
     <string name="please_enter_text_to_speak">Please enter text to speak</string>
     <string name="language_not_supported_or_missing_data">Language not supported or missing data</string>
     <string name="initialization_failed">Initialization failed</string>
+
+    <string name="recommended">Recommended</string>
+    <string name="basic_needs">Basic Needs</string>
+    <string name="sign_language">Sign Language</string>
+    <string name="text_to_speech">Text to Speech</string>
+    <string name="speech_to_text">Speech to Text</string>
 </resources>

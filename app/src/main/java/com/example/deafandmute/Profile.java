@@ -71,11 +71,9 @@ public class Profile extends Fragment {
             public void onClick(View v) {
                 // Sign out from Firebase Authentication
                 FirebaseAuth.getInstance().signOut();
-
                 // Redirect to MainActivity
-                Intent intent = new Intent(requireContext(), MainActivity.class);
+                Intent intent = new Intent(requireContext(), LanguageSelection.class);
                 startActivity(intent);
-
                 // Close the current activity hosting the fragment
                 requireActivity().finish();
             }
