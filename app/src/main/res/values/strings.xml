@@ -1,4 +1,7 @@
 <resources>
+
+    <string name="lang">en</string>
+
     <string name="app_name">Deaf And Mute</string>
     <string name="title_activity_login_page">LoginPage</string>
     <string name="prompt_email">Email</string>
@@ -76,4 +79,7 @@
     <string name="sign_language">Sign Language</string>
     <string name="text_to_speech">Text to Speech</string>
     <string name="speech_to_text">Speech to Text</string>
+    <string name="failed_to_load_user_data">Failed to load user data</string>
+    <string name="failed_to_update_language">Failed to update language</string>
+    <string name="user_not_logged_in">User Not Logged In</string>
 </resources>

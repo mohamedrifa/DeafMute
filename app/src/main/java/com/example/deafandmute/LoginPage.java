@@ -25,6 +25,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginPage extends AppCompatActivity {
     private TextInputEditText passwordEditText, userEditText;
@@ -33,6 +35,7 @@ public class LoginPage extends AppCompatActivity {
     private Button buttonLogin;
     private ProgressBar progress;
     private FirebaseAuth mAuth;
+    private DatabaseReference databaseReference;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,7 @@ public class LoginPage extends AppCompatActivity {
         buttonLogin = findViewById(R.id.btnLogin);
         reqemail = findViewById(R.id.emailreq);
         reqpassword = findViewById(R.id.passwordreq);
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
         // Set onClickListener for the visibility toggle
         visibilityToggle.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +86,19 @@ public class LoginPage extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progress.setVisibility(View.GONE);
                                 if (task.isSuccessful()){
+                                    FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                                    if (firebaseUser != null) {
+                                        String userId = firebaseUser.getUid();
+                                        // Update the language preference for the user in Firebase Realtime Database
+                                        String language = getString(R.string.lang);
+                                        databaseReference.child(userId).child("language").setValue(language)
+                                                .addOnSuccessListener(aVoid -> {
+
+                                                })
+                                                .addOnFailureListener(e -> {
+                                                    
+                                                });
+                                    }
                                     Toast.makeText(LoginPage.this, R.string.logged_in,
                                             Toast.LENGTH_SHORT).show();
                                     Intent i = new Intent(getApplicationContext(), HomePage.class);
@@ -96,7 +113,6 @@ public class LoginPage extends AppCompatActivity {
             }
         });
     }
-
     public void signUp(View v)
     {
         Intent i = new Intent(this, SignUp.class);

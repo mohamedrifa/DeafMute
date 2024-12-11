@@ -1,4 +1,7 @@
 <resources>
+
+    <string name="lang">ta</string>
+
     <string name="app_name">கூடல் மற்றும் உள்நுழைவு</string>
     <string name="title_activity_login_page">உள்நுழைவு பக்கம்</string>
     <string name="prompt_email">மின்னஞ்சல்</string>
@@ -76,5 +79,8 @@
     <string name="sign_language">கை உரை மொழி</string>
     <string name="text_to_speech">உரை குரல் மாற்றம்</string>
     <string name="speech_to_text">குரல் உரை மாற்றம்</string>
+    <string name="failed_to_load_user_data">பயனர் தகவலை ஏற்ற முடியவில்லை</string>
+    <string name="failed_to_update_language">மொழியைப் மாற்ற முடியவில்லை</string>
+    <string name="user_not_logged_in">பயனர் உள்நுழைந்திருக்கவில்லை</string>
 
 </resources>

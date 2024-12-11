@@ -1,8 +1,12 @@
 package com.example.deafandmute;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -26,6 +30,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Locale;
+
 public class HomePage extends AppCompatActivity {
     FirebaseAuth mAuth;DatabaseReference databaseReference;
     RelativeLayout HomePage, FavouritePage, GamesPage, CommunityPage, ProfilePage;
@@ -33,6 +39,7 @@ public class HomePage extends AppCompatActivity {
     FrameLayout fragmentContainer;
     TextView username;
     FirebaseUser user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,19 +77,26 @@ public class HomePage extends AppCompatActivity {
         else {
             String userId = user.getUid();
             databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @SuppressLint("SetTextI18n")
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     User userData = snapshot.getValue(User.class);
                     if (userData != null) {
-                        username.setText(getString(R.string.hello)+", "+userData.username+" !");
+                        String currentLang = getString(R.string.lang); // Retrieve the current language string
+                        if (!userData.language.equals(currentLang)) {
+                            setLanguage(userData.language); // Dynamically set the language
+                        }
+                        username.setText(getString(R.string.hello) + ", " + userData.username + " !");
                     }
                 }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(HomePage.this, "Failed to load user data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomePage.this, R.string.failed_to_load_user_data, Toast.LENGTH_SHORT).show();
                 }
             });
         }
+
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, new Home())
@@ -177,6 +191,18 @@ public class HomePage extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    private void setLanguage(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Resources resources = getResources();
+        Configuration config = resources.getConfiguration();
+        DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+        config.setLocale(locale); // For newer APIs
+        resources.updateConfiguration(config, displayMetrics);
+
+        recreate(); // Reloads the current activity to apply language changes
     }
 
 }
