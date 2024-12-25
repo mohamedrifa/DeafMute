@@ -2,6 +2,7 @@
 
     <string name="lang">en</string>
 
+    <string name="profileImage"></string>
     <string name="app_name">Deaf And Mute</string>
     <string name="title_activity_login_page">LoginPage</string>
     <string name="prompt_email">Email</string>
@@ -82,4 +83,5 @@
     <string name="failed_to_load_user_data">Failed to load user data</string>
     <string name="failed_to_update_language">Failed to update language</string>
     <string name="user_not_logged_in">User Not Logged In</string>
+    <string name="new_signs">" new Signs"</string>
 </resources>

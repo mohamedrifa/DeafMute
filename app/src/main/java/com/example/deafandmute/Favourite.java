@@ -56,7 +56,8 @@ public class Favourite extends Fragment {
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
         String userId = firebaseUser.getUid();
         // Reference to the user's favorite courses
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("favouriteCourse");
+        String language = getString(R.string.lang);
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("favouriteCourse/"+language);
 
         loadFavoriteCourses();
 
@@ -85,7 +86,8 @@ public class Favourite extends Fragment {
     }
 
     private void fetchFavoriteCourseDetails(List<String> favoriteCourseIds) {
-        DatabaseReference coursesRef = FirebaseDatabase.getInstance().getReference("courses");
+        String language = getString(R.string.lang);
+        DatabaseReference coursesRef = FirebaseDatabase.getInstance().getReference("courses/"+language);
         courseList.clear();
 
         coursesRef.addListenerForSingleValueEvent(new ValueEventListener() {

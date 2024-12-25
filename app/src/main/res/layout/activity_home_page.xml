@@ -24,14 +24,41 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <com.google.android.material.imageview.ShapeableImageView
+            <RelativeLayout
                 android:layout_width="54dp"
                 android:layout_height="55dp"
-                android:src="@drawable/profile"
                 android:layout_marginTop="60dp"
                 android:layout_marginStart="29dp"
                 android:layout_marginEnd="10dp"
-                app:shapeAppearanceOverlay="@style/RoundedImageViewShape"/>
+                app:shapeAppearanceOverlay="@style/RoundedImageViewShape">
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="54dp"
+                    android:layout_height="55dp"
+                    android:id="@+id/profileImage"
+                    android:visibility="invisible"
+                    android:src="@drawable/profile"
+                    app:shapeAppearanceOverlay="@style/RoundedImageViewShape"/>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/without_profile"
+                    android:layout_width="match_parent"
+                    android:visibility="invisible"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="11dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#015b4f">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/profile_text"
+                            android:textColor="@color/white"
+                            android:textSize="30sp"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/poppins"/>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
             <LinearLayout
                 android:layout_width="200dp"
                 android:layout_height="80dp"

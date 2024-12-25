@@ -42,15 +42,15 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         Course course = courseList.get(position);
         holder.courseName.setText(course.getCourseName());
         holder.courseRating.setText(String.valueOf(course.getRating()));
-        holder.enrollmentCount.setText(String.valueOf(course.getEnrollmentCount()) + " new Signs");
+        holder.enrollmentCount.setText(String.valueOf(course.getEnrollmentCount()) + context.getString(R.string.new_signs));
 
         // Load course icon using Glide
         Glide.with(context).load(course.getCourseIconUrl()).into(holder.courseIcon);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
         String userId = firebaseUser.getUid();  // Replace with actual user ID
-        DatabaseReference userRef = holder.databaseReference.child(userId).child("favouriteCourse");
-
+        String language = context.getString(R.string.lang);
+        DatabaseReference userRef = holder.databaseReference.child(userId).child("favouriteCourse").child(language);
         // Check if the course ID exists in the favorite list and set visibility accordingly
         userRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -83,37 +83,45 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     private void updateFavoriteCourses(String courseId, boolean add, CourseViewHolder holder) {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
-        String userId = firebaseUser.getUid();
-        DatabaseReference userRef = holder.databaseReference.child(userId).child("favouriteCourse");
 
-        userRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                List<String> favoriteCourses;
+        if (firebaseUser != null) {
+            String userId = firebaseUser.getUid();
+            String language = context.getString(R.string.lang);
+            DatabaseReference userRef = holder.databaseReference.child(userId).child("favouriteCourse").child(language);
 
-                // Check if `favouriteCourse` exists and is a List, otherwise create a new list
-                if (task.getResult().exists() && task.getResult().getValue() instanceof List) {
-                    favoriteCourses = (List<String>) task.getResult().getValue();
-                } else {
-                    favoriteCourses = new ArrayList<>();
-                }
+            userRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    List<String> favoriteCourses;
 
-                // Add or remove the course ID from the list
-                if (add) {
-                    if (!favoriteCourses.contains(courseId)) {
-                        favoriteCourses.add(courseId);
+                    // Check if `favouriteCourse` exists and is a List, otherwise create a new list
+                    if (task.getResult().exists() && task.getResult().getValue() instanceof List) {
+                        favoriteCourses = (List<String>) task.getResult().getValue();
+                    } else {
+                        favoriteCourses = new ArrayList<>();
                     }
-                } else {
-                    favoriteCourses.remove(courseId);
-                }
 
-                // Update the favorite courses list in Firebase
-                userRef.setValue(favoriteCourses).addOnCompleteListener(updateTask -> {
-                    if (!updateTask.isSuccessful()) {
-                        // Handle failure
+                    // Add or remove the course ID from the list
+                    if (add) {
+                        if (!favoriteCourses.contains(courseId)) {
+                            favoriteCourses.add(courseId);
+                        }
+                    } else {
+                        favoriteCourses.remove(courseId);
                     }
-                });
-            }
-        });
+
+                    // Update the favorite courses list in Firebase
+                    userRef.setValue(favoriteCourses).addOnCompleteListener(updateTask -> {
+                        if (updateTask.isSuccessful()) {
+                            // Successfully updated favorite courses
+                        } else {
+                            // Handle failure
+                        }
+                    });
+                } else {
+                    // Handle failure to read favorite courses
+                }
+            });
+        }
     }
 
 

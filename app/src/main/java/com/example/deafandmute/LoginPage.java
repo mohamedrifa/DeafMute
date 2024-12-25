@@ -96,7 +96,7 @@ public class LoginPage extends AppCompatActivity {
 
                                                 })
                                                 .addOnFailureListener(e -> {
-                                                    
+
                                                 });
                                     }
                                     Toast.makeText(LoginPage.this, R.string.logged_in,

@@ -18,10 +18,12 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -33,6 +35,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Locale;
 
 public class HomePage extends AppCompatActivity {
+    CardView profileLess;
+    ImageView profile;
+    TextView textProfile;
     FirebaseAuth mAuth;DatabaseReference databaseReference;
     RelativeLayout HomePage, FavouritePage, GamesPage, CommunityPage, ProfilePage;
     ImageView Icon1, Icon2, Icon3, Icon4, Icon5;
@@ -40,6 +45,7 @@ public class HomePage extends AppCompatActivity {
     TextView username;
     FirebaseUser user;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +74,10 @@ public class HomePage extends AppCompatActivity {
         username = findViewById(R.id.user);
         user = mAuth.getCurrentUser();
 
+        profileLess = findViewById(R.id.without_profile);
+        profile = findViewById(R.id.profileImage);
+        textProfile = findViewById(R.id.profile_text);
+
         if(user==null)
         {
             Intent i = new Intent(getApplicationContext(), MainActivity.class);
@@ -86,17 +96,23 @@ public class HomePage extends AppCompatActivity {
                         if (!userData.language.equals(currentLang)) {
                             setLanguage(userData.language); // Dynamically set the language
                         }
+                        if(userData.profilePhoto.isEmpty()){
+                            char profile = userData.username.charAt(0);
+                            profileLess.setVisibility(View.VISIBLE);
+                            textProfile.setText(String.valueOf(profile));
+                        }else{
+                            profile.setVisibility(View.VISIBLE);
+                            Glide.with(HomePage.this).load(userData.getprofilePhoto()).into(profile);
+                        }
                         username.setText(getString(R.string.hello) + ", " + userData.username + " !");
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                     Toast.makeText(HomePage.this, R.string.failed_to_load_user_data, Toast.LENGTH_SHORT).show();
                 }
             });
         }
-
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, new Home())

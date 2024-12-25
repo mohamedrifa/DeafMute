@@ -55,7 +55,8 @@ public class Home extends Fragment {
         courseAdapter = new CourseAdapter(courseList, getContext());
         recyclerView.setAdapter(courseAdapter);
         // Initialize Firebase database reference
-        databaseReference = FirebaseDatabase.getInstance().getReference("courses");
+        String language = getString(R.string.lang);
+        databaseReference = FirebaseDatabase.getInstance().getReference("courses/"+language);
         // Fetch data from Firebase and update RecyclerView
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
