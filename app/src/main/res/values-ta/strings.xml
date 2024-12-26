@@ -86,5 +86,10 @@
 
     <string name="new_signs">"புதிய கைகுறி மொழிகள்"</string>
 
+    <string name="choose">தேர்வு செய்</string>
+    <string name="fill_it">நிரப்பவும்</string>
+    <string name="store_in_brain">மனதில் சேமிக்கவும்</string>
+    <string name="match">ஒத்திடவும்</string>
+
 
 </resources>
