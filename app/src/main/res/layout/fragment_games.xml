@@ -21,6 +21,7 @@
                 android:layout_height="192dp"
                 android:background="@drawable/course_background"
                 android:gravity="center_horizontal"
+                android:id="@+id/chooseGame"
                 android:orientation="vertical">
                 <androidx.cardview.widget.CardView
                     android:layout_width="132dp"
@@ -49,6 +50,7 @@
                 android:layout_height="192dp"
                 android:background="@drawable/course_background"
                 android:gravity="center_horizontal"
+                android:id="@+id/fillitGame"
                 android:layout_marginStart="36dp"
                 android:orientation="vertical">
                 <androidx.cardview.widget.CardView
@@ -85,6 +87,7 @@
                 android:layout_width="146dp"
                 android:layout_height="192dp"
                 android:background="@drawable/course_background"
+                android:id="@+id/brainstoreGame"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
                 <androidx.cardview.widget.CardView
@@ -113,6 +116,7 @@
                 android:layout_width="146dp"
                 android:layout_height="192dp"
                 android:background="@drawable/course_background"
+                android:id="@+id/matchGame"
                 android:gravity="center_horizontal"
                 android:layout_marginStart="36dp"
                 android:orientation="vertical">

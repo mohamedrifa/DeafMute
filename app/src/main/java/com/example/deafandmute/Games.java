@@ -7,36 +7,19 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Games#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class Games extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    LinearLayout choose, fillit, brainstore, match;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     public Games() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Games.
-     */
-    // TODO: Rename and change types and number of parameters
     public static Games newInstance(String param1, String param2) {
         Games fragment = new Games();
         Bundle args = new Bundle();
@@ -59,6 +42,46 @@ public class Games extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_games, container, false);
+        View view = inflater.inflate(R.layout.fragment_games, container, false);
+
+        choose = view.findViewById(R.id.chooseGame);
+        fillit = view.findViewById(R.id.fillitGame);
+        brainstore = view.findViewById(R.id.brainstoreGame);
+        match = view.findViewById(R.id.matchGame);
+
+        choose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new Games_Choose())
+                        .commit();
+            }
+        });
+        fillit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new Games_Fillit())
+                        .commit();
+            }
+        });
+        brainstore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new Games_BrainStore())
+                        .commit();
+            }
+        });
+        match.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new Games_Match())
+                        .commit();
+            }
+        });
+
+        return view;
     }
 }
