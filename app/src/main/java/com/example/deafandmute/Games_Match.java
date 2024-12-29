@@ -34,7 +34,6 @@ import java.util.Random;
 
 public class Games_Match extends Fragment {
     TextView showText;
-
     TextView s1, s2, s3;
     ImageView im1, im2, im3, im4, back, im1_ch, im2_ch, im3_ch, im4_ch;
     Button submit;
@@ -235,8 +234,12 @@ public class Games_Match extends Fragment {
                     }
                 }
                 if (areEqual) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("key", "match"); // Replace "YourValue" with the actual value you want to pass
+                    Games_matchNext nextFragment = new Games_matchNext();
+                    nextFragment.setArguments(bundle);
                     requireActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_container, new Games_matchNext())
+                            .replace(R.id.fragment_container, nextFragment)
                             .commit();
                 } else {
                     Vibrator vibrator = (Vibrator) requireContext().getSystemService(Context.VIBRATOR_SERVICE);

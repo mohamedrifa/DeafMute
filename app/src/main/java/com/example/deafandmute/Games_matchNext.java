@@ -18,6 +18,7 @@ public class Games_matchNext extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
     private String mParam2;
+    private String receivedValue;
 
     public Games_matchNext() {
         // Required empty public constructor
@@ -38,6 +39,9 @@ public class Games_matchNext extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        if (getArguments() != null) {
+            receivedValue = getArguments().getString("key"); // "key" should match the key used when passing the value
+        }
     }
 
     @Override
@@ -50,9 +54,37 @@ public class Games_matchNext extends Fragment {
         back = view.findViewById(R.id.backtogame);
         submit = view.findViewById(R.id.Submit);
 
-        submit.setOnClickListener(v -> requireActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new Games_Match())
-                .commit());
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (receivedValue){
+                    case "match":
+                        requireActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, new Games_Match()) // Replace with a new instance
+                            .commit();
+                        break;
+                    case "choose":
+                        requireActivity().getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.fragment_container, new Games_Choose()) // Replace with a new instance
+                                .commit();
+                        break;
+                    case "fillit":
+                        requireActivity().getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.fragment_container, new Games_Fillit()) // Replace with a new instance
+                                .commit();
+                        break;
+                    case "brainstore":
+                        requireActivity().getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.fragment_container, new Games_BrainStore()) // Replace with a new instance
+                                .commit();
+                        break;
+                }
+            }
+        });
 
         back.setOnClickListener(v -> requireActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, new Games())
