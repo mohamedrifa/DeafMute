@@ -68,8 +68,11 @@ public class Games extends Fragment {
         brainstore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                requireActivity().getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_container, new Games_BrainStore())
+//                        .commit();
                 requireActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new Games_BrainStore())
+                        .replace(R.id.fragment_container, new Games_Choose())
                         .commit();
             }
         });

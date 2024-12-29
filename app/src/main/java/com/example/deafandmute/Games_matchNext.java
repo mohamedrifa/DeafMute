@@ -18,7 +18,7 @@ public class Games_matchNext extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
     private String mParam2;
-    private String receivedValue;
+    private String pageToBack;
 
     public Games_matchNext() {
         // Required empty public constructor
@@ -40,7 +40,7 @@ public class Games_matchNext extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         if (getArguments() != null) {
-            receivedValue = getArguments().getString("key"); // "key" should match the key used when passing the value
+            pageToBack = getArguments().getString("key"); // "key" should match the key used when passing the value
         }
     }
 
@@ -57,7 +57,7 @@ public class Games_matchNext extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (receivedValue){
+                switch (pageToBack){
                     case "match":
                         requireActivity().getSupportFragmentManager()
                             .beginTransaction()
