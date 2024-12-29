@@ -87,4 +87,10 @@
     <string name="fill_it">FILL IT</string>
     <string name="store_in_brain">STORE IN BRAIN</string>
     <string name="match">MATCH</string>
+
+    <string name="submit">Submit</string>
+    <string name="wrong_answer">Wrong Answer</string>
+    <string name="next_level">Next Level</string>
+    <string name="excellent">Excellent</string>
+
 </resources>

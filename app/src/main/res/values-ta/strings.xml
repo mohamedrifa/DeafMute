@@ -91,4 +91,9 @@
     <string name="store_in_brain">மனதில் சேமிக்கவும்</string>
     <string name="match">ஒத்திடவும்</string>
 
+    <string name="submit">சமர்ப்பிக்கவும்</string>
+    <string name="wrong_answer">தவறான பதில்</string>
+    <string name="next_level">அடுத்த நிலை</string>
+    <string name="excellent">சிறந்தது</string>
+
 </resources>
