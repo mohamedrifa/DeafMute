@@ -171,7 +171,6 @@ public class Games_Choose extends Fragment {
                         case "radio4": choice = 3; break;
                         default: throw new IllegalStateException("Unexpected value: " + selectedText);
                     }
-
                     if (choice == randomNumber[0]) {
                         Bundle bundle = new Bundle();
                         bundle.putString("key", "choose"); // Replace "YourValue" with the actual value you want to pass
