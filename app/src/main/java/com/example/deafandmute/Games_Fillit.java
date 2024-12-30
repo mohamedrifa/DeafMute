@@ -1,5 +1,6 @@
 package com.example.deafandmute;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.media.Image;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -61,6 +63,7 @@ public class Games_Fillit extends Fragment {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,6 +72,7 @@ public class Games_Fillit extends Fragment {
         back = view.findViewById(R.id.backtogame);
         imgShow = view.findViewById(R.id.img);
         checktext = view.findViewById(R.id.textIn);
+        submit = view.findViewById(R.id.Submit);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Games").child("assets");
         Random random = new Random();
@@ -102,52 +106,50 @@ public class Games_Fillit extends Fragment {
             }
         });
 
-//        submit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Editable word2 = checktext.getText();
-//                databaseReference = FirebaseDatabase.getInstance().getReference(String.valueOf(number[0]));
-//                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        String word1 = snapshot.child(language).getValue(String.class);
-//                        if (word1 != null && word1.equals(word2.toString())) {
-//                            // Correct answer
-//                            Bundle bundle = new Bundle();
-//                            bundle.putString("key", "fillit"); // Replace "fillit" with the actual value
-//                            Games_matchNext nextFragment = new Games_matchNext();
-//                            nextFragment.setArguments(bundle);
-//                            requireActivity().getSupportFragmentManager().beginTransaction()
-//                                    .replace(R.id.fragment_container, nextFragment)
-//                                    .commit();
-//                        } else {
-//                            // Incorrect answer
-//                            Vibrator vibrator = (Vibrator) requireContext().getSystemService(Context.VIBRATOR_SERVICE);
-//                            if (vibrator != null) { // Always check for null to avoid crashes
-//                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-//                                    // For API 26 and above
-//                                    vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-//                                } else {
-//                                    // For older devices
-//                                    vibrator.vibrate(500); // Vibrate for 500 milliseconds
-//                                }
-//                            }
-//                            Toast.makeText(getActivity(), R.string.wrong_answer, Toast.LENGTH_SHORT).show();
-//                            requireActivity().getSupportFragmentManager()
-//                                    .beginTransaction()
-//                                    .replace(R.id.fragment_container, new Games_Fillit()) // Replace with a new instance
-//                                    .commit();
-//                        }
-//                    }
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//                        Toast.makeText(getContext(), "Failed to fetch data", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            }
-//        });
-
-
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Editable word2 = checktext.getText();
+                databaseReference = FirebaseDatabase.getInstance().getReference("Games").child("assets").child(String.valueOf(number[0]));
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String word1 = snapshot.child(language).getValue(String.class);
+                        if (word1 != null && word1.equalsIgnoreCase(word2.toString())) {
+                            // Correct answer
+                            Bundle bundle = new Bundle();
+                            bundle.putString("key", "fillit"); // Replace "fillit" with the actual value
+                            Games_matchNext nextFragment = new Games_matchNext();
+                            nextFragment.setArguments(bundle);
+                            requireActivity().getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.fragment_container, nextFragment)
+                                    .commit();
+                        } else {
+                            // Incorrect answer
+                            Vibrator vibrator = (Vibrator) requireContext().getSystemService(Context.VIBRATOR_SERVICE);
+                            if (vibrator != null) { // Always check for null to avoid crashes
+                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                                    // For API 26 and above
+                                    vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                } else {
+                                    // For older devices
+                                    vibrator.vibrate(500); // Vibrate for 500 milliseconds
+                                }
+                            }
+                            Toast.makeText(getActivity(), R.string.wrong_answer, Toast.LENGTH_SHORT).show();
+                            requireActivity().getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.fragment_container, new Games_Fillit()) // Replace with a new instance
+                                    .commit();
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(getContext(), "Failed to fetch data", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
