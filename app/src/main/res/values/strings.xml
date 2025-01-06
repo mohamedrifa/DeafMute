@@ -93,5 +93,14 @@
     <string name="next_level">Next Level</string>
     <string name="excellent">Excellent</string>
     <string name="what_does_it_mean">What does it mean ?</string>
+    <string name="learn_new_everyday_just_try">Learn new everyday just try !!</string>
+    <string name="your_assignments_are_pending_kindly_completed_that_will_gain_more_scores_accoding_to_the_course">Your assignments are pending kindly completed that will gain more scores accoding to the course.</string>
+    <string name="click_here">click here</string>
+    <string name="your_course">YOUR COURSE</string>
+    <string name="on_going">on going</string>
+    <string name="completed">COMPLETED</string>
+    <string name="game">GAME</string>
+    <string name="view">View</string>
+    <string name="course_progress">Course progress</string>
 
 </resources>
