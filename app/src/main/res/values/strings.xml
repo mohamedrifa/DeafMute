@@ -102,5 +102,6 @@
     <string name="game">GAME</string>
     <string name="view">View</string>
     <string name="course_progress">Course progress</string>
+    <string name="failed_to_upload_profile">failed to upload profile</string>
 
 </resources>

@@ -97,4 +97,15 @@
     <string name="excellent">சிறந்தது</string>
     <string name="what_does_it_mean">அது என்ன பொருள்?</string>
 
+    <string name="learn_new_everyday_just_try">தினமும் புதியதை கற்றுக்கொள்ளுங்கள், முயற்சிக்கவும் !!</string>
+    <string name="your_assignments_are_pending_kindly_completed_that_will_gain_more_scores_accoding_to_the_course">உங்கள் பணிகள் நிலுவையிலுள்ளன, தயவுசெய்து அவற்றை முடிக்கவும், அது பாடநெறி கணக்கில் அதிக மதிப்பெண்களை பெற உதவும்.</string>
+    <string name="click_here">இங்கு சொடுக்கவும்</string>
+    <string name="your_course">உங்கள் பாடநெறி</string>
+    <string name="on_going">நடைபெறுகிறது</string>
+    <string name="completed">முடிந்தது</string>
+    <string name="game">விளையாட்டு</string>
+    <string name="view">பார்க்க</string>
+    <string name="course_progress">பாடநெறி முன்னேற்றம்</string>
+
+
 </resources>
