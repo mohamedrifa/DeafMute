@@ -97,7 +97,7 @@ public class HomePage extends AppCompatActivity {
 
         if(user==null)
         {
-            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            Intent i = new Intent(getApplicationContext(), LanguageSelection.class);
             startActivity(i);
             finish();
         }
