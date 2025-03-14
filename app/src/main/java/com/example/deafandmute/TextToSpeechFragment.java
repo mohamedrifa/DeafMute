@@ -69,7 +69,7 @@ public class TextToSpeechFragment extends Fragment {
         speakButton.setOnClickListener(v -> {
             String text = inputText.getText().toString();
             if (!text.isEmpty()) {
-                database.child("users").child(userId).child("savedTexts").push().setValue(text)
+                database.child("Users").child(userId).child("savedTexts").push().setValue(text)
                         .addOnCompleteListener(task -> {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(getContext(), R.string.failed, Toast.LENGTH_SHORT).show();
@@ -96,7 +96,7 @@ public class TextToSpeechFragment extends Fragment {
 
     // Method to load saved texts from Firebase
     private void loadSavedTexts(String userId) {
-        database.child("users").child(userId).child("savedTexts").addValueEventListener(new ValueEventListener() {
+        database.child("Users").child(userId).child("savedTexts").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 savedTexts.clear(); // Clear the list before adding new texts

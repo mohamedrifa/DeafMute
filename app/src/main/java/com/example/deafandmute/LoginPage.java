@@ -85,31 +85,32 @@ public class LoginPage extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progress.setVisibility(View.GONE);
-                                if (task.isSuccessful()){
+                                if (task.isSuccessful()) {
                                     FirebaseUser firebaseUser = mAuth.getCurrentUser();
                                     if (firebaseUser != null) {
                                         String userId = firebaseUser.getUid();
-                                        // Update the language preference for the user in Firebase Realtime Database
                                         String language = getString(R.string.lang);
                                         databaseReference.child(userId).child("language").setValue(language)
-                                                .addOnSuccessListener(aVoid -> {
-
-                                                })
-                                                .addOnFailureListener(e -> {
-
+                                                .addOnCompleteListener(updateTask -> {
+                                                    if (updateTask.isSuccessful()) {
+                                                        Toast.makeText(LoginPage.this, R.string.logged_in,
+                                                                Toast.LENGTH_SHORT).show();
+                                                        Intent i = new Intent(getApplicationContext(), HomePage.class);
+                                                        startActivity(i);
+                                                        finish();
+                                                    } else {
+                                                        Toast.makeText(LoginPage.this, "Failed to update language",
+                                                                Toast.LENGTH_SHORT).show();
+                                                    }
                                                 });
                                     }
-                                    Toast.makeText(LoginPage.this, R.string.logged_in,
-                                            Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(getApplicationContext(), HomePage.class);
-                                    startActivity(i);
-                                    finish();
                                 } else {
                                     Toast.makeText(LoginPage.this, R.string.invalid_email_or_password,
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
+
             }
         });
     }

@@ -28,6 +28,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     public CourseAdapter(List<Course> courseList, Context context) {
         this.courseList = courseList;
         this.context = context;
+        mAuth = FirebaseAuth.getInstance();
     }
 
     @NonNull
@@ -39,6 +40,20 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
     @Override
     public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+
+        if (firebaseUser == null) {
+            // If user is null, prevent interactions and return
+            holder.onfavorite.setVisibility(View.INVISIBLE);
+            holder.btnfavorite.setOnClickListener(null);
+            return;
+        }
+
+        String userId = firebaseUser.getUid();
+        String language = context.getString(R.string.lang);
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users")
+                .child(userId).child("favouriteCourse").child(language);
+
         Course course = courseList.get(position);
         holder.courseName.setText(course.getCourseName());
         holder.courseRating.setText(String.valueOf(course.getRating()));
@@ -46,86 +61,27 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
         // Load course icon using Glide
         Glide.with(context).load(course.getCourseIconUrl()).into(holder.courseIcon);
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = mAuth.getCurrentUser();
-        String userId = firebaseUser.getUid();  // Replace with actual user ID
-        String language = context.getString(R.string.lang);
-        DatabaseReference userRef = holder.databaseReference.child(userId).child("favouriteCourse").child(language);
-        // Check if the course ID exists in the favorite list and set visibility accordingly
-        userRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                List<String> favoriteCourses = (List<String>) task.getResult().getValue();
 
-                if (favoriteCourses != null && favoriteCourses.contains(course.getCourseId()))
-                    holder.onfavorite.setVisibility(View.VISIBLE);
-                else
-                    holder.onfavorite.setVisibility(View.INVISIBLE);
+        // Fetch favorite status
+        userRef.child(course.getCourseId()).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult().exists()) {
+                holder.onfavorite.setVisibility(View.VISIBLE);
+            } else {
+                holder.onfavorite.setVisibility(View.INVISIBLE);
             }
         });
 
-        // Set up the favorite button click listener
-        holder.btnfavorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (holder.onfavorite.getVisibility() == View.VISIBLE) {
-                    holder.onfavorite.setVisibility(View.INVISIBLE);
-                    updateFavoriteCourses(course.getCourseId(), false, holder);  // Remove from favorites
-                } else {
-                    holder.onfavorite.setVisibility(View.VISIBLE);
-                    updateFavoriteCourses(course.getCourseId(), true, holder);  // Add to favorites
-                }
+        // Handle favorite button clicks
+        holder.btnfavorite.setOnClickListener(v -> {
+            if (holder.onfavorite.getVisibility() == View.VISIBLE) {
+                holder.onfavorite.setVisibility(View.INVISIBLE);
+                userRef.child(course.getCourseId()).removeValue();
+            } else {
+                holder.onfavorite.setVisibility(View.VISIBLE);
+                userRef.child(course.getCourseId()).setValue(true);
             }
         });
     }
-
-
-    // Method to add or remove a course ID in the user's favorite course list in Firebase
-    private void updateFavoriteCourses(String courseId, boolean add, CourseViewHolder holder) {
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = mAuth.getCurrentUser();
-
-        if (firebaseUser != null) {
-            String userId = firebaseUser.getUid();
-            String language = context.getString(R.string.lang);
-            DatabaseReference userRef = holder.databaseReference.child(userId).child("favouriteCourse").child(language);
-
-            userRef.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    List<String> favoriteCourses;
-
-                    // Check if `favouriteCourse` exists and is a List, otherwise create a new list
-                    if (task.getResult().exists() && task.getResult().getValue() instanceof List) {
-                        favoriteCourses = (List<String>) task.getResult().getValue();
-                    } else {
-                        favoriteCourses = new ArrayList<>();
-                    }
-
-                    // Add or remove the course ID from the list
-                    if (add) {
-                        if (!favoriteCourses.contains(courseId)) {
-                            favoriteCourses.add(courseId);
-                        }
-                    } else {
-                        favoriteCourses.remove(courseId);
-                    }
-
-                    // Update the favorite courses list in Firebase
-                    userRef.setValue(favoriteCourses).addOnCompleteListener(updateTask -> {
-                        if (updateTask.isSuccessful()) {
-                            // Successfully updated favorite courses
-                        } else {
-                            // Handle failure
-                        }
-                    });
-                } else {
-                    // Handle failure to read favorite courses
-                }
-            });
-        }
-    }
-
-
-
 
     @Override
     public int getItemCount() {
@@ -133,10 +89,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     }
 
     public static class CourseViewHolder extends RecyclerView.ViewHolder {
-        private DatabaseReference databaseReference;
         ImageView courseIcon, onfavorite;
         TextView courseName, courseRating, enrollmentCount;
         LinearLayout btnfavorite;
+
         public CourseViewHolder(@NonNull View itemView) {
             super(itemView);
             courseIcon = itemView.findViewById(R.id.course_icon);
@@ -145,9 +101,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             enrollmentCount = itemView.findViewById(R.id.enrollment_count);
             btnfavorite = itemView.findViewById(R.id.favoritebutton);
             onfavorite = itemView.findViewById(R.id.favorited);
-
-            databaseReference = FirebaseDatabase.getInstance().getReference("Users");
         }
     }
 }
+
+
 

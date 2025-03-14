@@ -119,7 +119,7 @@ public class Home extends Fragment {
         return view;
     }
     // ItemDecoration class to add spacing between items
-    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
+    public static class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
         private int spanCount;
         private int columnSpacing;
         private int rowSpacing;

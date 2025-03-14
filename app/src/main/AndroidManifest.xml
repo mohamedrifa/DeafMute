@@ -11,6 +11,7 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -19,6 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DeafAndMute"
         tools:targetApi="31">
+        <meta-data android:name="android.hardware.opengles.version" android:value="0x00030000"/>
         <activity
             android:name=".LanguageSelection"
             android:exported="true">

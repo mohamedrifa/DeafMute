@@ -43,7 +43,7 @@ public class HomePage extends AppCompatActivity {
     TextView textProfile, userProfile;
     FirebaseAuth mAuth;
     DatabaseReference databaseReference;
-    RelativeLayout HomePage, FavouritePage, GamesPage, CommunityPage, ProfilePage, profileImg, Main;
+    RelativeLayout HomePage, FavouritePage, GamesPage, CommunityPage, ProfilePage, profileImg, Main, Logout;
     LinearLayout TaskBar, LayoutProfile;
     ImageView Icon1, Icon2, Icon3, Icon4, Icon5, profShare, profEdit, profMenu;
     FrameLayout fragmentContainer;
@@ -71,6 +71,7 @@ public class HomePage extends AppCompatActivity {
         profileImg = findViewById(R.id.photo);
         Main = findViewById(R.id.main);
         userProfile = findViewById(R.id.profileUser);
+        Logout = findViewById(R.id.logout);
 
         LayoutProfile = findViewById(R.id.profileLayout);
         profShare = findViewById(R.id.profile_share);
@@ -92,7 +93,6 @@ public class HomePage extends AppCompatActivity {
         profileLess = findViewById(R.id.without_profile);
         profile = findViewById(R.id.profileImage);
         textProfile = findViewById(R.id.profile_text);
-
         final String[] userName = new String[1];
 
         if(user==null)
@@ -213,16 +213,13 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int parentWidth = Main.getWidth();
-                int centerX = (parentWidth - profileImg.getWidth()) / 2 - 54;
+                int centerX = (parentWidth - profileImg.getWidth()) / 2 - 85;
                 ObjectAnimator animatorX = ObjectAnimator.ofFloat(profileImg, "translationX", centerX);
-                ObjectAnimator animatorY = ObjectAnimator.ofFloat(profileImg, "translationY", 145f);
-
-                // Combine both animations using AnimatorSet
+                ObjectAnimator animatorY = ObjectAnimator.ofFloat(profileImg, "translationY", 230f);
                 AnimatorSet animatorSet = new AnimatorSet();
                 animatorSet.playTogether(animatorX, animatorY); // Play both animations together
                 animatorSet.setDuration(500); // Animation duration in milliseconds
                 animatorSet.start();
-
                 userProfile.setText(userName[0]);
                 TaskBar.setVisibility(View.GONE);
                 cardProfile.setVisibility(View.VISIBLE);
@@ -260,6 +257,12 @@ public class HomePage extends AppCompatActivity {
                 Toast.makeText(HomePage.this,"Share Button didn't Developed Yet...",
                         Toast.LENGTH_SHORT).show();
             }
+        });
+
+        Logout.setOnClickListener(v -> {
+            mAuth.signOut();
+            Intent i = new Intent(this, LanguageSelection.class);
+            startActivity(i);
         });
 
 

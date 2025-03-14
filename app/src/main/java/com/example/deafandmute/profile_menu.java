@@ -21,7 +21,6 @@ import com.google.firebase.database.FirebaseDatabase;
 public class profile_menu extends Fragment {
 
     private Button englishButton, tamilButton;
-    private Button logoutbtn;
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
 
@@ -59,8 +58,6 @@ public class profile_menu extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Initialize UI elements
-        logoutbtn = view.findViewById(R.id.logout);
         englishButton = view.findViewById(R.id.englishButton);
         tamilButton = view.findViewById(R.id.tamilButton);
 
@@ -68,16 +65,6 @@ public class profile_menu extends Fragment {
         englishButton.setOnClickListener(v -> setLocale("en"));
         tamilButton.setOnClickListener(v -> setLocale("ta"));
 
-        // Set up listener for logout button
-        logoutbtn.setOnClickListener(v -> {
-            // Sign out from Firebase Authentication
-            mAuth.signOut();
-            // Redirect to LanguageSelection activity
-            Intent intent = new Intent(requireContext(), LanguageSelection.class);
-            startActivity(intent);
-            // Close the current activity hosting the fragment
-            requireActivity().finish();
-        });
     }
 
     private void setLocale(String language) {

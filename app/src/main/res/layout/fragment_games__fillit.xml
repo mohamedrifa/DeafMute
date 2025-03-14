@@ -15,54 +15,62 @@
             android:layout_marginTop="34dp"
             android:layout_marginStart="21dp"
             android:id="@+id/backtogame"/>
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="195dp"
-                android:layout_marginTop="80dp"
-                android:id="@+id/img"
-                android:layout_height="230dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/what_does_it_mean"
-                android:fontFamily="@font/poppins"
-                android:layout_marginTop="40dp"
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:textFontWeight="500"/>
-            <RelativeLayout
-                android:layout_width="216dp"
-                android:layout_height="wrap_content">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="216dp"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="195dp"
+                    android:layout_marginTop="80dp"
+                    android:id="@+id/img"
+                    android:layout_height="230dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textIn"
+                    android:text="@string/what_does_it_mean"
                     android:fontFamily="@font/poppins"
+                    android:layout_marginTop="40dp"
+                    android:textSize="20sp"
                     android:textColor="@color/black"
-                    android:textFontWeight="800"
-                    android:inputType="text" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="327dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/gradient_color"
-                >
-                <Button
+                    android:textFontWeight="500"/>
+                <RelativeLayout
+                    android:layout_width="216dp"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="216dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textIn"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/black"
+                        android:textFontWeight="800"
+                        android:inputType="text" />
+                </RelativeLayout>
+                <RelativeLayout
                     android:layout_width="327dp"
                     android:layout_height="50dp"
-                    android:id="@+id/Submit"
-                    android:text="@string/submit"
-                    android:textSize="20sp"
-                    android:background="#00FFFFFF"
-                    android:textColor="#FFFFFF"
-                    android:fontFamily="@font/poppins" />
-            </RelativeLayout>
-        </LinearLayout>
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/gradient_color"
+                    >
+                    <Button
+                        android:layout_width="327dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/Submit"
+                        android:text="@string/submit"
+                        android:textSize="20sp"
+                        android:background="#00FFFFFF"
+                        android:textColor="#FFFFFF"
+                        android:fontFamily="@font/poppins" />
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"/>
+            </LinearLayout>
+        </ScrollView>
+
     </RelativeLayout>
 
 </FrameLayout>

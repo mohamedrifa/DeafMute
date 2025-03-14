@@ -167,57 +167,70 @@ public class Games_Match extends Fragment {
                 // Handle error if necessary
             }
         });
+        ArrayList<Integer> selected = new ArrayList<>();
 
         im1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (count[0] +1){
-                    case 1:im1_ch.setImageResource(R.drawable.game_one); im1_ch.setVisibility(View.VISIBLE);break;
-                    case 2:im1_ch.setImageResource(R.drawable.game_two); im1_ch.setVisibility(View.VISIBLE);break;
-                    case 3:im1_ch.setImageResource(R.drawable.game_three); im1_ch.setVisibility(View.VISIBLE);break;
-                    case 4:im1_ch.setImageResource(R.drawable.game_four); im1_ch.setVisibility(View.VISIBLE);break;
+                if(!selected.contains(1)){
+                    switch (count[0] +1){
+                        case 1:im1_ch.setImageResource(R.drawable.game_one); im1_ch.setVisibility(View.VISIBLE);break;
+                        case 2:im1_ch.setImageResource(R.drawable.game_two); im1_ch.setVisibility(View.VISIBLE);break;
+                        case 3:im1_ch.setImageResource(R.drawable.game_three); im1_ch.setVisibility(View.VISIBLE);break;
+                        case 4:im1_ch.setImageResource(R.drawable.game_four); im1_ch.setVisibility(View.VISIBLE);break;
+                    }
+                    result[0][count[0]]=arr2[0][0];
+                    count[0]++;
+                    selected.add(1);
                 }
-                result[0][count[0]]=arr2[0][0];
-                count[0]++;
             }
         });
         im2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (count[0] +1){
-                    case 1:im2_ch.setImageResource(R.drawable.game_one); im2_ch.setVisibility(View.VISIBLE);break;
-                    case 2:im2_ch.setImageResource(R.drawable.game_two); im2_ch.setVisibility(View.VISIBLE);break;
-                    case 3:im2_ch.setImageResource(R.drawable.game_three); im2_ch.setVisibility(View.VISIBLE);break;
-                    case 4:im2_ch.setImageResource(R.drawable.game_four); im2_ch.setVisibility(View.VISIBLE);break;
+                if(!selected.contains(2)){
+                    switch (count[0] +1){
+                        case 1:im2_ch.setImageResource(R.drawable.game_one); im2_ch.setVisibility(View.VISIBLE);break;
+                        case 2:im2_ch.setImageResource(R.drawable.game_two); im2_ch.setVisibility(View.VISIBLE);break;
+                        case 3:im2_ch.setImageResource(R.drawable.game_three); im2_ch.setVisibility(View.VISIBLE);break;
+                        case 4:im2_ch.setImageResource(R.drawable.game_four); im2_ch.setVisibility(View.VISIBLE);break;
+                    }
+                    result[0][count[0]]=arr2[0][1];
+                    count[0]++;
+                    selected.add(2);
                 }
-                result[0][count[0]]=arr2[0][1];
-                count[0]++;
             }
         });
         im3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (count[0] +1){
-                    case 1:im3_ch.setImageResource(R.drawable.game_one); im3_ch.setVisibility(View.VISIBLE);break;
-                    case 2:im3_ch.setImageResource(R.drawable.game_two); im3_ch.setVisibility(View.VISIBLE);break;
-                    case 3:im3_ch.setImageResource(R.drawable.game_three); im3_ch.setVisibility(View.VISIBLE);break;
-                    case 4:im3_ch.setImageResource(R.drawable.game_four); im3_ch.setVisibility(View.VISIBLE);break;
+                if(!selected.contains(3)){
+                    switch (count[0] +1){
+                        case 1:im3_ch.setImageResource(R.drawable.game_one); im3_ch.setVisibility(View.VISIBLE);break;
+                        case 2:im3_ch.setImageResource(R.drawable.game_two); im3_ch.setVisibility(View.VISIBLE);break;
+                        case 3:im3_ch.setImageResource(R.drawable.game_three); im3_ch.setVisibility(View.VISIBLE);break;
+                        case 4:im3_ch.setImageResource(R.drawable.game_four); im3_ch.setVisibility(View.VISIBLE);break;
+                    }
+                    result[0][count[0]]=arr2[0][2];
+                    count[0]++;
+                    selected.add(3);
                 }
-                result[0][count[0]]=arr2[0][2];
-                count[0]++;
             }
         });
         im4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (count[0] +1){
-                    case 1:im4_ch.setImageResource(R.drawable.game_one); im4_ch.setVisibility(View.VISIBLE);break;
-                    case 2:im4_ch.setImageResource(R.drawable.game_two); im4_ch.setVisibility(View.VISIBLE);break;
-                    case 3:im4_ch.setImageResource(R.drawable.game_three); im4_ch.setVisibility(View.VISIBLE);break;
-                    case 4:im4_ch.setImageResource(R.drawable.game_four); im4_ch.setVisibility(View.VISIBLE);break;
+                if(!selected.contains(4)){
+                    switch (count[0] +1){
+                        case 1:im4_ch.setImageResource(R.drawable.game_one); im4_ch.setVisibility(View.VISIBLE);break;
+                        case 2:im4_ch.setImageResource(R.drawable.game_two); im4_ch.setVisibility(View.VISIBLE);break;
+                        case 3:im4_ch.setImageResource(R.drawable.game_three); im4_ch.setVisibility(View.VISIBLE);break;
+                        case 4:im4_ch.setImageResource(R.drawable.game_four); im4_ch.setVisibility(View.VISIBLE);break;
+                    }
+                    result[0][count[0]]=arr2[0][3];
+                    count[0]++;
+                    selected.add(4);
                 }
-                result[0][count[0]]=arr2[0][3];
-                count[0]++;
             }
         });
 
