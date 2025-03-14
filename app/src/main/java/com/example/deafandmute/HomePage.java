@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -136,10 +137,11 @@ public class HomePage extends AppCompatActivity {
                 .replace(R.id.fragment_container, new Home())
                 .commit();
 
-
+        final int[] containerId = new int[1];
         HomePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                containerId[0] = 0;
                 profileImg.setTranslationX(0f); // Reset X-axis
                 profileImg.setTranslationY(0f);
                 LayoutProfile.setVisibility(View.GONE);
@@ -158,6 +160,7 @@ public class HomePage extends AppCompatActivity {
         FavouritePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                containerId[0] = 0;
                 profileImg.setTranslationX(0f); // Reset X-axis
                 profileImg.setTranslationY(0f);
                 LayoutProfile.setVisibility(View.GONE);
@@ -176,6 +179,7 @@ public class HomePage extends AppCompatActivity {
         GamesPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                containerId[0] = 0;
                 profileImg.setTranslationX(0f); // Reset X-axis
                 profileImg.setTranslationY(0f);
                 LayoutProfile.setVisibility(View.GONE);
@@ -194,6 +198,7 @@ public class HomePage extends AppCompatActivity {
         CommunityPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                containerId[0] = 0;
                 profileImg.setTranslationX(0f); // Reset X-axis
                 profileImg.setTranslationY(0f);
                 LayoutProfile.setVisibility(View.GONE);
@@ -212,14 +217,30 @@ public class HomePage extends AppCompatActivity {
         ProfilePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int parentWidth = Main.getWidth();
-                int centerX = (parentWidth - profileImg.getWidth()) / 2 - 85;
-                ObjectAnimator animatorX = ObjectAnimator.ofFloat(profileImg, "translationX", centerX);
-                ObjectAnimator animatorY = ObjectAnimator.ofFloat(profileImg, "translationY", 230f);
+                if(containerId[0] == 2131296489){
+                    return;
+                }
+                containerId[0] = findViewById(R.id.fragment_container).getId();
+                float screenWidth = Main.getWidth();
+                float imageWidth = profileImg.getWidth();
+                float initialX = profileImg.getX();
+                float centerX = (screenWidth / 2) - (imageWidth / 2);
+                float translationX = centerX - initialX;
+
+                float initialY = profileImg.getY();
+                float targetY = TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP, 125, getResources().getDisplayMetrics()
+                );
+                float translationY = targetY - initialY;
+
+                ObjectAnimator animatorX = ObjectAnimator.ofFloat(profileImg, "translationX", translationX);
+                ObjectAnimator animatorY = ObjectAnimator.ofFloat(profileImg, "translationY", translationY);
+
                 AnimatorSet animatorSet = new AnimatorSet();
-                animatorSet.playTogether(animatorX, animatorY); // Play both animations together
-                animatorSet.setDuration(500); // Animation duration in milliseconds
+                animatorSet.playTogether(animatorX, animatorY);
+                animatorSet.setDuration(500);
                 animatorSet.start();
+
                 userProfile.setText(userName[0]);
                 TaskBar.setVisibility(View.GONE);
                 cardProfile.setVisibility(View.VISIBLE);
@@ -228,12 +249,15 @@ public class HomePage extends AppCompatActivity {
                 Icon3.setVisibility(View.GONE);
                 Icon4.setVisibility(View.GONE);
                 Icon5.setVisibility(View.VISIBLE);
+
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new Profile())
                         .commit();
                 LayoutProfile.postDelayed(() -> LayoutProfile.setVisibility(View.VISIBLE), 500);
             }
         });
+
+
 
         profEdit.setOnClickListener(new View.OnClickListener() {
             @Override
