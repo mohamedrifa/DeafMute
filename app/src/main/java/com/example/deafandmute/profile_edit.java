@@ -1,13 +1,16 @@
 package com.example.deafandmute;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
@@ -16,12 +19,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -40,16 +49,33 @@ public class profile_edit extends Fragment {
     private String uploadedImageUrl;
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
-    private Button photoChange, nameChange;
+    private Button nameChange, submitData;
+    private ImageView photoChange;
+    private Uri imageUri;
+    FirebaseUser user;
+    CardView profileLess;
+    ImageView profile;
+    TextView textProfile;
 
     private final ActivityResultLauncher<Intent> imagePickerLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
-                    Uri imageUri = result.getData().getData();
-                    uploadImageToImgBB(imageUri);
+                    profile = requireView().findViewById(R.id.profileImage);
+                    profileLess = requireView().findViewById(R.id.without_profile);
+                    imageUri = result.getData().getData();
+                    profile.setVisibility(View.VISIBLE);
+                    profileLess.setVisibility(View.GONE);
+                    requireActivity().runOnUiThread(() -> {
+                        Glide.with(requireContext())
+                                .load(imageUri)
+                                .into(profile);
+                    });
                 }
             });
 
+
+
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile_edit, container, false);
@@ -59,8 +85,58 @@ public class profile_edit extends Fragment {
 
         photoChange = view.findViewById(R.id.profileChange);
         nameChange = view.findViewById(R.id.NameChange);
+        submitData = view.findViewById(R.id.Submit);
+
+        profileLess = view.findViewById(R.id.without_profile);
+        profile = view.findViewById(R.id.profileImage);
+        textProfile = view.findViewById(R.id.profile_text);
+
+
+        mAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        user = mAuth.getCurrentUser();
+        if(user==null)
+        {
+            Intent i = new Intent(requireActivity(), LanguageSelection.class);
+            startActivity(i);
+        }
+        else {
+            String userId = user.getUid();
+            databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @SuppressLint("SetTextI18n")
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    User userData = snapshot.getValue(User.class);
+                    if (userData != null) {
+                        if(userData.profilePhoto.isEmpty()){
+                            char profile = userData.username.charAt(0);
+                            profileLess.setVisibility(View.VISIBLE);
+                            textProfile.setText(String.valueOf(profile));
+                        }else{
+                            profile.setVisibility(View.VISIBLE);
+                            Glide.with(requireActivity()).load(userData.getprofilePhoto()).into(profile);
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(requireActivity(), R.string.failed_to_load_user_data, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
         photoChange.setOnClickListener(v -> pickImageFromGallery());
+
+        submitData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(imageUri == null){
+                    Toast.makeText(requireContext(), R.string.please_select_a_image, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                uploadImageToImgBB(imageUri);
+            }
+        });
 
         return view;
     }
@@ -83,7 +159,6 @@ public class profile_edit extends Fragment {
                 }
                 inputStream.close();
                 String encodedImage = Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
-
                 // Create a POST request
                 OkHttpClient client = new OkHttpClient();
                 RequestBody formBody = new FormBody.Builder()
@@ -102,20 +177,19 @@ public class profile_edit extends Fragment {
                     String responseBody = response.body().string();
                     JsonObject jsonResponse = JsonParser.parseString(responseBody).getAsJsonObject();
                     uploadedImageUrl = jsonResponse.getAsJsonObject("data").get("url").getAsString();
-
                     requireActivity().runOnUiThread(() -> {
                         firebaseupdate(uploadedImageUrl);
-                        Toast.makeText(requireContext(), "Image Uploaded Successfully!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), R.string.image_uploaded_successfully, Toast.LENGTH_SHORT).show();
                     });
                 } else {
                     requireActivity().runOnUiThread(() ->
-                            Toast.makeText(requireContext(), "Upload Failed: " + response.message(), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), getString(R.string.upload_failed) + response.message(), Toast.LENGTH_SHORT).show()
                     );
                 }
             } catch (Exception e) {
                 e.printStackTrace();
                 requireActivity().runOnUiThread(() ->
-                        Toast.makeText(requireContext(), "An error occurred while uploading the image", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), R.string.an_error_occurred_while_uploading_the_image, Toast.LENGTH_SHORT).show()
                 );
             }
         }).start();

@@ -102,6 +102,16 @@
     <string name="game">GAME</string>
     <string name="view">View</string>
     <string name="course_progress">Course progress</string>
+
+
     <string name="failed_to_upload_profile">failed to upload profile</string>
+    <string name="choose_your_language">Choose Your Language</string>
+    <string name="tamil">Tamil</string>
+    <string name="english">English</string>
+    <string name="edit_your_profile">Edit Your Profile</string>
+    <string name="please_select_a_image">Please Select a Image</string>
+    <string name="image_uploaded_successfully">Image Uploaded Successfully!</string>
+    <string name="an_error_occurred_while_uploading_the_image">An error occurred while uploading the image</string>
+    <string name="upload_failed">"Upload Failed: "</string>
 
 </resources>

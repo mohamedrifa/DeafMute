@@ -107,5 +107,15 @@
     <string name="view">பார்க்க</string>
     <string name="course_progress">பாடநெறி முன்னேற்றம்</string>
 
+    <string name="failed_to_upload_profile">சுயவிவரத்தைப் பதிவேற்ற முடியவில்லை</string>
+    <string name="choose_your_language">மொழியைத் தேர்ந்தெடுக்கவும்</string>
+    <string name="tamil">தமிழ்</string>
+    <string name="english">ஆங்கிலம்</string>
+    <string name="edit_your_profile">சுயவிவரத்தை திருத்தவும்</string>
+    <string name="please_select_a_image">தயவுசெய்து ஒரு படத்தைத் தேர்ந்தெடுக்கவும்</string>
+    <string name="image_uploaded_successfully">படம் வெற்றிகரமாக பதிவேற்றப்பட்டது!</string>
+    <string name="an_error_occurred_while_uploading_the_image">படத்தைப் பதிவேற்றும் போது ஒரு பிழை ஏற்பட்டது</string>
+    <string name="upload_failed">"பதிவேற்றம் தோல்வியடைந்தது: "</string>
+
 
 </resources>

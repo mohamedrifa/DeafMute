@@ -67,6 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
                 android:orientation="horizontal"
+                android:id="@+id/textBars"
                 android:layout_marginEnd="0dp"
                 android:layout_marginStart="0dp">
 
@@ -230,6 +231,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
+        android:visibility="gone"
         android:id="@+id/profileMenu"
         android:background="@drawable/profile_bg">
         <androidx.cardview.widget.CardView
@@ -239,7 +241,61 @@
             app:cardCornerRadius="11dp"
             android:layout_marginTop="252dp"
             android:backgroundTint="@color/white">
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="79dp"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="31.4dp"
+                        android:src="@drawable/languages"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/choose_your_language"
+                        android:textSize="15sp"
+                        android:textFontWeight="600"
+                        android:textColor="#3B3B3B"
+                        android:fontFamily="@font/poppins"
+                        android:layout_marginStart="13dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:id="@+id/tamilBox"
+                    android:clickable="true"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tamil"
+                        android:id="@+id/tamilText"
+                        android:textFontWeight="600"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="#3B3B3B"
+                        android:textSize="15sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:id="@+id/englishBox"
+                    android:clickable="true"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/english"
+                        android:textFontWeight="600"
+                        android:id="@+id/englishText"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="#3B3B3B"
+                        android:textSize="15sp"/>
+                </LinearLayout>
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 

@@ -45,10 +45,10 @@ public class HomePage extends AppCompatActivity {
     FirebaseAuth mAuth;
     DatabaseReference databaseReference;
     RelativeLayout HomePage, FavouritePage, GamesPage, CommunityPage, ProfilePage, profileImg, Main, Logout;
-    LinearLayout TaskBar, LayoutProfile;
+    LinearLayout TaskBar, LayoutProfile, buttonTamil, buttonEnglish, menuProfile, TextBars;
     ImageView Icon1, Icon2, Icon3, Icon4, Icon5, profShare, profEdit, profMenu;
     FrameLayout fragmentContainer;
-    TextView username;
+    TextView username, textTamil, textEnglish;
     FirebaseUser user;
 
     @SuppressLint("MissingInflatedId")
@@ -79,6 +79,13 @@ public class HomePage extends AppCompatActivity {
         profEdit = findViewById(R.id.profile_edit);
         profMenu = findViewById(R.id.profile_menu);
 
+        textTamil = findViewById(R.id.tamilText);
+        textEnglish = findViewById(R.id.englishText);
+        buttonEnglish = findViewById(R.id.englishBox);
+        buttonTamil = findViewById(R.id.tamilBox);
+        menuProfile = findViewById(R.id.profileMenu);
+        TextBars = findViewById(R.id.textBars);
+
         Icon1 = findViewById(R.id.icon1);
         Icon2 = findViewById(R.id.icon2);
         Icon3 = findViewById(R.id.icon3);
@@ -103,6 +110,18 @@ public class HomePage extends AppCompatActivity {
             finish();
         }
         else {
+            if (getString(R.string.lang).equals("ta")) {
+                buttonEnglish.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                textEnglish.setTextColor(Color.parseColor("#3B3B3B"));
+                buttonTamil.setBackgroundColor(Color.parseColor("#6AAD2B"));
+                textTamil.setTextColor(Color.parseColor("#FFFFFF"));
+            }
+            else {
+                buttonEnglish.setBackgroundColor(Color.parseColor("#6AAD2B"));
+                textEnglish.setTextColor(Color.parseColor("#FFFFFF"));
+                buttonTamil.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                textTamil.setTextColor(Color.parseColor("#3B3B3B"));
+            }
             String userId = user.getUid();
             databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @SuppressLint("SetTextI18n")
@@ -141,6 +160,8 @@ public class HomePage extends AppCompatActivity {
         HomePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                menuProfile.setVisibility(View.GONE);
+                TextBars.setVisibility(View.VISIBLE);
                 containerId[0] = 0;
                 profileImg.setTranslationX(0f); // Reset X-axis
                 profileImg.setTranslationY(0f);
@@ -160,6 +181,8 @@ public class HomePage extends AppCompatActivity {
         FavouritePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                menuProfile.setVisibility(View.GONE);
+                TextBars.setVisibility(View.VISIBLE);
                 containerId[0] = 0;
                 profileImg.setTranslationX(0f); // Reset X-axis
                 profileImg.setTranslationY(0f);
@@ -179,6 +202,8 @@ public class HomePage extends AppCompatActivity {
         GamesPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                menuProfile.setVisibility(View.GONE);
+                TextBars.setVisibility(View.VISIBLE);
                 containerId[0] = 0;
                 profileImg.setTranslationX(0f); // Reset X-axis
                 profileImg.setTranslationY(0f);
@@ -198,6 +223,8 @@ public class HomePage extends AppCompatActivity {
         CommunityPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                menuProfile.setVisibility(View.GONE);
+                TextBars.setVisibility(View.VISIBLE);
                 containerId[0] = 0;
                 profileImg.setTranslationX(0f); // Reset X-axis
                 profileImg.setTranslationY(0f);
@@ -217,6 +244,8 @@ public class HomePage extends AppCompatActivity {
         ProfilePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                menuProfile.setVisibility(View.GONE);
+                TextBars.setVisibility(View.VISIBLE);
                 if(containerId[0] == 2131296489){
                     return;
                 }
@@ -262,6 +291,13 @@ public class HomePage extends AppCompatActivity {
         profEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                containerId[0] = 0;
+                profileImg.setTranslationX(0f); // Reset X-axis
+                profileImg.setTranslationY(0f);
+                TextBars.setVisibility(View.GONE);
+                LayoutProfile.setVisibility(View.GONE);
+                TaskBar.setVisibility(View.VISIBLE);
+                cardProfile.setVisibility(View.GONE);
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new profile_edit())
                         .commit();
@@ -270,9 +306,7 @@ public class HomePage extends AppCompatActivity {
         profMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new profile_menu())
-                        .commit();
+                menuProfile.setVisibility(View.VISIBLE);
             }
         });
         profShare.setOnClickListener(new View.OnClickListener() {
@@ -280,6 +314,27 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(HomePage.this,"Share Button didn't Developed Yet...",
                         Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        buttonTamil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonEnglish.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                textEnglish.setTextColor(Color.parseColor("#3B3B3B"));
+                buttonTamil.setBackgroundColor(Color.parseColor("#6AAD2B"));
+                textTamil.setTextColor(Color.parseColor("#FFFFFF"));
+                setLocale("ta");
+            }
+        });
+        buttonEnglish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonEnglish.setBackgroundColor(Color.parseColor("#6AAD2B"));
+                textEnglish.setTextColor(Color.parseColor("#FFFFFF"));
+                buttonTamil.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                textTamil.setTextColor(Color.parseColor("#3B3B3B"));
+                setLocale("en");
             }
         });
 
@@ -325,8 +380,29 @@ public class HomePage extends AppCompatActivity {
         DisplayMetrics displayMetrics = resources.getDisplayMetrics();
         config.setLocale(locale); // For newer APIs
         resources.updateConfiguration(config, displayMetrics);
-
         recreate(); // Reloads the current activity to apply language changes
+    }
+
+    private void setLocale(String language) {
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+        if (firebaseUser != null) {
+            String userId = firebaseUser.getUid();
+            // Update the language preference for the user in Firebase Realtime Database
+            databaseReference.child(userId).child("language").setValue(language)
+                    .addOnSuccessListener(aVoid -> {
+                        // Restart the LanguageSelection activity with updated locale
+                        Intent intent = new Intent(this, LanguageSelection.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                    })
+                    .addOnFailureListener(e -> {
+                        // Show an error message if updating fails
+                        Toast.makeText(this, R.string.failed_to_update_language, Toast.LENGTH_SHORT).show();
+                    });
+        } else {
+            Toast.makeText(this, R.string.user_not_logged_in, Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
