@@ -93,6 +93,90 @@
                         android:id="@+id/profileChange"
                         android:clickable="true"/>
                 </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edit_text_background">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/username"
+                        android:layout_width="312dp"
+                        android:layout_height="51dp"
+                        android:layout_marginStart="15dp"
+                        android:hint="@string/enter_your_user_name"
+                        android:textColorHint="#3B3B3B"
+                        android:fontFamily="@font/poppins"
+                        android:background="#00FFFFFF"
+                        android:textSize="14sp"
+                        android:textColor="@color/black" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="51dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_text_background">
+
+                    <TextView
+                        android:id="@+id/email"
+                        android:layout_width="312dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="15dp"
+                        android:hint="@string/enter_your_email_id"
+                        android:textColorHint="#3B3B3B"
+                        android:fontFamily="@font/poppins"
+                        android:background="#00FFFFFF"
+                        android:textSize="14sp"
+                        android:textColor="@color/black" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_text_background">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/Mobile"
+                        android:layout_width="312dp"
+                        android:layout_height="51dp"
+                        android:layout_marginStart="15dp"
+                        android:hint="@string/enter_your_mobile_no"
+                        android:textColorHint="#3B3B3B"
+                        android:inputType="phone"
+                        android:fontFamily="@font/poppins"
+                        android:background="#00FFFFFF"
+                        android:textSize="14sp"
+                        android:textColor="@color/black" />
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="327dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/edit_text_background">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/password"
+                        android:layout_width="275dp"
+                        android:layout_height="51dp"
+                        android:layout_marginStart="15dp"
+                        android:hint="@string/enter_your_password"
+                        android:textColorHint="#3B3B3B"
+                        android:fontFamily="@font/poppins"
+                        android:background="#00FFFFFF"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:inputType="textPassword" />
+                    <ImageView
+                        android:id="@+id/visibility_toggle1"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="15dp"
+                        android:src="@drawable/visibility"
+                        android:layout_centerVertical="true"/>
+                </LinearLayout>
+
                 <RelativeLayout
                     android:layout_width="327dp"
                     android:layout_height="50dp"
@@ -109,15 +193,9 @@
                         android:textColor="#FFFFFF"
                         android:fontFamily="@font/poppins" />
                 </RelativeLayout>
-                <Button
-                    android:layout_width="200dp"
-                    android:layout_height="40dp"
-                    android:text="Change User Name"
-                    android:id="@+id/NameChange"
-                    android:layout_marginTop="50dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"/>
+                    android:layout_height="100dp"/>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

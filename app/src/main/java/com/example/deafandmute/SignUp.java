@@ -166,7 +166,7 @@ public class SignUp extends AppCompatActivity {
                                 if (firebaseUser != null) {
                                     String userId = firebaseUser.getUid();
                                     // Save additional data to Firebase Database
-                                    User newUser = new User(username, email, mobile, "");
+                                    User newUser = new User(username, email, mobile, "", password);
                                     databaseReference.child(userId).setValue(newUser);
                                 }
                                 if (task.isSuccessful()) {

@@ -14,6 +14,9 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -49,9 +53,13 @@ public class profile_edit extends Fragment {
     private String uploadedImageUrl;
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
-    private Button nameChange, submitData;
-    private ImageView photoChange;
+    private Button submitData;
+    private ImageView photoChange, visibilityToggle1;
     private Uri imageUri;
+    private TextInputEditText password1, mobileNo, userName;
+    private TextView mailId;
+    boolean passwordFieldEmpty = true;
+    private String oldPassword;
     FirebaseUser user;
     CardView profileLess;
     ImageView profile;
@@ -84,12 +92,18 @@ public class profile_edit extends Fragment {
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
         photoChange = view.findViewById(R.id.profileChange);
-        nameChange = view.findViewById(R.id.NameChange);
         submitData = view.findViewById(R.id.Submit);
 
         profileLess = view.findViewById(R.id.without_profile);
         profile = view.findViewById(R.id.profileImage);
         textProfile = view.findViewById(R.id.profile_text);
+
+
+        userName = view.findViewById(R.id.username);
+        mailId = view.findViewById(R.id.email);
+        mobileNo = view.findViewById(R.id.Mobile);
+        password1 = view.findViewById(R.id.password);
+        visibilityToggle1 = view.findViewById(R.id.visibility_toggle1);
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -116,6 +130,11 @@ public class profile_edit extends Fragment {
                             profile.setVisibility(View.VISIBLE);
                             Glide.with(requireActivity()).load(userData.getprofilePhoto()).into(profile);
                         }
+                        userName.setText(userData.username);
+                        mailId.setText(userData.email);
+                        mobileNo.setText(userData.mobile);
+                        password1.setText(userData.password);
+                        oldPassword = String.valueOf(userData.password);
                     }
                 }
                 @Override
@@ -125,6 +144,26 @@ public class profile_edit extends Fragment {
             });
         }
 
+        password1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (passwordFieldEmpty && s.length() == 0) {
+                    passwordFieldEmpty = false; // User cleared the field
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+        visibilityToggle1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                togglePasswordVisibility1();
+            }
+        });
         photoChange.setOnClickListener(v -> pickImageFromGallery());
 
         submitData.setOnClickListener(new View.OnClickListener() {
@@ -215,5 +254,20 @@ public class profile_edit extends Fragment {
         } else {
             Toast.makeText(requireContext(), R.string.user_not_logged_in, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void togglePasswordVisibility1() {
+        if(password1.length() == 0){
+            passwordFieldEmpty = false;
+        }
+        if(passwordFieldEmpty){
+            return;
+        }
+        if (password1.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+            password1.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+        } else {
+            password1.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        }
+        password1.setSelection(password1.getText().length());
     }
 }
