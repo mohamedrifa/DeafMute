@@ -1,6 +1,7 @@
 package com.example.deafandmute;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -58,10 +60,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         holder.courseName.setText(course.getCourseName());
         holder.courseRating.setText(String.valueOf(course.getRating()));
         holder.enrollmentCount.setText(String.valueOf(course.getEnrollmentCount()) + context.getString(R.string.new_signs));
-
         // Load course icon using Glide
         Glide.with(context).load(course.getCourseIconUrl()).into(holder.courseIcon);
-
         // Fetch favorite status
         userRef.child(course.getCourseId()).get().addOnCompleteListener(task -> {
             if (task.isSuccessful() && task.getResult().exists()) {
@@ -81,6 +81,25 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 userRef.child(course.getCourseId()).setValue(true);
             }
         });
+
+        holder.CoursePage.setOnClickListener(v -> {
+            if (context instanceof AppCompatActivity) {
+                AppCompatActivity activity = (AppCompatActivity) context;
+
+                // Create a new instance of CourseView and pass data using Bundle
+                CourseView courseViewFragment = new CourseView();
+                Bundle bundle = new Bundle();
+                bundle.putString("courseId", course.getCourseId()); // Passing courseId as an example
+                courseViewFragment.setArguments(bundle);
+
+                activity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, courseViewFragment)
+                        .commit();
+            }
+        });
+
+
+
     }
 
     @Override
@@ -91,8 +110,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     public static class CourseViewHolder extends RecyclerView.ViewHolder {
         ImageView courseIcon, onfavorite;
         TextView courseName, courseRating, enrollmentCount;
-        LinearLayout btnfavorite;
-
+        LinearLayout btnfavorite, CoursePage;
         public CourseViewHolder(@NonNull View itemView) {
             super(itemView);
             courseIcon = itemView.findViewById(R.id.course_icon);
@@ -101,6 +119,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             enrollmentCount = itemView.findViewById(R.id.enrollment_count);
             btnfavorite = itemView.findViewById(R.id.favoritebutton);
             onfavorite = itemView.findViewById(R.id.favorited);
+            CoursePage = itemView.findViewById(R.id.coursePage);
         }
     }
 }

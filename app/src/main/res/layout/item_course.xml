@@ -3,6 +3,7 @@
     android:layout_width="146dp"
     android:layout_height="192dp"
     android:background="@drawable/course_background"
+    android:id="@+id/coursePage"
     android:gravity="center_horizontal"
     android:orientation="vertical">
     <RelativeLayout
