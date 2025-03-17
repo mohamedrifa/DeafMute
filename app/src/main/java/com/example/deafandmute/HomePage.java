@@ -38,7 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Locale;
 
-public class HomePage extends AppCompatActivity {
+public class HomePage extends AppCompatActivity implements profile_edit.OnDataPass{
     CardView profileLess, cardProfile;
     ImageView profile;
     TextView textProfile, userProfile;
@@ -51,6 +51,36 @@ public class HomePage extends AppCompatActivity {
     TextView username, textTamil, textEnglish;
     FirebaseUser user;
 
+    @Override
+    public void onDataPass(String data) {
+        String userId = user.getUid();
+        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userData = snapshot.getValue(User.class);
+                if (userData != null) {
+                    String currentLang = getString(R.string.lang); // Retrieve the current language string
+                    if (!userData.language.equals(currentLang)) {
+                        setLanguage(userData.language); // Dynamically set the language
+                    }
+                    if(userData.profilePhoto.isEmpty()){
+                        char profile = userData.username.charAt(0);
+                        profileLess.setVisibility(View.VISIBLE);
+                        textProfile.setText(String.valueOf(profile));
+                    }else{
+                        profile.setVisibility(View.VISIBLE);
+                        Glide.with(HomePage.this).load(userData.getprofilePhoto()).into(profile);
+                    }
+                    username.setText(getString(R.string.hello) + ", " + userData.username + " !");
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(HomePage.this, R.string.failed_to_load_user_data, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

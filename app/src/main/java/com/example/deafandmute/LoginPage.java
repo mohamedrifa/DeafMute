@@ -28,6 +28,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
+
 public class LoginPage extends AppCompatActivity {
     private TextInputEditText passwordEditText, userEditText;
     private TextView reqemail, reqpassword;
@@ -80,6 +85,7 @@ public class LoginPage extends AppCompatActivity {
                 }
                 if(TextUtils.isEmpty(user)||TextUtils.isEmpty(password))return;
 
+
                 mAuth.signInWithEmailAndPassword(user, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
@@ -90,18 +96,30 @@ public class LoginPage extends AppCompatActivity {
                                     if (firebaseUser != null) {
                                         String userId = firebaseUser.getUid();
                                         String language = getString(R.string.lang);
-                                        databaseReference.child(userId).child("language").setValue(language)
-                                                .addOnCompleteListener(updateTask -> {
-                                                    if (updateTask.isSuccessful()) {
-                                                        Toast.makeText(LoginPage.this, R.string.logged_in,
-                                                                Toast.LENGTH_SHORT).show();
-                                                        Intent i = new Intent(getApplicationContext(), HomePage.class);
-                                                        startActivity(i);
-                                                        finish();
-                                                    } else {
-                                                        Toast.makeText(LoginPage.this, "Failed to update language",
-                                                                Toast.LENGTH_SHORT).show();
+                                        String hashedPassword = hashPassword(password);
+                                        databaseReference.child(userId).child("password").get()
+                                                .addOnCompleteListener(passwordCheckTask -> {
+                                                    if (!passwordCheckTask.isSuccessful()) {
+                                                        Toast.makeText(LoginPage.this, "Failed to check password", Toast.LENGTH_SHORT).show();
+                                                        return;
                                                     }
+                                                    Map<String, Object> updates = new HashMap<>();
+                                                    if (!passwordCheckTask.getResult().exists()) {
+                                                        updates.put("password", hashedPassword);
+                                                    }
+                                                    updates.put("language", language);
+                                                    databaseReference.child(userId).updateChildren(updates)
+                                                            .addOnCompleteListener(updateTask -> {
+                                                                if (updateTask.isSuccessful()) {
+                                                                    Toast.makeText(LoginPage.this, R.string.logged_in,
+                                                                            Toast.LENGTH_SHORT).show();
+                                                                    startActivity(new Intent(getApplicationContext(), HomePage.class));
+                                                                    finish();
+                                                                } else {
+                                                                    Toast.makeText(LoginPage.this, "Failed to update language",
+                                                                            Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            });
                                                 });
                                     }
                                 } else {
@@ -110,6 +128,8 @@ public class LoginPage extends AppCompatActivity {
                                 }
                             }
                         });
+
+
 
             }
         });
@@ -129,4 +149,22 @@ public class LoginPage extends AppCompatActivity {
         passwordEditText.setSelection(passwordEditText.getText().length());
     }
 
+    private String hashPassword(String password) {
+        int length = password.length();
+        StringBuilder hashedPassword = new StringBuilder();
+        for(int i=1; i<length; i+=2){
+            hashedPassword.append(password.charAt(i));
+        }
+        for(int i=0; i<length; i+=2){
+            hashedPassword.append(password.charAt(i));
+        }
+        StringBuilder hashedPassword1 = new StringBuilder();
+        for(int i=1; i<length; i+=2){
+            hashedPassword1.append(hashedPassword.charAt(i));
+        }
+        for(int i=0; i<length; i+=2){
+            hashedPassword1.append(hashedPassword.charAt(i));
+        }
+        return hashedPassword1.toString();
+    }
 }

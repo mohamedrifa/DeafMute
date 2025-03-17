@@ -2,6 +2,7 @@ package com.example.deafandmute;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -16,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -28,6 +30,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -40,6 +44,8 @@ import com.google.gson.JsonParser;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -59,11 +65,11 @@ public class profile_edit extends Fragment {
     private TextInputEditText password1, mobileNo, userName;
     private TextView mailId;
     boolean passwordFieldEmpty = true;
-    private String oldPassword;
     FirebaseUser user;
     CardView profileLess;
     ImageView profile;
     TextView textProfile;
+    private String originalPassword;
 
     private final ActivityResultLauncher<Intent> imagePickerLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -82,6 +88,22 @@ public class profile_edit extends Fragment {
             });
 
 
+    private OnDataPass dataPasser;
+    public interface OnDataPass {
+        void onDataPass(String data);
+    }
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof OnDataPass) {
+            dataPasser = (OnDataPass) context;
+        } else {
+            throw new RuntimeException(context.toString() + " must implement OnDataPass");
+        }
+    }
+    private void sendDataToActivity() {
+        dataPasser.onDataPass("data from fragment!");
+    }
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -133,8 +155,8 @@ public class profile_edit extends Fragment {
                         userName.setText(userData.username);
                         mailId.setText(userData.email);
                         mobileNo.setText(userData.mobile);
-                        password1.setText(userData.password);
-                        oldPassword = String.valueOf(userData.password);
+                        originalPassword =  reverseHash(userData.password);
+                        password1.setText(originalPassword);
                     }
                 }
                 @Override
@@ -169,11 +191,75 @@ public class profile_edit extends Fragment {
         submitData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(imageUri == null){
-                    Toast.makeText(requireContext(), R.string.please_select_a_image, Toast.LENGTH_SHORT).show();
+                String userId = user.getUid();
+                Map<String, Object> updates = new HashMap<>();
+                String username = String.valueOf(userName.getText());
+                String mobile = String.valueOf(mobileNo.getText());
+                String password = String.valueOf(password1.getText());
+
+                if (username.isEmpty()) {
+                    Toast.makeText(requireActivity(), R.string.user_name_must_be_entered,
+                            Toast.LENGTH_SHORT).show();
                     return;
+                } else if (mobile.length() < 10) {
+                    if(mobile.isEmpty()) {
+                        Toast.makeText(requireActivity(), "Mobile No Must be Entered.",
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(requireActivity(), R.string.mobile_no_must_be_at_10_digits,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                    return;
+                } else if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(requireActivity(), R.string.password_must_be_entered,
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (password.length() < 8) {
+                    Toast.makeText(requireActivity(), R.string.password_must_have_at_least_8_characters,
+                            Toast.LENGTH_SHORT).show(); return;
+                } else if (!password.matches(".*[A-Z].*")) {
+                    Toast.makeText(requireActivity(),R.string.password_must_contain_an_uppercase_letter ,
+                            Toast.LENGTH_SHORT).show(); return;
+                } else if (!password.matches(".*[a-z].*")) {
+                    Toast.makeText(requireActivity(),R.string.password_must_contain_a_lowercase_letter,
+                            Toast.LENGTH_SHORT).show(); return;
+                } else if (!password.matches(".*[0-9].*")) {
+                    Toast.makeText(requireActivity(),R.string.password_must_contain_a_number,
+                            Toast.LENGTH_SHORT).show(); return;
+                } else if (!password.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
+                    Toast.makeText(requireActivity(), R.string.password_must_contain_a_special_character,
+                            Toast.LENGTH_SHORT).show(); return;
+//                } else if (!password.equals(originalPassword)) {
+//                    Toast.makeText(requireActivity(), R.string.password_couldn_t_be_a_old_one,
+//                            Toast.LENGTH_SHORT).show(); return;
                 }
-                uploadImageToImgBB(imageUri);
+                updates.put("username", username);
+                updates.put("mobile", mobile);
+                if (!password.equals(originalPassword)) {
+                    Toast.makeText(requireActivity(), R.string.password_couldn_t_be_a_old_one,
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), originalPassword);
+                    user.reauthenticate(credential).addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            updates.put("password", password);
+                        } else {
+                            Toast.makeText(requireActivity(), R.string.reauthentication_failed_check_your_current_password, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                databaseReference.child(userId).updateChildren(updates)
+                        .addOnCompleteListener(updateTask -> {
+                            if (updateTask.isSuccessful()) {
+                                Toast.makeText(requireActivity(), R.string.profile_updated,
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(requireActivity(), R.string.failed_to_update_data,
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                if(imageUri != null){ uploadImageToImgBB(imageUri);}
+                else {sendDataToActivity();}
             }
         });
 
@@ -241,11 +327,7 @@ public class profile_edit extends Fragment {
             // Update the language preference for the user in Firebase Realtime Database
             databaseReference.child(userId).child("profilePhoto").setValue(imageUrl)
                     .addOnSuccessListener(aVoid -> {
-                        // Restart the LanguageSelection activity with updated locale
-                        Intent intent = new Intent(requireContext(), profile_edit.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                        requireActivity().finish();
+                        sendDataToActivity();
                     })
                     .addOnFailureListener(e -> {
                         // Show an error message if updating fails
@@ -255,6 +337,7 @@ public class profile_edit extends Fragment {
             Toast.makeText(requireContext(), R.string.user_not_logged_in, Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private void togglePasswordVisibility1() {
         if(password1.length() == 0){
@@ -270,4 +353,32 @@ public class profile_edit extends Fragment {
         }
         password1.setSelection(password1.getText().length());
     }
+
+    private static String reverseHash(String hashedPassword) {
+        int length = hashedPassword.length();
+        char[] step1 = new char[length];
+
+        // Reverse the second rearrangement
+        int index = 0;
+        for (int i = 1; i < length; i += 2) {
+            step1[i] = hashedPassword.charAt(index++);
+        }
+        for (int i = 0; i < length; i += 2) {
+            step1[i] = hashedPassword.charAt(index++);
+        }
+
+        char[] original = new char[length];
+
+        // Reverse the first rearrangement
+        index = 0;
+        for (int i = 1; i < length; i += 2) {
+            original[i] = step1[index++];
+        }
+        for (int i = 0; i < length; i += 2) {
+            original[i] = step1[index++];
+        }
+
+        return new String(original);
+    }
+
 }

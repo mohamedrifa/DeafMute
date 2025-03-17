@@ -114,4 +114,13 @@
     <string name="an_error_occurred_while_uploading_the_image">An error occurred while uploading the image</string>
     <string name="upload_failed">"Upload Failed: "</string>
 
+    <string name="user_name_must_be_entered">User Name Must be Entered.</string>
+    <string name="mobile_no_must_be_at_10_digits">Mobile No Must be at 10 digits.</string>
+    <string name="password_must_be_entered">Password Must be Entered.</string>
+    <string name="password_couldn_t_be_a_old_one">Password is same as the old password..</string>
+    <string name="failed_to_update_password">Failed to update password</string>
+    <string name="reauthentication_failed_check_your_current_password">Reauthentication failed. Check your current password</string>
+    <string name="profile_updated">Profile updated.</string>
+    <string name="failed_to_update_data">Failed to update data</string>
+
 </resources>

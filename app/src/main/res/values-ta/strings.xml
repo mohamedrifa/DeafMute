@@ -117,5 +117,15 @@
     <string name="an_error_occurred_while_uploading_the_image">படத்தைப் பதிவேற்றும் போது ஒரு பிழை ஏற்பட்டது</string>
     <string name="upload_failed">"பதிவேற்றம் தோல்வியடைந்தது: "</string>
 
+    <string name="user_name_must_be_entered">பயனர் பெயரை உள்ளிட வேண்டும்.</string>
+    <string name="mobile_no_must_be_at_10_digits">கைபேசி எண் 10 இலக்கமாக இருக்க வேண்டும்.</string>
+    <string name="password_must_be_entered">கடவுச்சொல்லை உள்ளிட வேண்டும்.</string>
+    <string name="password_couldn_t_be_a_old_one">கடவுச்சொல் பழையதாக இருக்க முடியாது.</string>
+    <string name="failed_to_update_password">கடவுச்சொல்லை புதுப்பிக்க முடியவில்லை.</string>
+    <string name="reauthentication_failed_check_your_current_password">மீண்டும் அங்கீகரித்தல் தோல்வியடைந்தது. உங்கள் தற்போதைய கடவுச்சொல்லை சரிபார்க்கவும்.</string>
+    <string name="profile_updated">சுயவிவரம் புதுப்பிக்கப்பட்டது.</string>
+    <string name="failed_to_update_data">தரவை புதுப்பிக்க முடியவில்லை.</string>
+
+
 
 </resources>

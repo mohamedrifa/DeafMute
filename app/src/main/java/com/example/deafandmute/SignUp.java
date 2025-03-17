@@ -166,7 +166,8 @@ public class SignUp extends AppCompatActivity {
                                 if (firebaseUser != null) {
                                     String userId = firebaseUser.getUid();
                                     // Save additional data to Firebase Database
-                                    User newUser = new User(username, email, mobile, "", password);
+                                    String hashedPassword = hashPassword(password);
+                                    User newUser = new User(username, email, mobile, "", hashedPassword);
                                     databaseReference.child(userId).setValue(newUser);
                                 }
                                 if (task.isSuccessful()) {
@@ -200,5 +201,23 @@ public class SignUp extends AppCompatActivity {
             password2.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         }
         password2.setSelection(password2.getText().length());
+    }
+    private String hashPassword(String password) {
+        int length = password.length();
+        StringBuilder hashedPassword = new StringBuilder();
+        for(int i=1; i<length; i+=2){
+            hashedPassword.append(password.charAt(i));
+        }
+        for(int i=0; i<length; i+=2){
+            hashedPassword.append(password.charAt(i));
+        }
+        StringBuilder hashedPassword1 = new StringBuilder();
+        for(int i=1; i<length; i+=2){
+            hashedPassword1.append(hashedPassword.charAt(i));
+        }
+        for(int i=0; i<length; i+=2){
+            hashedPassword1.append(hashedPassword.charAt(i));
+        }
+        return hashedPassword1.toString();
     }
 }
