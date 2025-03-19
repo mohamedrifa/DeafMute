@@ -122,5 +122,9 @@
     <string name="reauthentication_failed_check_your_current_password">Reauthentication failed. Check your current password</string>
     <string name="profile_updated">Profile updated.</string>
     <string name="failed_to_update_data">Failed to update data</string>
+    <string name="failed_to_load_course_data">Failed to Load Course Data.</string>
+    <string name="course_title">course title</string>
+    <string name="level">level</string>
+    <string name="enroll_now">Enroll Now</string>
 
 </resources>
