@@ -126,6 +126,16 @@
     <string name="profile_updated">சுயவிவரம் புதுப்பிக்கப்பட்டது.</string>
     <string name="failed_to_update_data">தரவை புதுப்பிக்க முடியவில்லை.</string>
 
+    <string name="failed_to_load_course_data">பாடநெறி தரவுகளை ஏற்றுதல் தோல்வியுற்றது.</string>
+    <string name="course_title">பாடநெறியின் தலைப்பு</string>
+    <string name="level">நிலை</string>
+    <string name="enroll_now">பதிவு செய்யுங்கள்</string>
+    <string name="about_the_course">பாடநெறியை பற்றி</string>
+    <string name="skills_that_you_learn_from_the_course">பாடநெறியில் கற்றுக்கும் திறன்கள்</string>
+    <string name="play_sign_lang">மொழியை இயக்குங்கள்</string>
+    <string name="teach_sign_lang">சைகை கற்பிக்க</string>
+    <string name="get_ideas">யோசனை பெறுங்கள்</string>
+
 
 
 </resources>

@@ -122,9 +122,15 @@
     <string name="reauthentication_failed_check_your_current_password">Reauthentication failed. Check your current password</string>
     <string name="profile_updated">Profile updated.</string>
     <string name="failed_to_update_data">Failed to update data</string>
+
     <string name="failed_to_load_course_data">Failed to Load Course Data.</string>
     <string name="course_title">course title</string>
     <string name="level">level</string>
     <string name="enroll_now">Enroll Now</string>
+    <string name="about_the_course">About the Course</string>
+    <string name="skills_that_you_learn_from_the_course">Skills that You Learn from the Course</string>
+    <string name="play_sign_lang">Play Sign Lang</string>
+    <string name="teach_sign_lang">Teach Sign Lang</string>
+    <string name="get_ideas">Get Ideas</string>
 
 </resources>

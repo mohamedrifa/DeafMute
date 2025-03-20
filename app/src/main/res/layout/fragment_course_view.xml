@@ -39,6 +39,7 @@
                     android:textFontWeight="400"
                     android:textSize="15sp"
                     android:layout_marginStart="14dp"/>
+
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/courseIcon"
                     android:layout_width="match_parent"
@@ -46,7 +47,8 @@
                     android:layout_marginTop="22dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/imageloadfailed"
-                    app:shapeAppearanceOverlay="@style/RoundedImageViewShape"/>
+                    app:shapeAppearanceOverlay="@style/RoundedImageViewShape" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -146,6 +148,109 @@
                                 android:textSize="5sp"
                                 tools:ignore="SmallSp" />
                         </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:background="#F4EDDF"
+                android:orientation="vertical"
+                android:paddingBottom="24dp"
+                android:paddingHorizontal="24dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/about_the_course"
+                    android:textSize="12sp"
+                    android:layout_weight="600"
+                    android:textColor="#12130F"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:layout_marginTop="11dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:id="@+id/aboutCourse"
+                    android:text="sample data"
+                    android:textSize="9sp"
+                    android:textFontWeight="400"
+                    android:textColor="#12130F"
+                    android:fontFamily="@font/poppins"
+                    tools:ignore="SmallSp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/skills_that_you_learn_from_the_course"
+                    android:textSize="12sp"
+                    android:layout_weight="600"
+                    android:textColor="#12130F"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:layout_marginTop="11dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="3dp"
+                        android:background="@drawable/backround_element2"
+                        android:elevation="4dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/play_sign_lang"
+                            android:textSize="6sp"
+                            android:textFontWeight="400"
+                            android:fontFamily="@font/poppins"
+                            android:textColor="#12130F"
+                            tools:ignore="SmallSp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginStart="10dp"
+                        android:paddingVertical="3dp"
+                        android:background="@drawable/backround_element2"
+                        android:elevation="4dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/teach_sign_lang"
+                            android:textSize="6sp"
+                            android:textFontWeight="400"
+                            android:fontFamily="@font/poppins"
+                            android:textColor="#12130F"
+                            tools:ignore="SmallSp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginStart="10dp"
+                        android:paddingVertical="3dp"
+                        android:background="@drawable/backround_element2"
+                        android:elevation="4dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/get_ideas"
+                            android:textSize="6sp"
+                            android:textFontWeight="400"
+                            android:fontFamily="@font/poppins"
+                            android:textColor="#12130F"
+                            tools:ignore="SmallSp" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

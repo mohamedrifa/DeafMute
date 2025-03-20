@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 public class CourseView extends Fragment {
     private static final String ARG_COURSE_ID = "courseId"; // Correct key name
     private String courseId;
-    private TextView CourseName, CourseLevel, Ratings, Reviews, CourseLevel1, Experience;
+    private TextView CourseName, CourseLevel, Ratings, Reviews, CourseLevel1, Experience, AboutCourse;
     private ImageView CourseImage;
     FirebaseAuth mAuth;
     FirebaseUser user;
@@ -79,6 +79,7 @@ public class CourseView extends Fragment {
         Reviews = view.findViewById(R.id.reviews);
         CourseLevel1 = view.findViewById(R.id.courseLevel1);
         Experience = view.findViewById(R.id.experience);
+        AboutCourse = view.findViewById(R.id.aboutCourse);
 
         // Retrieve courseId from arguments
         Bundle args = getArguments();
@@ -101,6 +102,7 @@ public class CourseView extends Fragment {
                             String imageUrl = snapshot.child("courseIconUrl").getValue(String.class);
                             String ratings = String.valueOf(snapshot.child("rating").getValue()); // Convert Double to String
                             String reviews = String.valueOf(snapshot.child("enrollmentCount").getValue());
+                            String description = String.valueOf(snapshot.child("description").getValue());
 
                             if (!TextUtils.isEmpty(name)) CourseName.setText(name);
                             if (!TextUtils.isEmpty(level)) {
@@ -126,6 +128,7 @@ public class CourseView extends Fragment {
                             }
                             if (!TextUtils.isEmpty(ratings)) Ratings.setText(ratings+" ");
                             if (!TextUtils.isEmpty(reviews)) Reviews.setText("("+reviews+" reviews)");
+                            if (!TextUtils.isEmpty(description)) AboutCourse.setText("    "+description);
                             if (!TextUtils.isEmpty(imageUrl)) Glide.with(requireContext()).load(imageUrl).into(CourseImage);
                         } else {
                             Toast.makeText(requireActivity(), "Course data not found", Toast.LENGTH_SHORT).show();
