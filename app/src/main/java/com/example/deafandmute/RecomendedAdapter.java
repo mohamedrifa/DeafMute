@@ -58,8 +58,7 @@ public class RecomendedAdapter extends RecyclerView.Adapter<RecomendedAdapter.Co
 
         Course course = courseList.get(position);
         holder.courseName.setText(course.getCourseName());
-        holder.courseRating.setText(String.valueOf(course.getRating()));
-        holder.enrollmentCount.setText(String.valueOf(course.getEnrollmentCount()) + context.getString(R.string.new_signs));
+        holder.Description.setText("    "+course.getDescription());
         // Load course icon using Glide
         Glide.with(context).load(course.getCourseIconUrl()).into(holder.courseIcon);
         // Fetch favorite status
@@ -109,17 +108,16 @@ public class RecomendedAdapter extends RecyclerView.Adapter<RecomendedAdapter.Co
 
     public static class CourseViewHolder extends RecyclerView.ViewHolder {
         ImageView courseIcon, onfavorite;
-        TextView courseName, courseRating, enrollmentCount;
+        TextView courseName, Description;
         LinearLayout CoursePage;
         RelativeLayout btnfavorite;
         public CourseViewHolder(@NonNull View itemView) {
             super(itemView);
             courseIcon = itemView.findViewById(R.id.course_icon);
             courseName = itemView.findViewById(R.id.course_name);
-            courseRating = itemView.findViewById(R.id.course_rating);
-            enrollmentCount = itemView.findViewById(R.id.enrollment_count);
             btnfavorite = itemView.findViewById(R.id.favoritebutton);
             onfavorite = itemView.findViewById(R.id.favorited);
+            Description = itemView.findViewById(R.id.description);
             CoursePage = itemView.findViewById(R.id.coursePage);
         }
     }

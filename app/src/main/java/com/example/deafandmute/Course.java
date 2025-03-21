@@ -3,6 +3,7 @@ public class Course {
     private String courseId;
     private String courseIconUrl;
     private String courseName;
+    private String description;
     private double rating;
     private int enrollmentCount;
     private boolean isFavorite;
@@ -10,12 +11,13 @@ public class Course {
     // Required empty constructor
     public Course() { }
     // Full constructor
-    public Course(String courseId, String courseIconUrl, String courseName, double rating, int enrollmentCount, boolean isFavorite) {
+    public Course(String courseId, String courseIconUrl, String courseName, double rating, int enrollmentCount,String description, boolean isFavorite) {
         this.courseId = courseId;
         this.courseIconUrl = courseIconUrl;
         this.courseName = courseName;
         this.rating = rating;
         this.enrollmentCount = enrollmentCount;
+        this.description = description;
     }
 
     // Getters and Setters
@@ -35,6 +37,9 @@ public class Course {
     }
     public String getCourseName() {
         return courseName;
+    }
+    public  String getDescription() {
+        return description;
     }
     public void setCourseName(String courseName) {
         this.courseName = courseName;

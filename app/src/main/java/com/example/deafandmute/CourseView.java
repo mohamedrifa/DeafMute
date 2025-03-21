@@ -7,7 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -82,11 +84,15 @@ public class CourseView extends Fragment {
         String userId = user.getUid();
 
         recyclerView = view.findViewById(R.id.recyclerView);
+        SnapHelper snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(recyclerView);
 
         courseAdapter = new RecomendedAdapter(courseList, getContext());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(courseAdapter);
+
+
         // Initialize views
         CourseName = view.findViewById(R.id.courseTitle);
         CourseLevel = view.findViewById(R.id.courseLevel);

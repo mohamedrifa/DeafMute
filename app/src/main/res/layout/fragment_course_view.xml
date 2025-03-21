@@ -423,13 +423,15 @@
                     android:layout_marginTop="17dp"
                     android:textFontWeight="600"
                     android:textColor="#12130F"/>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:clipToPadding="false" />
             </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="37dp"
+                android:layout_marginEnd="37dp"
+                android:layout_marginTop="32dp"
+                android:clipToPadding="false" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"/>

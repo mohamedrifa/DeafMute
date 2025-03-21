@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="360dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginEnd="10dp"
+    android:layout_marginStart="10dp"
     android:background="@drawable/background_element3"
     android:layout_marginBottom="10dp"
     android:elevation="4dp"
@@ -20,79 +23,172 @@
         android:scaleType="fitXY"
         android:src="@drawable/imageloadfailed"
         app:shapeAppearanceOverlay="@style/TopRoundedShapeImage"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/course_name"
+        android:layout_width="wrap_content"
+        android:layout_height="17dp"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="#191D23"
+        android:layout_marginTop="2dp"
+        android:textSize="12sp"
+        android:textFontWeight="700"
+        android:text="@string/course_name" />
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:layout_marginTop="10dp">
+        android:fontFamily="@font/poppins"
+        android:layout_marginTop="5dp"
+        android:textColor="#047857"
+        android:textSize="10sp"
+        android:textFontWeight="400"
+        android:text="@string/_6_8_week_course"
+        tools:ignore="SmallSp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:id="@+id/description"
+        android:text="@string/description_content"
+        android:textSize="10sp"
+        android:textFontWeight="400"
+        android:textColor="#191D23"
+        android:fontFamily="@font/poppins"
+        tools:ignore="SmallSp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="9dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="2dp"
+            android:paddingHorizontal="6dp"
+            android:gravity="center"
+            android:background="@drawable/background_element4">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/basic_sign"
+                android:fontFamily="@font/poppins"
+                android:textColor="#4B5768"
+                android:textSize="10sp"
+                android:textFontWeight="500"
+                tools:ignore="SmallSp" />
+        </LinearLayout>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="2dp"
+            android:paddingHorizontal="6dp"
+            android:gravity="center"
+            android:background="@drawable/background_element4">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_talk"
+                android:fontFamily="@font/poppins"
+                android:textColor="#4B5768"
+                android:textSize="10sp"
+                android:textFontWeight="500"
+                tools:ignore="SmallSp" />
+        </LinearLayout>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="2dp"
+            android:paddingHorizontal="6dp"
+            android:gravity="center"
+            android:background="@drawable/background_element4">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/practice_test"
+                android:fontFamily="@font/poppins"
+                android:textColor="#4B5768"
+                android:textSize="10sp"
+                android:textFontWeight="500"
+                tools:ignore="SmallSp" />
+        </LinearLayout>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="2dp"
+            android:paddingHorizontal="6dp"
+            android:gravity="center"
+            android:background="@drawable/background_element4">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_3"
+                android:fontFamily="@font/poppins"
+                android:textColor="#4B5768"
+                android:textSize="10sp"
+                android:textFontWeight="500"
+                tools:ignore="SmallSp" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="9dp">
+        <LinearLayout
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="3dp"
+            app:cardCornerRadius="2dp"
+            android:gravity="center"
+            android:background="@drawable/background_element4">
+            <RelativeLayout
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:id="@+id/favoritebutton">
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_marginTop="2.3dp"
+                    android:layout_marginLeft="2dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/green_heart"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="3dp"
+                    android:visibility="invisible"
+                    android:scaleType="fitCenter"
+                    android:id="@+id/favorited"
+                    android:src="@drawable/hearton"/>
+            </RelativeLayout>
+        </LinearLayout>
         <RelativeLayout
-            android:layout_width="21dp"
-            android:layout_height="21dp"
-            android:id="@+id/favoritebutton"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp">
-            <ImageView
-                android:layout_width="17dp"
-                android:layout_height="17dp"
-                android:layout_marginTop="2.3dp"
-                android:layout_marginLeft="2dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/green_heart"/>
-            <ImageView
+            android:layout_width="0dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="7dp"
+            android:layout_weight="1"
+            android:background="@drawable/gradient_color"
+            >
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="3dp"
-                android:visibility="invisible"
-                android:scaleType="fitCenter"
-                android:id="@+id/favorited"
-                android:src="@drawable/hearton"/>
+                android:id="@+id/btnEnroll"
+                android:text="@string/enroll_now"
+                android:textSize="12sp"
+                android:background="#00FFFFFF"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/poppins"
+                />
         </RelativeLayout>
-    </RelativeLayout>
-    <LinearLayout
-        android:layout_width="111dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="70dp"
-            android:layout_height="29dp"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/course_name"
-                android:layout_width="wrap_content"
-                android:layout_height="17dp"
-                android:fontFamily="@font/poppins"
-                android:textColor="#3A7306"
-                android:textSize="12dp"
-                android:textFontWeight="500"
-                android:text="@string/course_name" />
-            <TextView
-                android:id="@+id/enrollment_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:textColor="#121010"
-                android:textSize="8dp"
-                android:textFontWeight="400"
-                android:text="Enrollments: 100" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="9dp"
-            android:layoutDirection="rtl"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/course_rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:textSize="7dp"
-                android:textFontWeight="400"
-                android:layout_marginLeft="3dp"
-                android:text="4.5" />
-            <ImageView
-                android:layout_width="7.5dp"
-                android:layout_height="7.5dp"
-                android:src="@drawable/star_rate"/>
-        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

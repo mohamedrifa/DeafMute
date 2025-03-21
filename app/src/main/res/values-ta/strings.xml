@@ -149,4 +149,12 @@
     <string name="practice_with_your_child">பயிற்சி செய்யுங்கள்</string>
     <string name="module_5_1_hour_to_complete">தொகுதி 5     –     1 மணி நேரத்தில் முடிக்கலாம்</string>
 
+    <string name="_6_8_week_course">6 - 8 வார பாடநெறி</string>
+    <string name="description_content">விளக்கம் உள்ளடக்கம்</string>
+    <string name="basic_sign">அடிப்படை கைசைக்கள்</string>
+    <string name="sign_talk">கைசைக பேச்சு</string>
+    <string name="practice_test">பயிற்சி தேர்வு</string>
+    <string name="_3">+3</string>
+
+
 </resources>
