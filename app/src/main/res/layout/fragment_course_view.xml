@@ -159,102 +159,277 @@
                 android:layout_marginEnd="25dp"
                 android:background="#F4EDDF"
                 android:orientation="vertical"
-                android:paddingBottom="24dp"
-                android:paddingHorizontal="24dp">
+                android:paddingHorizontal="24dp"
+                android:paddingBottom="24dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/about_the_course"
-                    android:textSize="12sp"
+                    android:layout_marginTop="11dp"
                     android:layout_weight="600"
-                    android:textColor="#12130F"
                     android:fontFamily="@font/poppins_semibold"
-                    android:layout_marginTop="11dp"/>
+                    android:text="@string/about_the_course"
+                    android:textColor="#12130F"
+                    android:textSize="12sp" />
+
                 <TextView
+                    android:id="@+id/aboutCourse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:id="@+id/aboutCourse"
-                    android:text="sample data"
-                    android:textSize="9sp"
-                    android:textFontWeight="400"
-                    android:textColor="#12130F"
                     android:fontFamily="@font/poppins"
+                    android:text="sample data"
+                    android:textColor="#12130F"
+                    android:textFontWeight="400"
+                    android:textSize="9sp"
                     tools:ignore="SmallSp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/skills_that_you_learn_from_the_course"
-                    android:textSize="12sp"
+                    android:layout_marginTop="11dp"
                     android:layout_weight="600"
-                    android:textColor="#12130F"
                     android:fontFamily="@font/poppins_semibold"
-                    android:layout_marginTop="11dp"/>
+                    android:text="@string/skills_that_you_learn_from_the_course"
+                    android:textColor="#12130F"
+                    android:textSize="12sp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="10dp"
+                    android:gravity="center"
                     android:orientation="horizontal"
-                    android:gravity="center">
+                    android:paddingBottom="10dp">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/backround_element2"
+                        android:elevation="4dp"
                         android:gravity="center"
                         android:paddingHorizontal="12dp"
-                        android:paddingVertical="3dp"
-                        android:background="@drawable/backround_element2"
-                        android:elevation="4dp">
+                        android:paddingVertical="3dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
                             android:text="@string/play_sign_lang"
-                            android:textSize="6sp"
-                            android:textFontWeight="400"
-                            android:fontFamily="@font/poppins"
                             android:textColor="#12130F"
+                            android:textFontWeight="400"
+                            android:textSize="6sp"
                             tools:ignore="SmallSp" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/backround_element2"
+                        android:elevation="4dp"
                         android:gravity="center"
                         android:paddingHorizontal="12dp"
-                        android:layout_marginStart="10dp"
-                        android:paddingVertical="3dp"
-                        android:background="@drawable/backround_element2"
-                        android:elevation="4dp">
+                        android:paddingVertical="3dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
                             android:text="@string/teach_sign_lang"
-                            android:textSize="6sp"
-                            android:textFontWeight="400"
-                            android:fontFamily="@font/poppins"
                             android:textColor="#12130F"
+                            android:textFontWeight="400"
+                            android:textSize="6sp"
                             tools:ignore="SmallSp" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/backround_element2"
+                        android:elevation="4dp"
                         android:gravity="center"
                         android:paddingHorizontal="12dp"
-                        android:layout_marginStart="10dp"
-                        android:paddingVertical="3dp"
-                        android:background="@drawable/backround_element2"
-                        android:elevation="4dp">
+                        android:paddingVertical="3dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/get_ideas"
-                            android:textSize="6sp"
-                            android:textFontWeight="400"
                             android:fontFamily="@font/poppins"
+                            android:text="@string/get_ideas"
                             android:textColor="#12130F"
+                            android:textFontWeight="400"
+                            android:textSize="6sp"
                             tools:ignore="SmallSp" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="14dp"
+                android:paddingHorizontal="46dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/there_are_5_modules_in_this_course"
+                    android:fontFamily="@font/poppins"
+                    android:textSize="12sp"
+                    android:textFontWeight="600"
+                    android:textColor="#12130F"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:background="@drawable/backgound_element1"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="18dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/why_we_have_to_teach_sign"
+                        android:layout_marginTop="6dp"
+                        android:textColor="#12130F"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="12sp"
+                        android:textFontWeight="600"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/module_1_1_hour_to_complete"
+                        android:layout_marginTop="0dp"
+                        android:textColor="#828282"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="10sp"
+                        android:textFontWeight="400"
+                        tools:ignore="SmallSp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:background="@drawable/backgound_element1"
+                    android:layout_marginTop="9dp"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="18dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/how_to_teach"
+                        android:layout_marginTop="6dp"
+                        android:textColor="#12130F"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="12sp"
+                        android:textFontWeight="600"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/module_2_1_hour_to_complete"
+                        android:layout_marginTop="0dp"
+                        android:textColor="#828282"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="10sp"
+                        android:textFontWeight="400"
+                        tools:ignore="SmallSp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:background="@drawable/backgound_element1"
+                    android:layout_marginTop="9dp"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="18dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/how_to_practice_sign"
+                        android:layout_marginTop="6dp"
+                        android:textColor="#12130F"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="12sp"
+                        android:textFontWeight="600"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/module_3_2_hour_to_complete"
+                        android:layout_marginTop="0dp"
+                        android:textColor="#828282"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="10sp"
+                        android:textFontWeight="400"
+                        tools:ignore="SmallSp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:background="@drawable/backgound_element1"
+                    android:layout_marginTop="9dp"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="18dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/test_sign_language"
+                        android:layout_marginTop="6dp"
+                        android:textColor="#12130F"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="12sp"
+                        android:textFontWeight="600"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/module_4_3_hour_to_complete"
+                        android:layout_marginTop="0dp"
+                        android:textColor="#828282"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="10sp"
+                        android:textFontWeight="400"
+                        tools:ignore="SmallSp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:background="@drawable/backgound_element1"
+                    android:layout_marginTop="9dp"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="18dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/practice_with_your_child"
+                        android:layout_marginTop="6dp"
+                        android:textColor="#12130F"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="12sp"
+                        android:textFontWeight="600"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/module_5_1_hour_to_complete"
+                        android:layout_marginTop="0dp"
+                        android:textColor="#828282"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="10sp"
+                        android:textFontWeight="400"
+                        tools:ignore="SmallSp" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recommended for you"
+                    android:fontFamily="@font/poppins"
+                    android:textSize="12sp"
+                    android:layout_marginTop="17dp"
+                    android:textFontWeight="600"
+                    android:textColor="#12130F"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:clipToPadding="false" />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"/>

@@ -132,5 +132,18 @@
     <string name="play_sign_lang">Play Sign Lang</string>
     <string name="teach_sign_lang">Teach Sign Lang</string>
     <string name="get_ideas">Get Ideas</string>
+    <string name="there_are_5_modules_in_this_course">There are 5 modules in this course</string>
+    <string name="why_we_have_to_teach_sign">Why we have to teach sign</string>
+    <string name="module_1_1_hour_to_complete">Module 1      –    1 hour to complete</string>
+    <string name="how_to_teach">How to teach</string>
+    <string name="module_2_1_hour_to_complete">Module 2      –    1 hour to complete</string>
+    <string name="how_to_practice_sign">How to practice sign</string>
+    <string name="module_3_2_hour_to_complete">Module 3      –    2 hour to complete</string>
+    <string name="test_sign_language">Test sign language</string>
+    <string name="module_4_3_hour_to_complete">Module 4      –    3 hour to complete</string>
+    <string name="practice_with_your_child">Practice with your child</string>
+    <string name="module_5_1_hour_to_complete">Module 5      –    1 hour to complete</string>
+
+
 
 </resources>

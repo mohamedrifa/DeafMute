@@ -137,5 +137,16 @@
     <string name="get_ideas">யோசனை பெறுங்கள்</string>
 
 
+    <string name="there_are_5_modules_in_this_course">இந்த படிப்பில் 5 தொகுதிகள் உள்ளன</string>
+    <string name="why_we_have_to_teach_sign">ஏன் கற்றுக்கொடுக்க வேண்டும்</string>
+    <string name="module_1_1_hour_to_complete">தொகுதி 1     –     1 மணி நேரத்தில் முடிக்கலாம்</string>
+    <string name="how_to_teach">எப்படி கற்றுக்கொடுப்பது</string>
+    <string name="module_2_1_hour_to_complete">தொகுதி 2     –     1 மணி நேரத்தில் முடிக்கலாம்</string>
+    <string name="how_to_practice_sign">சைகை பயிற்சி செய்வது எப்படி</string>
+    <string name="module_3_2_hour_to_complete">தொகுதி 3     –     2 மணி நேரத்தில் முடிக்கலாம்</string>
+    <string name="test_sign_language">சைகை மொழியை சோதிக்கவும்</string>
+    <string name="module_4_3_hour_to_complete">தொகுதி 4     –     3 மணி நேரத்தில் முடிக்கலாம்</string>
+    <string name="practice_with_your_child">பயிற்சி செய்யுங்கள்</string>
+    <string name="module_5_1_hour_to_complete">தொகுதி 5     –     1 மணி நேரத்தில் முடிக்கலாம்</string>
 
 </resources>

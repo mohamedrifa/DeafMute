@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -23,6 +26,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class CourseView extends Fragment {
     private static final String ARG_COURSE_ID = "courseId"; // Correct key name
     private String courseId;
@@ -31,6 +38,9 @@ public class CourseView extends Fragment {
     FirebaseAuth mAuth;
     FirebaseUser user;
     DatabaseReference databaseReference;
+    private RecyclerView recyclerView;
+    private RecomendedAdapter courseAdapter;
+    private List<Course> courseList = new ArrayList<>();
 
     public CourseView() {
         // Required empty public constructor
@@ -71,6 +81,12 @@ public class CourseView extends Fragment {
 
         String userId = user.getUid();
 
+        recyclerView = view.findViewById(R.id.recyclerView);
+
+        courseAdapter = new RecomendedAdapter(courseList, getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(courseAdapter);
         // Initialize views
         CourseName = view.findViewById(R.id.courseTitle);
         CourseLevel = view.findViewById(R.id.courseLevel);
@@ -141,6 +157,40 @@ public class CourseView extends Fragment {
                     }
                 });
 
+        String language = getString(R.string.lang);
+        databaseReference = FirebaseDatabase.getInstance().getReference("courses/"+language);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<Course> allCourses = new ArrayList<>();
+                courseList.clear();
+                for (DataSnapshot courseSnapshot : snapshot.getChildren()) {
+                    Course course = courseSnapshot.getValue(Course.class);
+                    if (course != null) {
+                        course.setCourseId(courseSnapshot.getKey()); // Set unique courseId from Firebase
+                        allCourses.add(course);
+                    }
+                }
+                List<Course> filteredCourses = new ArrayList<>();
+                for (Course course : allCourses) {
+                    if (!courseId.equals(course.getCourseId())) {
+                        filteredCourses.add(course);
+                    }
+                }
+                Collections.shuffle(filteredCourses);
+                int count = Math.min(3, filteredCourses.size());
+                for (int i = 0; i < count; i++) {
+                    courseList.add(filteredCourses.get(i));
+                }
+                courseAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                if (getContext() != null) {
+                    Toast.makeText(getContext(), "Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         return view;
     }
 
