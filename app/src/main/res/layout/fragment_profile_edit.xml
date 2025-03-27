@@ -199,7 +199,35 @@
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
-
-    
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/progressBar">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:alpha="0.5"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Please wait while uploading Image"
+                android:textAlignment="center"
+                android:textFontWeight="400"
+                android:textSize="30sp"
+                android:textColor="#3A7306" />
+            <ProgressBar
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
+                android:indeterminateTint="#3A7306"
+                android:visibility="visible"/>
+        </LinearLayout>
+    </RelativeLayout>
 </FrameLayout>

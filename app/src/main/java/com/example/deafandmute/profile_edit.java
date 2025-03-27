@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,6 +66,7 @@ public class profile_edit extends Fragment {
     private TextInputEditText password1, mobileNo, userName;
     private TextView mailId;
     boolean passwordFieldEmpty = true;
+    RelativeLayout ProgressBar;
     FirebaseUser user;
     CardView profileLess;
     ImageView profile;
@@ -126,8 +128,7 @@ public class profile_edit extends Fragment {
         mobileNo = view.findViewById(R.id.Mobile);
         password1 = view.findViewById(R.id.password);
         visibilityToggle1 = view.findViewById(R.id.visibility_toggle1);
-
-
+        ProgressBar = view.findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
         user = mAuth.getCurrentUser();
@@ -229,9 +230,6 @@ public class profile_edit extends Fragment {
                 } else if (!password.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
                     Toast.makeText(requireActivity(), R.string.password_must_contain_a_special_character,
                             Toast.LENGTH_SHORT).show(); return;
-//                } else if (!password.equals(originalPassword)) {
-//                    Toast.makeText(requireActivity(), R.string.password_couldn_t_be_a_old_one,
-//                            Toast.LENGTH_SHORT).show(); return;
                 }
                 updates.put("username", username);
                 updates.put("mobile", mobile);
@@ -258,7 +256,10 @@ public class profile_edit extends Fragment {
                                         Toast.LENGTH_SHORT).show();
                             }
                         });
-                if(imageUri != null){ uploadImageToImgBB(imageUri);}
+                if(imageUri != null){
+                    ProgressBar.setVisibility(View.VISIBLE);
+                    uploadImageToImgBB(imageUri);
+                }
                 else {sendDataToActivity();}
             }
         });
@@ -304,15 +305,16 @@ public class profile_edit extends Fragment {
                     uploadedImageUrl = jsonResponse.getAsJsonObject("data").get("url").getAsString();
                     requireActivity().runOnUiThread(() -> {
                         firebaseupdate(uploadedImageUrl);
-                        Toast.makeText(requireContext(), R.string.image_uploaded_successfully, Toast.LENGTH_SHORT).show();
                     });
                 } else {
+                    ProgressBar.setVisibility(View.GONE);
                     requireActivity().runOnUiThread(() ->
                             Toast.makeText(requireContext(), getString(R.string.upload_failed) + response.message(), Toast.LENGTH_SHORT).show()
                     );
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                ProgressBar.setVisibility(View.GONE);
                 requireActivity().runOnUiThread(() ->
                         Toast.makeText(requireContext(), R.string.an_error_occurred_while_uploading_the_image, Toast.LENGTH_SHORT).show()
                 );
@@ -327,10 +329,13 @@ public class profile_edit extends Fragment {
             // Update the language preference for the user in Firebase Realtime Database
             databaseReference.child(userId).child("profilePhoto").setValue(imageUrl)
                     .addOnSuccessListener(aVoid -> {
+                        Toast.makeText(requireContext(), R.string.image_uploaded_successfully, Toast.LENGTH_SHORT).show();
                         sendDataToActivity();
+                        ProgressBar.setVisibility(View.GONE);
                     })
                     .addOnFailureListener(e -> {
                         // Show an error message if updating fails
+                        ProgressBar.setVisibility(View.GONE);
                         Toast.makeText(requireContext(), R.string.failed_to_upload_profile, Toast.LENGTH_SHORT).show();
                     });
         } else {
