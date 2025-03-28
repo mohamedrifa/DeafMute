@@ -217,7 +217,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Please wait while uploading Image"
+                android:text="@string/please_wait_while_uploading_image"
                 android:textAlignment="center"
                 android:textFontWeight="400"
                 android:textSize="30sp"

@@ -54,23 +54,33 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="49dp"
+                        android:clickable="true"
+                        android:gravity="center"
                         android:layout_weight="1"
-                        android:background="@drawable/gradient_color"
-                        >
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:id="@+id/btnEnroll"
+                        android:orientation="vertical"
+                        android:id="@+id/btnEnroll"
+                        android:background="@drawable/gradient_color">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="@string/enroll_now"
-                            android:textSize="15sp"
-                            android:background="#00FFFFFF"
                             android:textColor="#FFFFFF"
+                            android:textFontWeight="600"
                             android:fontFamily="@font/poppins"
-                            />
-                    </RelativeLayout>
+                            android:textSize="15sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="499 RS only"
+                            android:textColor="#FFFFFF"
+                            android:textFontWeight="400"
+                            android:fontFamily="@font/poppins"
+                            android:textSize="10sp"
+                            tools:ignore="SmallSp" />
+                    </LinearLayout>
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="49dp"
