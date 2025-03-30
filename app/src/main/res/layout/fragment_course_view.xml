@@ -74,7 +74,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="499 RS only"
+                            android:id="@+id/fees"
+                            android:text="@string/fees"
                             android:textColor="#FFFFFF"
                             android:textFontWeight="400"
                             android:fontFamily="@font/poppins"

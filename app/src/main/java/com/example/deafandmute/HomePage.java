@@ -383,7 +383,12 @@ public class HomePage extends AppCompatActivity implements profile_edit.OnDataPa
     }
     @Override
     public void onBackPressed() {
-        if (!(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof Home)) {
+        if ((getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof CoursePayment)){
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new CourseView())
+                    .commit();
+        }
+        else if (!(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof Home)) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new Home())
                     .commit();

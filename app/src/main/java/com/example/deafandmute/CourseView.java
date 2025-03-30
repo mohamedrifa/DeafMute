@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,12 +32,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class CourseView extends Fragment {
     private static final String ARG_COURSE_ID = "courseId"; // Correct key name
     private String courseId;
-    private TextView CourseName, CourseLevel, Ratings, Reviews, CourseLevel1, Experience, AboutCourse;
+    private TextView CourseName, CourseLevel, Ratings, Reviews, CourseLevel1, Experience, AboutCourse, CourseFee;
     private ImageView CourseImage;
+    LinearLayout EnrollButton;
     FirebaseAuth mAuth;
     FirebaseUser user;
     DatabaseReference databaseReference;
@@ -102,6 +105,8 @@ public class CourseView extends Fragment {
         CourseLevel1 = view.findViewById(R.id.courseLevel1);
         Experience = view.findViewById(R.id.experience);
         AboutCourse = view.findViewById(R.id.aboutCourse);
+        CourseFee = view.findViewById(R.id.fees);
+        EnrollButton = view.findViewById(R.id.btnEnroll);
 
         // Retrieve courseId from arguments
         Bundle args = getArguments();
@@ -125,13 +130,12 @@ public class CourseView extends Fragment {
                             String ratings = String.valueOf(snapshot.child("rating").getValue()); // Convert Double to String
                             String reviews = String.valueOf(snapshot.child("enrollmentCount").getValue());
                             String description = String.valueOf(snapshot.child("description").getValue());
-
+                            float feesAmount = Float.parseFloat(Objects.requireNonNull(snapshot.child("price").getValue()).toString());
+                            @SuppressLint("DefaultLocale") String formattedAmount = String.format("%.2f", feesAmount);
                             if (!TextUtils.isEmpty(name)) CourseName.setText(name);
                             if (!TextUtils.isEmpty(level)) {
                                 CourseLevel.setText(level + " Level of Sign Course");
                                 CourseLevel1.setText(level + " Level");
-
-                                // Optimized Level-based Experience Text
                                 String experienceText;
                                 switch (level) {
                                     case "Beginner":
@@ -148,6 +152,7 @@ public class CourseView extends Fragment {
                                 }
                                 Experience.setText(experienceText);
                             }
+                            if (!TextUtils.isEmpty(formattedAmount)) CourseFee.setText("Rs."+formattedAmount+" only");
                             if (!TextUtils.isEmpty(ratings)) Ratings.setText(ratings+" ");
                             if (!TextUtils.isEmpty(reviews)) Reviews.setText("("+reviews+" reviews)");
                             if (!TextUtils.isEmpty(description)) AboutCourse.setText("    "+description);
@@ -197,6 +202,18 @@ public class CourseView extends Fragment {
                 }
             }
         });
+
+        EnrollButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new CoursePayment())
+                        .commit();
+            }
+        });
+
+
+
         return view;
     }
 

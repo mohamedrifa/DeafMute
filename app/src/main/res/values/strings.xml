@@ -151,6 +151,14 @@
     <string name="practice_test">Practice test</string>
     <string name="_3">+3</string>
     <string name="please_wait_while_uploading_image">Please wait while uploading Image</string>
+    <string name="fees">Fees</string>
+    <string name="course_payment_via_upi">Course Payment via UPI</string>
+    <string name="enter_upi_id">Enter UPI ID</string>
+    <string name="scan_qr_code">Scan QR Code</string>
+    <string name="pay_via_upi">Pay via UPI</string>
+    <string name="scan_qr_code_to_pay">Scan QR Code to Pay</string>
+    <string name="please_enter_upi_id">Please Enter UPI ID</string>
+    <string name="seconds_left">Seconds left</string>
 
 
 </resources>
