@@ -150,6 +150,7 @@
     <string name="sign_talk">Sign talk</string>
     <string name="practice_test">Practice test</string>
     <string name="_3">+3</string>
+
     <string name="please_wait_while_uploading_image">Please wait while uploading Image</string>
     <string name="fees">Fees</string>
     <string name="course_payment_via_upi">Course Payment via UPI</string>
@@ -159,6 +160,11 @@
     <string name="scan_qr_code_to_pay">Scan QR Code to Pay</string>
     <string name="please_enter_upi_id">Please Enter UPI ID</string>
     <string name="seconds_left">Seconds left</string>
+    <string name="please_wait">Please Wait</string>
+    <string name="payment_is_in_progress">Payment is in progress...</string>
+    <string name="payment_successfull">Payment Successfull</string>
+    <string name="payment_failed">Payment Failed</string>
+    <string name="failed_to_fetch_data">failed to fetch data</string>
 
 
 </resources>

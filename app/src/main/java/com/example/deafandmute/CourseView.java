@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -94,7 +95,6 @@ public class CourseView extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(courseAdapter);
-
 
         // Initialize views
         CourseName = view.findViewById(R.id.courseTitle);
@@ -206,11 +206,20 @@ public class CourseView extends Fragment {
         EnrollButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                requireActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new CoursePayment())
-                        .commit();
+                if (v.getContext() instanceof AppCompatActivity) {
+                    AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                    CoursePayment coursePaymentFragment = new CoursePayment(null);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("courseId", courseId);
+                    coursePaymentFragment.setArguments(bundle);
+                    activity.getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, coursePaymentFragment)
+                            .addToBackStack(null) // Enables back navigation
+                            .commit();
+                }
             }
         });
+
 
 
 

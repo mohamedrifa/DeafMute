@@ -26,6 +26,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -383,9 +384,18 @@ public class HomePage extends AppCompatActivity implements profile_edit.OnDataPa
     }
     @Override
     public void onBackPressed() {
-        if ((getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof CoursePayment)){
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+
+        if (currentFragment instanceof CoursePayment) {
+            CoursePayment coursePaymentFragment = (CoursePayment) currentFragment;
+            String courseId = coursePaymentFragment.getCourseId();
+            CourseView courseViewFragment = new CourseView();
+            Bundle bundle = new Bundle();
+            bundle.putString("courseId", courseId);
+            courseViewFragment.setArguments(bundle);
+
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new CourseView())
+                    .replace(R.id.fragment_container, courseViewFragment)
                     .commit();
         }
         else if (!(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof Home)) {

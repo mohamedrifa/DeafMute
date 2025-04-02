@@ -8,16 +8,21 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,19 +90,40 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         holder.CoursePage.setOnClickListener(v -> {
             if (context instanceof AppCompatActivity) {
                 AppCompatActivity activity = (AppCompatActivity) context;
-
-                // Create a new instance of CourseView and pass data using Bundle
-                CourseView courseViewFragment = new CourseView();
-                Bundle bundle = new Bundle();
-                bundle.putString("courseId", course.getCourseId()); // Passing courseId as an example
-                courseViewFragment.setArguments(bundle);
-
-                activity.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, courseViewFragment)
-                        .commit();
+                if (userId == null) {
+                    Toast.makeText(context, "User not logged in", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                DatabaseReference courseRef = FirebaseDatabase.getInstance()
+                        .getReference("courses")
+                        .child(language)
+                        .child(course.getCourseId())
+                        .child("enrolledUsers")
+                        .child(userId);
+                courseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Fragment fragment;
+                        if (snapshot.exists() && Boolean.TRUE.equals(snapshot.getValue(Boolean.class))) {
+                            fragment = new EnrolledCourse();
+                        } else {
+                            fragment = new CourseView();
+                        }
+                        Bundle bundle = new Bundle();
+                        bundle.putString("courseId", course.getCourseId());
+                        fragment.setArguments(bundle);
+                        activity.getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_container, fragment)
+                                .addToBackStack(null) // Optional: Enables back navigation
+                                .commit();
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(context, "Database error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
-
 
 
     }

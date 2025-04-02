@@ -156,5 +156,20 @@
     <string name="practice_test">பயிற்சி தேர்வு</string>
     <string name="_3">+3</string>
 
+    <string name="please_wait_while_uploading_image">படத்தை பதிவேற்றுவதற்கு காத்திருக்கவும்</string>
+    <string name="fees">கட்டணம்</string>
+    <string name="course_payment_via_upi">UPI மூலமாக கட்டலாம்</string>
+    <string name="enter_upi_id">UPI ஐடி உள்ளிடவும்</string>
+    <string name="scan_qr_code">ஸ்கேன் செய்யவும்</string>
+    <string name="pay_via_upi">UPI மூலம் செலுத்தவும்</string>
+    <string name="scan_qr_code_to_pay">QR குறியீட்டை ஸ்கேன் செய்யவும்</string>
+    <string name="please_enter_upi_id">தயவுசெய்து UPI ஐடி உள்ளிடவும்</string>
+    <string name="seconds_left">நொடிகள் மீதமுள்ளது</string>
+    <string name="please_wait">தயவுசெய்து காத்திருக்கவும்</string>
+    <string name="payment_is_in_progress">கட்டணம் செயல்படுத்தப்படுகிறது...</string>
+    <string name="payment_successfull">கட்டணம் வெற்றிகரமாக</string>
+    <string name="payment_failed">கட்டணம் தோல்வியடைந்தது</string>
+    <string name="failed_to_fetch_data">தகவல் பெற முடியவில்லை</string>
+
 
 </resources>
