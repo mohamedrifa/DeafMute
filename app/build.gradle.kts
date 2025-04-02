@@ -43,6 +43,7 @@ dependencies {
     implementation("com.google.firebase:firebase-storage:21.0.1")
     implementation("com.github.bumptech.glide:glide:4.12.0")
     implementation("androidx.cardview:cardview:1.0.0")
+    implementation("com.google.android.exoplayer:exoplayer:2.19.1")
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")

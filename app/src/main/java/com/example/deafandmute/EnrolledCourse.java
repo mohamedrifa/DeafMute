@@ -1,6 +1,8 @@
 package com.example.deafandmute;
 
 import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,13 +10,21 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.view.WindowManager;
+import android.widget.ImageView;
+
+import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.ui.PlayerView;
 
 public class EnrolledCourse extends Fragment {
-    private static final String ARG_COURSE_ID = "courseId"; // Correct key name
+    private static final String ARG_COURSE_ID = "courseId";
     private String courseId;
+    private ExoPlayer player;
+    private PlayerView playerView;
+    private ImageView fullscreenButton;
+    private boolean isFullscreen = false; // Added missing variable
 
-    TextView CourseId;
     public EnrolledCourse() {
         // Required empty public constructor
     }
@@ -22,7 +32,7 @@ public class EnrolledCourse extends Fragment {
     public static EnrolledCourse newInstance(String courseId) {
         EnrolledCourse fragment = new EnrolledCourse();
         Bundle args = new Bundle();
-        args.putString(ARG_COURSE_ID, courseId); // Correct key name
+        args.putString(ARG_COURSE_ID, courseId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -31,7 +41,7 @@ public class EnrolledCourse extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            courseId = getArguments().getString(ARG_COURSE_ID); // Use correct key
+            courseId = getArguments().getString(ARG_COURSE_ID);
         }
     }
 
@@ -40,9 +50,42 @@ public class EnrolledCourse extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_enrolled_course, container, false);
-        CourseId = view.findViewById(R.id.courseId1);
-        CourseId.setText(courseId);
+
+        playerView = view.findViewById(R.id.playerView);
+        fullscreenButton = view.findViewById(R.id.fullscreen_button);
+        // Ensure your Google Drive file is accessible
+        String videoUrl = "https://drive.google.com/uc?export=download&id=1vum-pffC-V2_2mtEwUnjo0GaBiZ8-5zf";
+        // Initialize ExoPlayer
+        player = new ExoPlayer.Builder(requireActivity()).build();
+        playerView.setPlayer(player);
+
+        // Set media source
+        MediaItem mediaItem = MediaItem.fromUri(Uri.parse(videoUrl));
+        player.setMediaItem(mediaItem);
+        player.prepare();
+        player.play();
+
+        fullscreenButton.setOnClickListener(view1 -> toggleFullscreen());
 
         return view;
+    }
+
+    private void toggleFullscreen() {
+        if (isFullscreen) {
+            requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        } else {
+            requireActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
+        isFullscreen = !isFullscreen;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (player != null) {
+            player.release();
+        }
     }
 }

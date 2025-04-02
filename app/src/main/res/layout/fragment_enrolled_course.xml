@@ -4,15 +4,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EnrolledCourse">
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/courseId1"
-            android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        tools:context=".MainActivity">
+
+        <!-- Video Player -->
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/playerView"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@android:color/darker_gray">
+            <ImageView
+                android:id="@+id/fullscreen_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="10dp"
+                android:background="@drawable/video_fullscreen"
+                android:alpha="0.4"
+                android:scaleType="center"
+                android:contentDescription="Fullscreen"/>
+        </com.google.android.exoplayer2.ui.PlayerView>
+
+        <!-- Video List -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:scrollbars="vertical"/>
+
     </LinearLayout>
+
 
 </FrameLayout>
