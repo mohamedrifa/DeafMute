@@ -54,7 +54,7 @@ public class EnrolledCourse extends Fragment {
         playerView = view.findViewById(R.id.playerView);
         fullscreenButton = view.findViewById(R.id.fullscreen_button);
         // Ensure your Google Drive file is accessible
-        String videoUrl = "https://drive.google.com/uc?export=download&id=1vum-pffC-V2_2mtEwUnjo0GaBiZ8-5zf";
+        String videoUrl = "https://drive.google.com/uc?export=download&id=1UFb4Wt7oIM9nFf_mo39uadLrzzpiC8-t";
         // Initialize ExoPlayer
         player = new ExoPlayer.Builder(requireActivity()).build();
         playerView.setPlayer(player);
@@ -71,14 +71,7 @@ public class EnrolledCourse extends Fragment {
     }
 
     private void toggleFullscreen() {
-        if (isFullscreen) {
-            requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else {
-            requireActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
-        isFullscreen = !isFullscreen;
+
     }
 
     @Override
