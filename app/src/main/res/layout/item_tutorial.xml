@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -13,19 +14,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:id="@+id/listbar"
         android:padding="16dp"
         android:background="@drawable/tutorial_item_border">
-
         <TextView
             android:id="@+id/tutorial_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Tutorial Name"
             android:textSize="18sp"
-            android:textStyle="bold"
             android:textColor="#C33CE0"
             android:fontFamily="@font/poppins_bold"/>
-
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

@@ -1,26 +1,35 @@
 package com.example.deafandmute;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
 
 public class TutorialAdapter extends RecyclerView.Adapter<TutorialAdapter.TutorialViewHolder> {
 
     private List<Tutorial> tutorialList;
     private Context context;
+    private OnTutorialClickListener listener;
+    private int selectedPosition; // Track selected item
 
-    public TutorialAdapter(Context context, List<Tutorial> tutorialList) {
+    public interface OnTutorialClickListener {
+        void onTutorialClick(String videoUrl, int position);
+    }
+
+    public TutorialAdapter(Context context, List<Tutorial> tutorialList, OnTutorialClickListener listener, int recents) {
         this.context = context;
         this.tutorialList = tutorialList;
+        this.listener = listener;
+        selectedPosition = recents;
     }
 
     @NonNull
@@ -34,10 +43,22 @@ public class TutorialAdapter extends RecyclerView.Adapter<TutorialAdapter.Tutori
     public void onBindViewHolder(@NonNull TutorialViewHolder holder, int position) {
         Tutorial tutorial = tutorialList.get(position);
         holder.nameTextView.setText(tutorial.getName());
-        holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(tutorial.getUrl()));
-            context.startActivity(intent);
-        });
+        // Highlight if selected or last watched (recents)
+        if (position == selectedPosition ) {
+            holder.ListBar.setBackgroundResource(R.drawable.tutorial_selected);
+            holder.nameTextView.setTextColor(Color.parseColor("#FFFFFF"));
+            listener.onTutorialClick(tutorial.getUrl(), position);
+        } else {
+            holder.ListBar.setBackgroundResource(R.drawable.tutorial_item_border);
+            holder.nameTextView.setTextColor(Color.parseColor("#C33CE0"));
+        }
+        holder.ListBar.setOnClickListener(v -> selectVideo(position, tutorial.getUrl()));
+    }
+    void selectVideo(int position, String videoUrl) {
+        if (selectedPosition != position) {
+            selectedPosition = position;
+            notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -47,10 +68,11 @@ public class TutorialAdapter extends RecyclerView.Adapter<TutorialAdapter.Tutori
 
     public static class TutorialViewHolder extends RecyclerView.ViewHolder {
         TextView nameTextView;
-
+        LinearLayout ListBar;
         public TutorialViewHolder(@NonNull View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.tutorial_name);
+            ListBar = itemView.findViewById(R.id.listbar);
         }
     }
 }

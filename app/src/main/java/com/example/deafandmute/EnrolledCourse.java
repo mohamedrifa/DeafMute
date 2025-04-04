@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.ui.PlayerView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +42,8 @@ public class EnrolledCourse extends Fragment {
     private ExoPlayer player;
     private PlayerView playerView;
     private ImageView fullscreenButton;
+    FirebaseAuth mAuth;
+    int recents;
     private boolean isFullscreen = false;
 
     public EnrolledCourse() {
@@ -57,43 +61,84 @@ public class EnrolledCourse extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAuth = FirebaseAuth.getInstance();
         if (getArguments() != null) {
             courseId = getArguments().getString(ARG_COURSE_ID);
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_enrolled_course, container, false);
-
-        // Initialize UI components
         playerView = view.findViewById(R.id.playerView);
         fullscreenButton = view.findViewById(R.id.fullscreen_button);
 
-        // Initialize ExoPlayer
-        String videoUrl = "https://drive.google.com/uc?export=download&id=1UFb4Wt7oIM9nFf_mo39uadLrzzpiC8-t";
+        // Initialize ExoPlayer (start with empty video)
         player = new ExoPlayer.Builder(requireActivity()).build();
         playerView.setPlayer(player);
-        MediaItem mediaItem = MediaItem.fromUri(Uri.parse(videoUrl));
-        player.setMediaItem(mediaItem);
-        player.prepare();
-        player.play();
 
         fullscreenButton.setOnClickListener(view1 -> toggleFullscreen());
+
+        String language = getString(R.string.lang);
+        FirebaseUser user = mAuth.getCurrentUser();
+        String userId = user.getUid();
+        DatabaseReference courseRef = FirebaseDatabase.getInstance()
+                .getReference("Users").child(userId).child("courseHistory")
+                .child(language)
+                .child(courseId);
 
         // Initialize RecyclerView
         tutorialRecycler = view.findViewById(R.id.tutorial_recycler);
         tutorialRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-
         tutorialList = new ArrayList<>();
-        adapter = new TutorialAdapter(getContext(), tutorialList);
-        tutorialRecycler.setAdapter(adapter);
-        String language = getString(R.string.lang);
-        tutorialRef = FirebaseDatabase.getInstance().getReference("courses").child(language).child(courseId).child("tutorials");
-        fetchTutorials();
+
+        courseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    recents = snapshot.getValue(Integer.class);
+                } else {
+                    recents = 0;
+                }
+                // Initialize tutorialRef **inside onDataChange()**
+                tutorialRef = FirebaseDatabase.getInstance()
+                        .getReference("courses").child(language).child(courseId).child("tutorials");
+
+                // Initialize Adapter **after** recents is set
+                adapter = new TutorialAdapter(getContext(), tutorialList, EnrolledCourse.this::playSelectedVideo, recents);
+                tutorialRecycler.setAdapter(adapter);
+
+                // Fetch tutorials **after tutorialRef is initialized**
+                fetchTutorials();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+
         return view;
     }
+
+
+    private void playSelectedVideo(String videoUrl, int position) {
+        String language = getString(R.string.lang);
+        FirebaseUser user = mAuth.getCurrentUser();
+        String userId = user.getUid();
+        DatabaseReference courseRef = FirebaseDatabase.getInstance().getReference("Users").child(userId)
+                .child("courseHistory").child(language).child(courseId);
+        courseRef.setValue(position).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                MediaItem mediaItem = MediaItem.fromUri(Uri.parse(videoUrl));
+                player.setMediaItem(mediaItem);
+                player.prepare();
+                player.play();
+            } else {
+                Toast.makeText(requireContext(), R.string.failed_to_load_video, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
 
     private void fetchTutorials() {
         tutorialRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -111,7 +156,7 @@ public class EnrolledCourse extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Failed to load data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.failed_to_load_data, Toast.LENGTH_SHORT).show();
             }
         });
     }
