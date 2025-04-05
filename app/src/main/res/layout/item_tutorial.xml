@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:text="Tutorial Name"
             android:textSize="18sp"
-            android:textColor="#C33CE0"
+            android:textColor="#808080"
             android:fontFamily="@font/poppins_bold"/>
     </LinearLayout>
 
