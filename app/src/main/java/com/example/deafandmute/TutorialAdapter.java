@@ -43,7 +43,6 @@ public class TutorialAdapter extends RecyclerView.Adapter<TutorialAdapter.Tutori
     public void onBindViewHolder(@NonNull TutorialViewHolder holder, int position) {
         Tutorial tutorial = tutorialList.get(position);
         holder.nameTextView.setText(tutorial.getName());
-        // Highlight if selected or last watched (recents)
         if (position == selectedPosition ) {
             holder.ListBar.setBackgroundResource(R.drawable.tutorial_selected);
             holder.nameTextView.setTextColor(Color.parseColor("#FFFFFF"));

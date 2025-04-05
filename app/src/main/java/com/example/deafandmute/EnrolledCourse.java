@@ -1,13 +1,17 @@
 package com.example.deafandmute;
 
+import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -41,8 +46,10 @@ public class EnrolledCourse extends Fragment {
 
     private ExoPlayer player;
     private PlayerView playerView;
-    private ImageView fullscreenButton;
+    private ImageView PlayButton;
+    LinearLayout PlayButtonView;
     FirebaseAuth mAuth;
+    View view;
     int recents;
     private boolean isFullscreen = false;
 
@@ -67,18 +74,16 @@ public class EnrolledCourse extends Fragment {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_enrolled_course, container, false);
+        view = inflater.inflate(R.layout.fragment_enrolled_course, container, false);
         playerView = view.findViewById(R.id.playerView);
-        fullscreenButton = view.findViewById(R.id.fullscreen_button);
-
+        PlayButton = view.findViewById(R.id.playButton);
+        PlayButtonView = view.findViewById(R.id.playButtonView);
         // Initialize ExoPlayer (start with empty video)
         player = new ExoPlayer.Builder(requireActivity()).build();
         playerView.setPlayer(player);
-
-        fullscreenButton.setOnClickListener(view1 -> toggleFullscreen());
-
         String language = getString(R.string.lang);
         FirebaseUser user = mAuth.getCurrentUser();
         String userId = user.getUid();
@@ -91,6 +96,40 @@ public class EnrolledCourse extends Fragment {
         tutorialRecycler = view.findViewById(R.id.tutorial_recycler);
         tutorialRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         tutorialList = new ArrayList<>();
+        playerView.setUseController(false); // hides all playback controls
+
+        player.addListener(new Player.Listener() {
+            @Override
+            public void onPlaybackStateChanged(int playbackState) {
+                if (playbackState == Player.STATE_ENDED) {
+                    recents += 1;
+                    adapter = new TutorialAdapter(getContext(), tutorialList, EnrolledCourse.this::playSelectedVideo, recents);
+                    tutorialRecycler.setAdapter(adapter);
+                    fetchTutorials();
+                }
+            }
+        });
+
+        PlayButtonView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (PlayButton.getVisibility() == View.VISIBLE) {
+                    PlayButton.setBackgroundResource(R.drawable.pause_icon);
+                    player.play();
+                    new CountDownTimer(1000, 1000) {
+                        public void onTick(long millisUntilFinished) {}
+                        public void onFinish() {
+                            PlayButton.setVisibility(View.GONE);
+                        }
+                    }.start();
+                } else {
+                    player.pause();
+                    PlayButton.setVisibility(View.VISIBLE);
+                    PlayButton.setBackgroundResource(R.drawable.play_icon);
+                }
+            }
+        });
+
 
         courseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -121,21 +160,43 @@ public class EnrolledCourse extends Fragment {
 
 
     private void playSelectedVideo(String videoUrl, int position) {
+
         String language = getString(R.string.lang);
         FirebaseUser user = mAuth.getCurrentUser();
         String userId = user.getUid();
         DatabaseReference courseRef = FirebaseDatabase.getInstance().getReference("Users").child(userId)
                 .child("courseHistory").child(language).child(courseId);
+        LinearLayout progressBar = view.findViewById(R.id.videoProgressBar);
+        progressBar.setVisibility(View.VISIBLE); // Show loader
         courseRef.setValue(position).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 MediaItem mediaItem = MediaItem.fromUri(Uri.parse(videoUrl));
                 player.setMediaItem(mediaItem);
                 player.prepare();
-                player.play();
+
+                // Listener to hide progress bar when ready
+                player.addListener(new Player.Listener() {
+                    @Override
+                    public void onPlaybackStateChanged(int state) {
+                        if (state == Player.STATE_READY || state == Player.STATE_ENDED) {
+                            progressBar.setVisibility(View.GONE); // Hide loader
+                        }
+                    }
+                });
+                // Pause logic (you can refine this)
+                if (PlayButton.getVisibility() == View.VISIBLE) {
+                    player.pause();
+                } else {
+                    player.play();
+                }
+
             } else {
+                progressBar.setVisibility(View.GONE); // Hide loader on failure
                 Toast.makeText(requireContext(), R.string.failed_to_load_video, Toast.LENGTH_SHORT).show();
             }
         });
+
+
 
     }
 
@@ -159,20 +220,6 @@ public class EnrolledCourse extends Fragment {
                 Toast.makeText(getContext(), R.string.failed_to_load_data, Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void toggleFullscreen() {
-        if (!isFullscreen) {
-            requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-            requireActivity().getWindow().setFlags(
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            isFullscreen = true;
-        } else {
-            requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            isFullscreen = false;
-        }
     }
 
     @Override

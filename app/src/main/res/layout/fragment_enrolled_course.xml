@@ -24,15 +24,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:background="@android:color/black">
-                <ImageView
-                    android:id="@+id/fullscreen_button"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/video_fullscreen"
-                    android:alpha="0.4"
-                    android:scaleType="center"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/playButtonView"
+                    android:gravity="center">
+                    <ImageView
+                        android:id="@+id/playButton"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/play_icon"
+                        android:visibility="visible"
+                        android:alpha="0.6"
+                        android:scaleType="center"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/videoProgressBar"
+                    android:gravity="center"
+                    android:background="@color/black">
+                    <ProgressBar
+                        style="?android:attr/progressBarStyleLarge"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:visibility="visible"
+                        android:layout_gravity="center"
+                        android:backgroundTint="@color/white"
+                        android:layout_centerInParent="true" />
+                </LinearLayout>
             </com.google.android.exoplayer2.ui.PlayerView>
         </androidx.cardview.widget.CardView>
 
