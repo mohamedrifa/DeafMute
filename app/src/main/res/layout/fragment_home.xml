@@ -75,45 +75,6 @@
                             <RelativeLayout
                                 android:layout_width="195dp"
                                 android:layout_height="243dp"
-                                android:id="@+id/SignLanguage"
-                                android:layout_marginLeft="18dp"
-                                android:background="@drawable/recomended2">
-                                <LinearLayout
-                                    android:layout_width="93dp"
-                                    android:layout_height="13dp"
-                                    android:background="#C33CE0"
-                                    android:layout_marginTop="18dp"
-                                    android:gravity="center_horizontal"
-                                    android:layout_marginStart="20dp">
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
-                                        android:text="@string/recommended"
-                                        android:textSize="9sp"
-                                        android:textColor="@color/white"
-                                        android:fontFamily="@font/poppins"
-                                        android:textFontWeight="500"/>
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="180dp"
-                                    android:layout_height="22dp"
-                                    android:layout_centerHorizontal="true"
-                                    android:background="@color/white"
-                                    android:gravity="center_horizontal"
-                                    android:layout_marginTop="192dp">
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/sign_language"
-                                        android:textColor="#C33CE0"
-                                        android:fontFamily="@font/poppins"
-                                        android:textSize="15sp"
-                                        android:textFontWeight="600"/>
-                                </LinearLayout>
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="195dp"
-                                android:layout_height="243dp"
                                 android:id="@+id/TextToSpeech"
                                 android:layout_marginLeft="18dp"
                                 android:background="@drawable/recomended3">
@@ -191,6 +152,25 @@
                             </RelativeLayout>
                         </LinearLayout>
                     </HorizontalScrollView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/enrolled_courses"
+                        android:textColor="#335910"
+                        android:fontFamily="@font/poppins"
+                        android:id="@+id/enrolledText"
+                        android:visibility="gone"
+                        android:textSize="13sp"
+                        android:textFontWeight="600"
+                        android:layout_marginTop="25dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView1"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="0dp"
+                        android:clipToPadding="false" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -205,11 +185,11 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="1000dp"
                     android:clipToPadding="false" />
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"/>
+                    android:layout_height="100dp"/>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

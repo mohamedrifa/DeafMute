@@ -51,9 +51,9 @@ public class TutorialAdapter extends RecyclerView.Adapter<TutorialAdapter.Tutori
             holder.ListBar.setBackgroundResource(R.drawable.tutorial_item_border);
             holder.nameTextView.setTextColor(Color.parseColor("#808080"));
         }
-        holder.ListBar.setOnClickListener(v -> selectVideo(position, tutorial.getUrl()));
+        holder.ListBar.setOnClickListener(v -> selectVideo(position ));
     }
-    void selectVideo(int position, String videoUrl) {
+    void selectVideo(int position) {
         if (selectedPosition != position) {
             selectedPosition = position;
             notifyDataSetChanged();

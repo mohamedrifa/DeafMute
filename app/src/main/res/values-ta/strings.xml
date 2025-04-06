@@ -171,5 +171,7 @@
     <string name="payment_failed">கட்டணம் தோல்வியடைந்தது</string>
     <string name="failed_to_fetch_data">தகவல் பெற முடியவில்லை</string>
 
-
+    <string name="failed_to_load_data">தரவை ஏற்றுவதில் தோல்வி</string>
+    <string name="failed_to_load_video">வீடியோவை ஏற்றுவதில் தோல்வி</string>
+    <string name="enrolled_courses">பதிவுசெய்யப்பட்ட பாடநெறிகள்</string>
 </resources>

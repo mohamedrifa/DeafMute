@@ -204,6 +204,13 @@ public class HomePage extends AppCompatActivity implements profile_edit.OnDataPa
                 Icon3.setVisibility(View.GONE);
                 Icon4.setVisibility(View.GONE);
                 Icon5.setVisibility(View.GONE);
+                Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+                if (currentFragment instanceof EnrolledCourse) {
+                    ((EnrolledCourse) currentFragment).pausePlayer();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, new Home())
+                            .commit();
+                }
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new Home())
                         .commit();
@@ -225,6 +232,13 @@ public class HomePage extends AppCompatActivity implements profile_edit.OnDataPa
                 Icon3.setVisibility(View.GONE);
                 Icon4.setVisibility(View.GONE);
                 Icon5.setVisibility(View.GONE);
+                Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+                if (currentFragment instanceof EnrolledCourse) {
+                    ((EnrolledCourse) currentFragment).pausePlayer();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, new Home())
+                            .commit();
+                }
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new Favourite())
                         .commit();
@@ -246,6 +260,13 @@ public class HomePage extends AppCompatActivity implements profile_edit.OnDataPa
                 Icon3.setVisibility(View.VISIBLE);
                 Icon4.setVisibility(View.GONE);
                 Icon5.setVisibility(View.GONE);
+                Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+                if (currentFragment instanceof EnrolledCourse) {
+                    ((EnrolledCourse) currentFragment).pausePlayer();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, new Home())
+                            .commit();
+                }
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new Games())
                         .commit();
@@ -267,6 +288,13 @@ public class HomePage extends AppCompatActivity implements profile_edit.OnDataPa
                 Icon3.setVisibility(View.GONE);
                 Icon4.setVisibility(View.VISIBLE);
                 Icon5.setVisibility(View.GONE);
+                Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+                if (currentFragment instanceof EnrolledCourse) {
+                    ((EnrolledCourse) currentFragment).pausePlayer();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, new Home())
+                            .commit();
+                }
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new Community())
                         .commit();
@@ -309,7 +337,13 @@ public class HomePage extends AppCompatActivity implements profile_edit.OnDataPa
                 Icon3.setVisibility(View.GONE);
                 Icon4.setVisibility(View.GONE);
                 Icon5.setVisibility(View.VISIBLE);
-
+                Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+                if (currentFragment instanceof EnrolledCourse) {
+                    ((EnrolledCourse) currentFragment).pausePlayer();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, new Home())
+                            .commit();
+                }
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new Profile())
                         .commit();
@@ -370,11 +404,17 @@ public class HomePage extends AppCompatActivity implements profile_edit.OnDataPa
         });
 
         Logout.setOnClickListener(v -> {
+            Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+            if (currentFragment instanceof EnrolledCourse) {
+                ((EnrolledCourse) currentFragment).pausePlayer();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new Home())
+                        .commit();
+            }
             mAuth.signOut();
             Intent i = new Intent(this, LanguageSelection.class);
             startActivity(i);
         });
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -397,8 +437,22 @@ public class HomePage extends AppCompatActivity implements profile_edit.OnDataPa
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, courseViewFragment)
                     .commit();
-        }
-        else if (!(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof Home)) {
+        } else if (currentFragment instanceof EnrolledCourse) {
+            ((EnrolledCourse) currentFragment).pausePlayer();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new Home())
+                    .commit();
+            profileImg.setTranslationX(0f);
+            profileImg.setTranslationY(0f);
+            LayoutProfile.setVisibility(View.GONE);
+            TaskBar.setVisibility(View.VISIBLE);
+            cardProfile.setVisibility(View.GONE);
+            Icon1.setVisibility(View.VISIBLE);
+            Icon2.setVisibility(View.GONE);
+            Icon3.setVisibility(View.GONE);
+            Icon4.setVisibility(View.GONE);
+            Icon5.setVisibility(View.GONE);
+        } else if (!(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof Home)) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new Home())
                     .commit();
@@ -416,7 +470,6 @@ public class HomePage extends AppCompatActivity implements profile_edit.OnDataPa
             super.onBackPressed();
         }
     }
-
     private void setLanguage(String lang) {
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);
@@ -427,7 +480,6 @@ public class HomePage extends AppCompatActivity implements profile_edit.OnDataPa
         resources.updateConfiguration(config, displayMetrics);
         recreate(); // Reloads the current activity to apply language changes
     }
-
     private void setLocale(String language) {
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
         if (firebaseUser != null) {
@@ -449,5 +501,4 @@ public class HomePage extends AppCompatActivity implements profile_edit.OnDataPa
             Toast.makeText(this, R.string.user_not_logged_in, Toast.LENGTH_SHORT).show();
         }
     }
-
 }

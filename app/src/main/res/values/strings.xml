@@ -165,9 +165,10 @@
     <string name="payment_successfull">Payment Successfull</string>
     <string name="payment_failed">Payment Failed</string>
     <string name="failed_to_fetch_data">failed to fetch data</string>
-    <string name="playing">Playing...</string>
+
     <string name="failed_to_load_data">Failed to load data</string>
     <string name="failed_to_load_video">failed to load video</string>
+    <string name="enrolled_courses">Enrolled Courses</string>
 
 
 </resources>
