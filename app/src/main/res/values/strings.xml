@@ -1,8 +1,7 @@
 <resources>
 
     <string name="lang">en</string>
-
-    <string name="app_name">Deaf And Mute</string>
+    <string name="app_name">Signify</string>
     <string name="title_activity_login_page">LoginPage</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

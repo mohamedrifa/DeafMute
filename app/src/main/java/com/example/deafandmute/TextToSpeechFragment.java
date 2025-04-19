@@ -123,10 +123,8 @@ public class TextToSpeechFragment extends Fragment {
             Toast.makeText(getContext(), R.string.please_enter_text_to_speak, Toast.LENGTH_SHORT).show();
             return;
         }
-
         // Detect if the text is Tamil
         boolean isTamil = text.matches(".*[\\u0B80-\\u0BFF].*"); // Tamil Unicode range
-
         // Set the language dynamically
         int langResult;
         if (isTamil) {
@@ -145,7 +143,6 @@ public class TextToSpeechFragment extends Fragment {
             Toast.makeText(getContext(), R.string.language_not_supported_or_missing_data, Toast.LENGTH_SHORT).show();
             return;
         }
-
         // Speak the text
         textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
     }
@@ -165,7 +162,6 @@ public class TextToSpeechFragment extends Fragment {
             rootView.getWindowVisibleDisplayFrame(r);
             int screenHeight = rootView.getRootView().getHeight();
             int keypadHeight = screenHeight - r.bottom;
-
             if (keypadHeight > screenHeight * 0.15) { // Keyboard is visible
                 parentLayout.setTranslationY(-30); // Directly move up by keypad height
             } else {

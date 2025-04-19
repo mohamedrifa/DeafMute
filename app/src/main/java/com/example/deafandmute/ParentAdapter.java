@@ -42,7 +42,7 @@ public class ParentAdapter extends RecyclerView.Adapter<ParentAdapter.ViewHolder
             holder.headingTextView.setText(category);
         }
         ArrayList<String> childItems = dataMap.get(category);
-        ChildAdapter childAdapter = new ChildAdapter(childItems);
+        ChildAdapter childAdapter = new ChildAdapter(context, childItems);
         holder.childRecyclerView.setLayoutManager(
                 new LinearLayoutManager(holder.itemView.getContext(), LinearLayoutManager.HORIZONTAL, false)
         );

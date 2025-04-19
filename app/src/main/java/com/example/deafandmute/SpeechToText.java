@@ -104,6 +104,7 @@ public class SpeechToText extends Fragment {
             public void onEvent(int eventType, Bundle params) {
             }
         });
+        String lang = getString(R.string.lang);
 
         Mic.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -112,7 +113,11 @@ public class SpeechToText extends Fragment {
                     case MotionEvent.ACTION_DOWN:
                         // User started pressing the button
                         MicWorks.setVisibility(View.VISIBLE);
-                        startListening();
+                        if(lang.equals("en")){
+                            startListeningEn();
+                        } else {
+                            startListeningTa();
+                        }
                         tvResult.setText(R.string.listening);
                         return true;
 
@@ -134,22 +139,35 @@ public class SpeechToText extends Fragment {
             speechRecognizer.stopListening();
         }
     }
-
-    private void startListening() {
+    private void startListeningEn() {
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.RECORD_AUDIO}, 100);
             return;
         }
-
         // Use Tamil Locale
-        Locale selectedLocale = new Locale("ta"); // Tamil locale
-
+        Locale selectedLocale = new Locale("en"); // Tamil locale
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, selectedLocale);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, selectedLocale);
         intent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, true);
+        speechRecognizer.startListening(intent);
+    }
+    private void startListeningTa() {
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.RECORD_AUDIO}, 100);
+            return;
+        }
 
+        // ✅ Use Tamil Locale
+        Locale selectedLocale = new Locale("ta", "IN");
+
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, selectedLocale.toString()); // "ta-IN"
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, selectedLocale.toString());
+        intent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, true);
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "தமிழில் பேசவும்...");
         speechRecognizer.startListening(intent);
     }
     @Override
