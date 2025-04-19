@@ -174,4 +174,46 @@
     <string name="failed_to_load_data">தரவை ஏற்றுவதில் தோல்வி</string>
     <string name="failed_to_load_video">வீடியோவை ஏற்றுவதில் தோல்வி</string>
     <string name="enrolled_courses">பதிவுசெய்யப்பட்ட பாடநெறிகள்</string>
+
+
+    <string name="travel">பயணம்</string>
+    <string name="food">உணவு மற்றும் பானம்</string>
+    <string name="emergency">அவசரம்</string>
+    <string name="direction">திசை</string>
+    <string name="shopping">ஷாப்பிங்</string>
+
+
+    <string name="taxi">டாக்ஸி எங்கே கிடைக்கும்?</string>
+    <string name="busstop">பஸ் நிறுத்தம் எங்கே?</string>
+    <string name="train">எந்த ரயில் [இடம்] செல்லும்?</string>
+    <string name="fare">கட்டணம் எவ்வளவு?</string>
+    <string name="airport">நான் விமான நிலையத்திற்கு போக வேண்டும்.</string>
+    <string name="correct_route">இது சரியான பாதையா?</string>
+
+    <string name="hungry">எனக்கு பசிக்கிறது.</string>
+    <string name="vegetarian">எனக்கு சைவ உணவு வேண்டும்.</string>
+    <string name="no_spicy">காரமில்லாத உணவு வேண்டும்.</string>
+    <string name="allergy_nuts">எனக்கு முந்திரி அலர்ஜி.</string>
+    <string name="water_bottle">ஒரு தண்ணீர் பாட்டில் கிடைக்குமா?</string>
+    <string name="restaurant">அருகில் உள்ள உணவகம் எங்கே?</string>
+
+    <string name="help">எனக்கு உதவி தேவை.</string>
+    <string name="police">போலீஸை அழைக்கவும்.</string>
+    <string name="lost_wallet">என் பணப்பையை தொலைத்துவிட்டேன்.</string>
+    <string name="fire">தீவிபத்து ஏற்பட்டுள்ளது.</string>
+    <string name="injured">நான் காயமடைந்துள்ளேன்.</string>
+    <string name="ambulance">தயவு செய்து ஆம்புலன்ஸ் அழைக்கவும்.</string>
+
+    <string name="restroom">கழிப்பறை எங்கே?</string>
+    <string name="place">[இடம்] எப்படி செல்லலாம்?</string>
+    <string name="left_or_right">இடதுபக்கம் அல்லது வலதுபக்கம்?</string>
+    <string name="how_far">அது எவ்வளவு தூரம்?</string>
+    <string name="walkable">நடக்கக்கூடிய தூரமா?</string>
+
+    <string name="cost">இதன் விலை எவ்வளவு?</string>
+    <string name="size">வேறொரு அளவு வேண்டும்.</string>
+    <string name="cards">நீங்கள் கார்டுகள் ஏற்கிறீர்களா?</string>
+    <string name="billing_counter">பில் செலுத்தும் இடம் எங்கே?</string>
+    <string name="help_item">இந்த பொருளுக்கு உதவி வேண்டும்.</string>
+
 </resources>

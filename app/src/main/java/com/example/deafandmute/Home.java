@@ -101,7 +101,6 @@ public class Home extends Fragment {
                 // Once all courses are loaded, fetch enrolled courses
                 fetchEnrolledCourses(userId, language);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();

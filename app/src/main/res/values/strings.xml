@@ -171,4 +171,50 @@
     <string name="enrolled_courses">Enrolled Courses</string>
 
 
+    <string name="travel">Travel</string>
+    <string name="food">Food and Drink</string>
+    <string name="emergency">Emergency</string>
+    <string name="direction">Direction</string>
+    <string name="shopping">Shopping</string>
+
+    <!--Travel-->
+    <string name="taxi">Where can I get a Taxi?</string>
+    <string name="busstop">Where is the Bus Stop?</string>
+    <string name="train">Which train goes to [Location]?</string>
+    <string name="fare">How much is the Fare?</string>
+    <string name="airport">I want to go to the Airport.</string>
+    <string name="correct_route">Is this the correct route?</string>
+
+    <!--Food and Drink-->
+    <string name="hungry">I am hungry.</string>
+    <string name="vegetarian">I want vegetarian food.</string>
+    <string name="no_spicy">No spicy food please.</string>
+    <string name="allergy_nuts">I am allergic to nuts.</string>
+    <string name="water_bottle">Can I get a bottle of water?</string>
+    <string name="restaurant">Where is the nearest restaurant?</string>
+
+    <!--Emergency-->
+    <string name="help">I need help.</string>
+    <string name="police">call the police.</string>
+    <string name="lost_wallet">I lost my wallet.</string>
+    <string name="fire">There is a fire.</string>
+    <string name="injured">I am injured.</string>
+    <string name="ambulance">Please call an ambulance.</string>
+
+    <!--Direction-->
+    <string name="restroom">Where is the restroom?</string>
+    <string name="place">How do I get to [place]?</string>
+    <string name="left_or_right">Left or Right?</string>
+    <string name="how_far">How far is it?</string>
+    <string name="walkable">Is it walkable?</string>
+
+    <!--Shopping-->
+    <string name="cost">How much does this cost?</string>
+    <string name="size">I want a different size.</string>
+    <string name="cards">Do you accept cards?</string>
+    <string name="billing_counter">Where is the billing counter?</string>
+    <string name="help_item">I need help with this item.</string>
+
+
+
 </resources>
