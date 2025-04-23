@@ -30,11 +30,9 @@ public class SpeechToText extends Fragment {
     private TextView tvResult;
     private ImageView Mic, MicWorks;
     private SpeechRecognizer speechRecognizer;
-
     public SpeechToText() {
         // Required empty public constructor
     }
-
     public static SpeechToText newInstance(String param1, String param2) {
         SpeechToText fragment = new SpeechToText();
         Bundle args = new Bundle();
@@ -48,7 +46,6 @@ public class SpeechToText extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
     @SuppressLint({"ClickableViewAccessibility", "MissingInflatedId"})
     @Nullable
     @Override
@@ -105,7 +102,6 @@ public class SpeechToText extends Fragment {
             }
         });
         String lang = getString(R.string.lang);
-
         Mic.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -158,14 +154,10 @@ public class SpeechToText extends Fragment {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.RECORD_AUDIO}, 100);
             return;
         }
-
-        // ✅ Use Tamil Locale
-        Locale selectedLocale = new Locale("ta", "IN");
-
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, selectedLocale.toString()); // "ta-IN"
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, selectedLocale.toString());
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ta-IN");
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "ta-IN");
         intent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, true);
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "தமிழில் பேசவும்...");
         speechRecognizer.startListening(intent);
